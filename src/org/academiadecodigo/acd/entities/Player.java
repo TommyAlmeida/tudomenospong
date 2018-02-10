@@ -1,6 +1,11 @@
 package org.academiadecodigo.acd.entities;
 
-public class Player {
+import org.academiadecodigo.simplegraphics.mouse.Mouse;
+import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
+import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
+import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
+
+public class Player implements MouseHandler {
 
     private int lifes;
     private int money;
@@ -10,5 +15,23 @@ public class Player {
         this.lifes = 3;
         this.money = 100;
         this.totalScore = 0;
+        mouseEvents();
+    }
+
+    private void mouseEvents(){
+        Mouse m = new Mouse(this);
+        MouseEventType createTower = MouseEventType.MOUSE_CLICKED;
+
+        m.addEventListener(createTower);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+        System.out.println(mouseEvent);
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent mouseEvent) {
+
     }
 }

@@ -9,18 +9,18 @@ public abstract class Enemy {
     private int currentHealth, maxHealth;
     private Rectangle healthBar;
     private Picture picture;
-
+    private String name;
     private int moveSpeed;
-    private int money;
-
+    private int givenMoney;
     private Position currentPosition;
 
-    public Enemy(Picture picture, int maxHealth, int money, int moveSpeed, Rectangle healthBar){
+    public Enemy(String name, Picture picture, int maxHealth, int givenMoney, int moveSpeed){
         this.maxHealth = maxHealth;
-        this.money = money;
+        this.givenMoney = givenMoney;
         this.moveSpeed = moveSpeed;
-        this.healthBar = healthBar;
+        this.healthBar = new Rectangle(0, 2, getCurrentHealth(), 10);
         this.picture = picture;
+        this.name = name;
     }
 
     public int getCurrentHealth() {
@@ -56,11 +56,11 @@ public abstract class Enemy {
     }
 
     public int getMoney() {
-        return money;
+        return givenMoney;
     }
 
     public void setMoney(int money) {
-        this.money = money;
+        this.givenMoney = money;
     }
 
     public Position getCurrentPosition() {

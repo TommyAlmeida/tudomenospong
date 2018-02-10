@@ -10,8 +10,7 @@ public class Tower {
 
     private int range, fireRate, damage, level; //Level: if X level returns = not upgradable
 
-    public Tower(Position currentPosition, Picture picture, int range, int fireRate, int damage) {
-        this.currentPosition = currentPosition;
+    public Tower(Picture picture, int range, int fireRate, int damage) {
         this.picture = picture;
         this.range = range;
         this.fireRate = fireRate;

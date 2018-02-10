@@ -1,4 +1,7 @@
 package org.academiadecodigo.acd.entities.enemies;
 
-public class EnemyType {
+public enum EnemyType {
+
+    DIOGO
+
 }

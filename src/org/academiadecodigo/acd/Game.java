@@ -20,13 +20,14 @@ public class Game {
             case MAIN_MENU:
                 break;
             case IN_GAME:
-                GameScreen gameScreen = new GameScreen();
-                gameScreen.init();
-                gameScreen.start();
+                new GameScreen().start();
                 break;
             case GAME_OVER:
                 break;
         }
     }
 
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
 }

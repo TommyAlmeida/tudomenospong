@@ -1,7 +1,5 @@
 package org.academiadecodigo.acd.screens;
 
-import org.academiadecodigo.acd.Game;
-import org.academiadecodigo.acd.GameState;
 import org.academiadecodigo.acd.entities.Player;
 import org.academiadecodigo.acd.entities.enemies.Enemy;
 import org.academiadecodigo.acd.entities.enemies.EnemyFactory;

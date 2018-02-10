@@ -3,6 +3,8 @@ package org.academiadecodigo.acd;
 import org.academiadecodigo.acd.entities.Player;
 import org.academiadecodigo.acd.entities.enemies.Enemy;
 import org.academiadecodigo.acd.entities.enemies.EnemyFactory;
+import org.academiadecodigo.acd.screens.GameScreen;
+import org.academiadecodigo.acd.screens.Screen;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Game {
@@ -18,9 +20,9 @@ public class Game {
             case MAIN_MENU:
                 break;
             case IN_GAME:
-                Enemy enemy = EnemyFactory.makeEnemy();
-                Player player = new Player();
-                new Rectangle(10, 10, 800, 600).draw();
+                GameScreen gameScreen = new GameScreen();
+                gameScreen.init();
+                gameScreen.start();
                 break;
             case GAME_OVER:
                 break;

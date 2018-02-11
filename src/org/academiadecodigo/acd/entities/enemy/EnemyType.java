@@ -1,4 +1,4 @@
-package org.academiadecodigo.acd.entities.enemies;
+package org.academiadecodigo.acd.entities.enemy;
 
 import org.academiadecodigo.acd.game.GameConsts;
 

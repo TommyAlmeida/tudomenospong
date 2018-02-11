@@ -1,4 +1,4 @@
-package org.academiadecodigo.acd.entities.enemies;
+package org.academiadecodigo.acd.entities.enemy;
 
 public class EnemyFactory {
 

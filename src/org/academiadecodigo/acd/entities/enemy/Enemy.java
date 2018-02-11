@@ -1,10 +1,9 @@
-package org.academiadecodigo.acd.entities.enemies;
+package org.academiadecodigo.acd.entities.enemy;
 
 import org.academiadecodigo.acd.entities.Entity;
 import org.academiadecodigo.acd.entities.Player;
 import org.academiadecodigo.acd.map.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 

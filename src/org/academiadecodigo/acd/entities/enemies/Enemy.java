@@ -14,27 +14,23 @@ public abstract class Enemy implements Entity{
     private int value; //how much is this enemy worth in €€€?
     private boolean dead;
 
-    private int x, y;
-    private Position pos;
+    private Position startPosition;
 
     private Rectangle healthBar;
     private Picture sprite;
 
     private EnemyType enemyType;
 
-    public Enemy(EnemyType enemyType, int x, int y, int maxHealth, int moneyValue, int speed){
-        this.x = x;
-        this.y = y;
-
+    public Enemy(EnemyType enemyType, int maxHealth, int moneyValue, int speed){
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.value = moneyValue;
         this.speed = speed;
         this.enemyType = enemyType;
 
+        startPosition = new Position(0, 0);
         dead = false;
-        pos = new Position(x, y);
-        sprite = new Picture(x,y,
+        sprite = new Picture(startPosition.getX(),startPosition.getY(),
                 enemyType.getImagePath());
     }
 
@@ -72,8 +68,8 @@ public abstract class Enemy implements Entity{
      * Draw the health bar
      */
     private void drawHpBar(){
-        healthBar = new Rectangle(Math.floor(getX() / 3),
-                getY() - 5,
+        healthBar = new Rectangle(Math.floor(sprite.getX() / 3),
+                sprite.getY() - 5,
                 currentHealth, 10);
 
         healthBar.setColor(Color.RED);
@@ -97,14 +93,6 @@ public abstract class Enemy implements Entity{
 
     public boolean isDead(){
         return dead;
-    }
-
-    public int getX(){
-        return pos.getX();
-    }
-
-    public int getY(){
-        return pos.getY();
     }
 
     public void setSprite(Picture sprite) {

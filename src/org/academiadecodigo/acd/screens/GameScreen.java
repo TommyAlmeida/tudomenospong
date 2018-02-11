@@ -60,8 +60,8 @@ public class GameScreen implements Screen, KeyboardHandler{
     @Override
     public void keyPressed(KeyboardEvent e) {
         if(e.getKey() == KeyboardEvent.KEY_E){
-            enemy.takeHit(player, 1);
-            System.out.println(enemy);
+            enemy.takeHit(player, 1); //DEBUG
+            exit = true;
         }
     }
 

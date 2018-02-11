@@ -20,7 +20,8 @@ public class Game {
             case MAIN_MENU:
                 break;
             case IN_GAME:
-                new GameScreen().start();
+                GameScreen gs = new GameScreen();
+                gs.start();
                 break;
             case GAME_OVER:
                 break;

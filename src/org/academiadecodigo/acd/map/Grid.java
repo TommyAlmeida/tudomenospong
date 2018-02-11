@@ -47,7 +47,7 @@ public class Grid {
 @Override
 public void init() {
     canvas = new Rectangle(PADDING,PADDING,cols * getCellSize(),rows * getCellSize());
-    canvas.draw();
+    canvas.init();
     canvas.setColor(Color.BLACK);
 }
 

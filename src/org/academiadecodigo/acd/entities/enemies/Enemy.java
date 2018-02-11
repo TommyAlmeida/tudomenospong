@@ -1,73 +1,75 @@
 package org.academiadecodigo.acd.entities.enemies;
 
-import org.academiadecodigo.acd.map.Position;
+import org.academiadecodigo.acd.GameConsts;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class Enemy {
 
-    private int currentHealth, maxHealth;
-    private Rectangle healthBar;
-    private Picture picture;
     private String name;
-    private int moveSpeed;
-    private int givenMoney;
-    private Position currentPosition;
 
-    public Enemy(String name, Picture picture, int maxHealth, int givenMoney, int moveSpeed){
+    private int currentHealth, maxHealth;
+    private int speed;
+    private int givenMoney;
+
+    private Rectangle healthBar;
+    private Picture sprite;
+
+    public Enemy(String name, String imagePath, int maxHealth,
+                 int givenMoney, int speed){
+        this.name = name;
         this.maxHealth = maxHealth;
         this.givenMoney = givenMoney;
-        this.moveSpeed = moveSpeed;
-        this.healthBar = new Rectangle(0, 2, getCurrentHealth(), 10);
-        this.picture = picture;
-        this.name = name;
+        this.speed = speed;
+        this.sprite = new Picture(0,0,
+                GameConsts.RESOURCES_PATH + imagePath.trim());
     }
 
-    public int getCurrentHealth() {
-        return currentHealth;
+    public void init(){
+        healthBar = new Rectangle(Math.floor(sprite.getX() / 3),
+                sprite.getY() - 10,
+                maxHealth - currentHealth, 10);
+
+        sprite.draw();
+        healthBar.setColor(Color.RED);
+        healthBar.fill();
     }
 
-    public void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
+    public void move(){
+        System.out.println(isOutOfBounds());
+
+        if(isOutOfBounds()) return;
+
+        healthBar.translate(speed,0);
+        sprite.translate(speed, 0);
     }
 
-    public int getMaxHealth() {
-        return maxHealth;
+
+    public boolean isDead(){
+        return currentHealth <= 0;
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
+    public boolean isOutOfBounds(){
+        return getX() > GameConsts.WINDOW_WIDTH;
     }
 
-    public Rectangle getHealthBar() {
-        return healthBar;
+    public int getX(){
+        return sprite.getX();
     }
 
-    public void setHealthBar(Rectangle healthBar) {
-        this.healthBar = healthBar;
+    public int getY(){
+        return sprite.getX();
     }
 
-    public int getMoveSpeed() {
-        return moveSpeed;
-    }
-
-    public void setMoveSpeed(int moveSpeed) {
-        this.moveSpeed = moveSpeed;
-    }
-
-    public int getMoney() {
-        return givenMoney;
-    }
-
-    public void setMoney(int money) {
-        this.givenMoney = money;
-    }
-
-    public Position getCurrentPosition() {
-        return currentPosition;
-    }
-
-    public void setCurrentPosition(Position currentPosition) {
-        this.currentPosition = currentPosition;
+    @Override
+    public String toString() {
+        return "Enemy{" +
+                "name='" + name + '\'' +
+                ", currentHealth=" + currentHealth +
+                ", maxHealth=" + maxHealth +
+                ", speed=" + speed +
+                ", givenMoney=" + givenMoney +
+                '}';
     }
 }

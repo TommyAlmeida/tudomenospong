@@ -34,4 +34,8 @@ public class Player implements MouseHandler {
     public void mouseMoved(MouseEvent mouseEvent) {
 
     }
+
+    public int getLifes() {
+        return lifes;
+    }
 }

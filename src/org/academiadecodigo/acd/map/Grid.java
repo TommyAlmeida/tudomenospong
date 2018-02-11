@@ -5,7 +5,8 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class Grid {
 
     private final int PADDING = 10;
-    private int cellSize = 10;
+    private int cellSize;
+    private int gridWidth = getWidth();
 
     private int cols, rows;
     private Rectangle grid;
@@ -13,92 +14,52 @@ public class Grid {
     public Grid(int cols, int rows) {
         this.cols = cols;
         this.rows = rows;
-        this.grid = new Rectangle(PADDING, PADDING, 300, 300);
+        this.grid = new Rectangle(PADDING, PADDING, rows * getCellSize(), cols * getCellSize());
+        grid.draw();
     }
 
-    public int getCellsize(){
+    // Creates a new multi-dimensional array with x rows and y columns
+    private int gridArray[][] = new int[32][32];
+
+
+    public int getWidth() {
+        return grid.getWidth();
+    }
+
+    // Getter for the CellSize
+    public int getCellSize() {
         return cellSize;
     }
 
-    public int getRowToY(int row){
-        return row * cellSize + PADDING;
+    //CellSize is variable and depends on the size chosen for the canvas
+    public void setCellSize(int cols, int gridWidth) {
+        this.cellSize = gridWidth / cols;
     }
 
-    public int getColumnToX(int column){
-        return column * cellSize + PADDING;
-    }
-
-    //TODO: copy from car crash
-}
-/**
- public class SimpleGfxGrid implements Grid {
-
- public static final int PADDING = 10;
- private int cols;
- private int rows;
- private Rectangle canvas;
-
- public SimpleGfxGrid(int cols, int rows){
- this.cols = cols;
- this.rows = rows;
-
- }
-
-@Override
-public void init() {
-    canvas = new Rectangle(PADDING,PADDING,cols * getCellSize(),rows * getCellSize());
-    canvas.draw();
-    canvas.setColor(Color.BLACK);
-}
-
-
-    @Override
-    public int getCols() {
-        return cols;
-    }
-
-
-    @Override
     public int getRows() {
         return rows;
     }
 
-    public int getWidth() {
-        return canvas.getWidth();
-    }
-
-    public int getHeight() {
-        return canvas.getHeight();
+    public int getCols() {
+        return cols;
     }
 
     public int getX() {
-        return canvas.getX();
+        return grid.getX();
     }
 
     public int getY() {
-        return canvas.getY();
+        return grid.getY();
     }
 
-    public int getCellSize() {
-        return 20;
+    public int getRowToY(int row) {
+        return row * cellSize + PADDING;
     }
 
-    @Override
-    public GridPosition makeGridPosition() {
-        return new SimpleGfxGridPosition(this);
+    public int getColumnToX(int column) {
+        return column * cellSize + PADDING;
     }
 
-    @Override
-    public GridPosition makeGridPosition(int col, int row) {
-        return new SimpleGfxGridPosition(col, row, this);
-    }
 
-    public int rowToY(int row) {
-        return getCellSize() * row + PADDING;
-    }
-
-    public int columnToX(int column) {
-        return getCellSize() * column + PADDING;
-    }
-
-    */
+    //TODO: copy from car crash
+}

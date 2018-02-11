@@ -1,14 +1,13 @@
 package org.academiadecodigo.acd.entities.enemies;
 
-import org.academiadecodigo.acd.GameConsts;
+import org.academiadecodigo.acd.entities.Entity;
 import org.academiadecodigo.acd.entities.Player;
-import org.academiadecodigo.acd.entities.tower.Tower;
 import org.academiadecodigo.acd.map.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public abstract class Enemy{
+public abstract class Enemy implements Entity{
 
     private int currentHealth, maxHealth;
     private int speed;
@@ -42,7 +41,8 @@ public abstract class Enemy{
     /**
      * Init representations
      */
-    public void init(){
+    @Override
+    public void render(){
         drawHpBar();
         sprite.draw();
     }
@@ -50,9 +50,10 @@ public abstract class Enemy{
     /**
      * Everything it needs to be on the main game loop
      */
+    @Override
     public void update(){
         if(isDead()){
-            sprite.delete();
+            dispose();
             return;
         }
 
@@ -86,6 +87,12 @@ public abstract class Enemy{
             dead = true;
             player.addMoney(this);
         }
+    }
+
+    @Override
+    public void dispose(){
+        sprite.delete();
+        healthBar.delete();
     }
 
     public boolean isDead(){

@@ -35,7 +35,8 @@ public class GameScreen implements Screen, KeyboardHandler{
         tempGrid.setColor(Color.WHITE);
         tempGrid.fill();
 
-        enemy.init();
+        enemy.render();
+
         while (!exit || player.getLifes() > 0){
             try {
                 Thread.sleep(GameConsts.GAME_DELAY);

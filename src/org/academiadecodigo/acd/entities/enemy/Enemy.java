@@ -61,7 +61,7 @@ public abstract class Enemy implements Entity{
      */
     public void move(){
         healthHUD.translate(speed, 0);
-        sprite.translate(speed, speed);
+        sprite.translate(speed, 0);
     }
 
     /**

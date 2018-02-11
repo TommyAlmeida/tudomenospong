@@ -1,4 +1,4 @@
-package org.academiadecodigo.acd;
+package org.academiadecodigo.acd.game;
 
 public enum GameState {
     MAIN_MENU,

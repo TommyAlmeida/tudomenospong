@@ -5,8 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class Grid {
 
     private final int PADDING = 10;
-    private int cellSize;
-    private int gridWidth;
+    private int cellSize = 1;
 
     private int cols, rows;
     private Rectangle grid;
@@ -15,7 +14,6 @@ public class Grid {
         this.cols = cols;
         this.rows = rows;
         this.grid = new Rectangle(PADDING, PADDING, rows * getCellSize(), cols * getCellSize());
-        this.gridWidth = getWidth();
         grid.draw();
     }
 
@@ -60,7 +58,4 @@ public class Grid {
     public int getColumnToX(int column) {
         return column * cellSize + PADDING;
     }
-
-
-//TODO: copy from car crash
 }

@@ -1,11 +1,10 @@
 package org.academiadecodigo.acd.screens;
 
-import org.academiadecodigo.acd.GameConsts;
+import org.academiadecodigo.acd.game.GameConsts;
 import org.academiadecodigo.acd.entities.Player;
 import org.academiadecodigo.acd.entities.enemies.Enemy;
 import org.academiadecodigo.acd.entities.enemies.EnemyFactory;
 import org.academiadecodigo.acd.map.Grid;
-import org.academiadecodigo.acd.map.Map;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;

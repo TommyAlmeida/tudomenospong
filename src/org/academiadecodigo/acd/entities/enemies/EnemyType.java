@@ -1,6 +1,6 @@
 package org.academiadecodigo.acd.entities.enemies;
 
-import org.academiadecodigo.acd.GameConsts;
+import org.academiadecodigo.acd.game.GameConsts;
 
 public enum  EnemyType {
 

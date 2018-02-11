@@ -16,7 +16,11 @@ public class Game {
                 break;
             case IN_GAME:
                 GameScreen gs = new GameScreen();
-                gs.start();
+                try {
+                    gs.start();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 break;
             case GAME_OVER:
                 break;

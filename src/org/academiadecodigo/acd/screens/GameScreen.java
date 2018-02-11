@@ -10,35 +10,28 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class GameScreen implements Screen, KeyboardHandler{
 
     private boolean exit; //debug force exit
 
-    private Enemy enemy;
     private Player player;
     private Grid grid;
 
     public GameScreen(){
         this.exit = false;
-        this.enemy = EnemyFactory.makeEnemy();
         this.player = new Player();
         keyEvents();
     }
 
     @Override
-    public void start() {
+    public void start() throws InterruptedException {
         grid = new Grid(GameConsts.WINDOW_WIDTH, GameConsts.WINDOW_HEIGHT);
 
-        enemy.render();
-
         while (!exit || player.getLifes() > 0){
-            try {
-                Thread.sleep(GameConsts.GAME_DELAY);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            enemy.update();
+            Thread.sleep(GameConsts.GAME_DELAY);
         }
     }
 
@@ -54,7 +47,6 @@ public class GameScreen implements Screen, KeyboardHandler{
     @Override
     public void keyPressed(KeyboardEvent e) {
         if(e.getKey() == KeyboardEvent.KEY_E){
-            enemy.takeHit(player, 1); //DEBUG
             exit = true;
         }
     }

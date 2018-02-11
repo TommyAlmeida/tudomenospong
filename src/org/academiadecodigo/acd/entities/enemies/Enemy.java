@@ -1,73 +1,114 @@
 package org.academiadecodigo.acd.entities.enemies;
 
+import org.academiadecodigo.acd.entities.Entity;
+import org.academiadecodigo.acd.entities.Player;
 import org.academiadecodigo.acd.map.Position;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public abstract class Enemy {
+public abstract class Enemy implements Entity{
 
     private int currentHealth, maxHealth;
-    private Rectangle healthBar;
-    private Picture picture;
-    private String name;
-    private int moveSpeed;
-    private int givenMoney;
-    private Position currentPosition;
+    private int speed;
+    private int value; //how much is this enemy worth in €€€
+    private boolean dead;
 
-    public Enemy(String name, Picture picture, int maxHealth, int givenMoney, int moveSpeed){
+    private Position startPosition;
+
+    private Text healthHUD;
+    private Picture sprite;
+
+    private EnemyType enemyType;
+
+    public Enemy(EnemyType enemyType, int maxHealth, int moneyValue, int speed){
         this.maxHealth = maxHealth;
-        this.givenMoney = givenMoney;
-        this.moveSpeed = moveSpeed;
-        this.healthBar = new Rectangle(0, 2, getCurrentHealth(), 10);
-        this.picture = picture;
-        this.name = name;
+        this.currentHealth = maxHealth;
+        this.value = moneyValue;
+        this.speed = speed;
+        this.enemyType = enemyType;
+
+        startPosition = new Position(0, 0);
+        dead = false;
+        sprite = new Picture(startPosition.getX(),startPosition.getY(),
+                enemyType.getImagePath());
     }
 
-    public int getCurrentHealth() {
-        return currentHealth;
+    /**
+     * Init representations
+     */
+    @Override
+    public void render(){
+        drawHpBar();
+        sprite.draw();
     }
 
-    public void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
+    /**
+     * Everything it needs to be on the main game loop
+     */
+    @Override
+    public void update(){
+        if(isDead()){
+            dispose();
+            return;
+        }
+
+        move();
     }
 
-    public int getMaxHealth() {
-        return maxHealth;
+    /**
+     * Make the enemy move and the healthbar follows
+     */
+    public void move(){
+        healthHUD.translate(speed, 0);
+        sprite.translate(speed, 0);
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
+    /**
+     * Draw the health bar
+     */
+    private void drawHpBar(){
+        healthHUD = new Text(sprite.getX() / 2, sprite.getY() - 5, String.valueOf(currentHealth));
+        healthHUD.setColor(Color.RED);
+        healthHUD.draw();
     }
 
-    public Rectangle getHealthBar() {
-        return healthBar;
+    public void takeHit(Player player, int damage) {
+        currentHealth -= damage; //tower.getDamage();
+        healthHUD.setText(String.valueOf(currentHealth));
+
+        if(currentHealth <= 0){
+            dead = true;
+            player.addMoney(this);
+        }
     }
 
-    public void setHealthBar(Rectangle healthBar) {
-        this.healthBar = healthBar;
+    @Override
+    public void dispose(){
+        sprite.delete();
+        healthHUD.delete();
     }
 
-    public int getMoveSpeed() {
-        return moveSpeed;
+    public boolean isDead(){
+        return dead;
     }
 
-    public void setMoveSpeed(int moveSpeed) {
-        this.moveSpeed = moveSpeed;
+    public void setSprite(Picture sprite) {
+        this.sprite = sprite;
     }
 
-    public int getMoney() {
-        return givenMoney;
+    public int getValue() {
+        return value;
     }
 
-    public void setMoney(int money) {
-        this.givenMoney = money;
-    }
-
-    public Position getCurrentPosition() {
-        return currentPosition;
-    }
-
-    public void setCurrentPosition(Position currentPosition) {
-        this.currentPosition = currentPosition;
+    @Override
+    public String toString() {
+        return "Enemy{" +
+                " currentHealth=" + currentHealth +
+                ", maxHealth=" + maxHealth +
+                ", speed=" + speed +
+                ", value=" + value +
+                '}';
     }
 }

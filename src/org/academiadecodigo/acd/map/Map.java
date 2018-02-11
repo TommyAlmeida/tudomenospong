@@ -31,7 +31,4 @@ public class Map {
         this.picture = picture;
     }
 
-    public Grid getGrid() {
-        return grid;
-    }
 }

@@ -1,5 +1,6 @@
 package org.academiadecodigo.acd.entities;
 
+import org.academiadecodigo.acd.entities.enemies.Enemy;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
@@ -37,5 +38,9 @@ public class Player implements MouseHandler {
 
     public int getLifes() {
         return lifes;
+    }
+
+    public void addMoney(Enemy enemy){
+        this.money += enemy.getValue();
     }
 }

@@ -1,75 +1,120 @@
 package org.academiadecodigo.acd.entities.enemies;
 
 import org.academiadecodigo.acd.GameConsts;
+import org.academiadecodigo.acd.entities.Player;
+import org.academiadecodigo.acd.entities.tower.Tower;
+import org.academiadecodigo.acd.map.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public abstract class Enemy {
-
-    private String name;
+public abstract class Enemy{
 
     private int currentHealth, maxHealth;
     private int speed;
-    private int givenMoney;
+    private int value; //how much is this enemy worth in €€€?
+    private boolean dead;
+
+    private int x, y;
+    private Position pos;
 
     private Rectangle healthBar;
     private Picture sprite;
 
-    public Enemy(String name, String imagePath, int maxHealth,
-                 int givenMoney, int speed){
-        this.name = name;
+    private EnemyType enemyType;
+
+    public Enemy(EnemyType enemyType, int x, int y, int maxHealth, int moneyValue, int speed){
+        this.x = x;
+        this.y = y;
+
         this.maxHealth = maxHealth;
-        this.givenMoney = givenMoney;
+        this.currentHealth = maxHealth;
+        this.value = moneyValue;
         this.speed = speed;
-        this.sprite = new Picture(0,0,
-                GameConsts.RESOURCES_PATH + imagePath.trim());
+        this.enemyType = enemyType;
+
+        dead = false;
+        pos = new Position(x, y);
+        sprite = new Picture(x,y,
+                enemyType.getImagePath());
     }
 
+    /**
+     * Init representations
+     */
     public void init(){
-        healthBar = new Rectangle(Math.floor(sprite.getX() / 3),
-                sprite.getY() - 10,
-                maxHealth - currentHealth, 10);
-
+        drawHpBar();
         sprite.draw();
-        healthBar.setColor(Color.RED);
-        healthBar.fill();
     }
 
+    /**
+     * Everything it needs to be on the main game loop
+     */
+    public void update(){
+        if(isDead()){
+            sprite.delete();
+            return;
+        }
+
+        move();
+    }
+
+    /**
+     * Make the enemy move and the healthbar follows
+     */
     public void move(){
-        System.out.println(isOutOfBounds());
-
-        if(isOutOfBounds()) return;
-
         healthBar.translate(speed,0);
         sprite.translate(speed, 0);
     }
 
+    /**
+     * Draw the health bar
+     */
+    private void drawHpBar(){
+        healthBar = new Rectangle(Math.floor(getX() / 3),
+                getY() - 5,
+                currentHealth, 10);
 
-    public boolean isDead(){
-        return currentHealth <= 0;
+        healthBar.setColor(Color.RED);
+        healthBar.fill();
     }
 
-    public boolean isOutOfBounds(){
-        return getX() > GameConsts.WINDOW_WIDTH;
+    public void takeHit(Player player, int damage) {
+        currentHealth -= damage; //tower.getDamage();
+
+        if(currentHealth < 0){
+            dead = true;
+            player.addMoney(this);
+        }
+    }
+
+    public boolean isDead(){
+        return dead;
     }
 
     public int getX(){
-        return sprite.getX();
+        return pos.getX();
     }
 
     public int getY(){
-        return sprite.getX();
+        return pos.getY();
+    }
+
+    public void setSprite(Picture sprite) {
+        this.sprite = sprite;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override
     public String toString() {
         return "Enemy{" +
-                "name='" + name + '\'' +
-                ", currentHealth=" + currentHealth +
+                " currentHealth=" + currentHealth +
                 ", maxHealth=" + maxHealth +
                 ", speed=" + speed +
-                ", givenMoney=" + givenMoney +
+                ", value=" + value +
                 '}';
     }
 }

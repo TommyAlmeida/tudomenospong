@@ -27,6 +27,7 @@ public class Map {
         return picture;
     }
 
+
     public void setPicture(Picture picture) {
         this.picture = picture;
     }

@@ -69,7 +69,7 @@ public abstract class Enemy implements Entity{
      * Draw the health bar
      */
     private void drawHpBar(){
-        healthHUD = new Text(sprite.getX() / 2, sprite.getY() - 5, String.valueOf(currentHealth));
+        healthHUD = new Text(sprite.getX(), sprite.getY() - 5, String.valueOf(currentHealth));
         healthHUD.setColor(Color.RED);
         healthHUD.draw();
     }

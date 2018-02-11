@@ -6,7 +6,7 @@ public class Grid {
 
     private final int PADDING = 10;
     private int cellSize;
-    private int gridWidth = getWidth();
+    private int gridWidth;
 
     private int cols, rows;
     private Rectangle grid;
@@ -15,6 +15,7 @@ public class Grid {
         this.cols = cols;
         this.rows = rows;
         this.grid = new Rectangle(PADDING, PADDING, rows * getCellSize(), cols * getCellSize());
+        this.gridWidth = getWidth();
         grid.draw();
     }
 

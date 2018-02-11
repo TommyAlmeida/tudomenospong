@@ -4,9 +4,8 @@ import org.academiadecodigo.acd.GameConsts;
 import org.academiadecodigo.acd.entities.Player;
 import org.academiadecodigo.acd.entities.enemies.Enemy;
 import org.academiadecodigo.acd.entities.enemies.EnemyFactory;
-import org.academiadecodigo.acd.entities.tower.BrunoTower;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.acd.map.Grid;
+import org.academiadecodigo.acd.map.Map;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -18,22 +17,18 @@ public class GameScreen implements Screen, KeyboardHandler{
 
     private Enemy enemy;
     private Player player;
-    private Rectangle tempGrid;
-
+    private Grid grid;
 
     public GameScreen(){
         this.exit = false;
         this.enemy = EnemyFactory.makeEnemy();
         this.player = new Player();
-        this.tempGrid = new Rectangle(10, 10, GameConsts.WINDOW_WIDTH, GameConsts.WINDOW_HEIGHT);
-
         keyEvents();
     }
 
     @Override
     public void start() {
-        tempGrid.setColor(Color.WHITE);
-        tempGrid.fill();
+        grid = new Grid(GameConsts.WINDOW_WIDTH, GameConsts.WINDOW_HEIGHT);
 
         enemy.render();
 

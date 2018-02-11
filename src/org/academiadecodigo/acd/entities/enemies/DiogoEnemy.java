@@ -6,5 +6,4 @@ public class DiogoEnemy extends Enemy {
         super(EnemyType.DIOGO, 20, 10, 1);
     }
 
-
 }

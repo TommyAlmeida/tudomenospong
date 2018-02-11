@@ -5,18 +5,19 @@ import org.academiadecodigo.acd.entities.Player;
 import org.academiadecodigo.acd.map.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class Enemy implements Entity{
 
     private int currentHealth, maxHealth;
     private int speed;
-    private int value; //how much is this enemy worth in €€€?
+    private int value; //how much is this enemy worth in €€€
     private boolean dead;
 
     private Position startPosition;
 
-    private Rectangle healthBar;
+    private Text healthHUD;
     private Picture sprite;
 
     private EnemyType enemyType;
@@ -60,7 +61,7 @@ public abstract class Enemy implements Entity{
      * Make the enemy move and the healthbar follows
      */
     public void move(){
-        healthBar.translate(speed,0);
+        healthHUD.translate(speed, 0);
         sprite.translate(speed, 0);
     }
 
@@ -68,18 +69,16 @@ public abstract class Enemy implements Entity{
      * Draw the health bar
      */
     private void drawHpBar(){
-        healthBar = new Rectangle(Math.floor(sprite.getX() / 3),
-                sprite.getY() - 5,
-                currentHealth, 10);
-
-        healthBar.setColor(Color.RED);
-        healthBar.fill();
+        healthHUD = new Text(sprite.getX() / 2, sprite.getY() - 5, String.valueOf(currentHealth));
+        healthHUD.setColor(Color.RED);
+        healthHUD.draw();
     }
 
     public void takeHit(Player player, int damage) {
         currentHealth -= damage; //tower.getDamage();
+        healthHUD.setText(String.valueOf(currentHealth));
 
-        if(currentHealth < 0){
+        if(currentHealth <= 0){
             dead = true;
             player.addMoney(this);
         }
@@ -88,7 +87,7 @@ public abstract class Enemy implements Entity{
     @Override
     public void dispose(){
         sprite.delete();
-        healthBar.delete();
+        healthHUD.delete();
     }
 
     public boolean isDead(){

@@ -18,6 +18,7 @@ public class GameScreen implements Screen, KeyboardHandler{
     private boolean exit; //debug force exit
 
     private Player player;
+    private Enemy enemy;
     private Grid grid;
 
     public GameScreen(){
@@ -28,9 +29,12 @@ public class GameScreen implements Screen, KeyboardHandler{
 
     @Override
     public void start() throws InterruptedException {
-        grid = new Grid(GameConsts.WINDOW_WIDTH, GameConsts.WINDOW_HEIGHT);
+        grid = new Grid(800, 800);
 
+        enemy = EnemyFactory.makeEnemy();
+        enemy.render();
         while (!exit || player.getLifes() > 0){
+            enemy.update();
             Thread.sleep(GameConsts.GAME_DELAY);
         }
     }
@@ -47,6 +51,7 @@ public class GameScreen implements Screen, KeyboardHandler{
     @Override
     public void keyPressed(KeyboardEvent e) {
         if(e.getKey() == KeyboardEvent.KEY_E){
+            enemy.takeHit(player, 1);
             exit = true;
         }
     }

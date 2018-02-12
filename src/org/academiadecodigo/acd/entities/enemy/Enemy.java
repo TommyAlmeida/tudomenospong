@@ -57,7 +57,7 @@ public abstract class Enemy implements Entity{
     }
 
     /**
-     * Make the enemy move and the healthbar follows
+     * Make the enemy move and the health bar follows
      */
     public void move(){
         healthHUD.translate(speed, 0);

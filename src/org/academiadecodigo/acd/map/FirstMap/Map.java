@@ -14,7 +14,7 @@ public class Map {
     public Map(Waypoint[] waypoints){
 
         this.waypoints = waypoints;
-        waypoints[0] = new Position(0,5);
+        waypoints[0] = new Position(6,9);
         waypoints[1] = new Waypoint(position, 7,5);
         waypoints[2] = new Waypoint(position, 7,2);
     }
@@ -26,6 +26,7 @@ public class Map {
         for (int i = 0; i <waypoints.length; i++) {
             while (currentPosition != waypoints[i]){
                 moveSet = currentPosition - waypoints;
+
             }
         }
     }

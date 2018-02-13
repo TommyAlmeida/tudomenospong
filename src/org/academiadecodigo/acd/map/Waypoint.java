@@ -8,9 +8,11 @@ public class Waypoint{
 
     private Position position;
 
+    private int x;
+    private int y;
 
-    public Waypoint(Position position){
-        this.position = position;
+    public Waypoint(int x,, int y){
+        this.position = new Position(x, y);
 
     }
 

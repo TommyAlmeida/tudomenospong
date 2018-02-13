@@ -14,9 +14,9 @@ public class Map {
     public Map(Waypoint[] waypoints){
 
         this.waypoints = waypoints;
-        waypoints[0] = new Waypoint(0,5);
-        waypoints[1] = new Waypoint(7,5);
-        waypoints[2] = new Waypoint(7,2);
+        waypoints[0] = new Position(0,5);
+        waypoints[1] = new Waypoint(position, 7,5);
+        waypoints[2] = new Waypoint(position, 7,2);
     }
 
 

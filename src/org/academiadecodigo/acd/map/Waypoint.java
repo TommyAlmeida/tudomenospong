@@ -6,12 +6,12 @@ package org.academiadecodigo.acd.map;
  */
 public class Waypoint{
 
-    private int col;
-    private int row;
+    private Position position;
 
-    public Waypoint(int col, int row){
-        this.col = col;
-        this.row = row;
+
+    public Waypoint(Position position){
+        this.position = position;
+
     }
 
 }

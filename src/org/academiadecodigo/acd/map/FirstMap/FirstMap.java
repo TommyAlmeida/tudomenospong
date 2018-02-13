@@ -1,5 +1,4 @@
 package org.academiadecodigo.acd.map.FirstMap;
-import org.academiadecodigo.acd.map.Position;
 import org.academiadecodigo.acd.map.Waypoint;
 
 /**
@@ -20,7 +19,7 @@ public class FirstMap {
     }
 
 
-    public void move() {
+    public void moveEnemies() {
         int moveX;
         int moveY;
 
@@ -28,6 +27,20 @@ public class FirstMap {
             while (currentPosition != waypoints[i]){
                 moveX = currentPosition.getX() - waypoints[i].getX();
                 moveY = currentPosition.getY() - waypoints[i].getY();
+
+
+                if(moveX > 0){
+                    currentPosition.setX();
+                }
+                if(moveX < 0){
+                    currentPosition.setX();
+                }
+                if(moveY > 0){
+                    currentPosition.setY();
+                }
+                if(moveY < 0){
+                    currentPosition.setY();
+                }
             }
         }
     }

@@ -9,12 +9,16 @@ public class Map {
 
     private Waypoint[] waypoints;
 
-    public Map(){
+    public Map(Waypoint[] waypoints){
 
+        this.waypoints = waypoints;
+        waypoints[0] = new Waypoint(0,5);
+        waypoints[1] = new Waypoint(7,5);
     }
 
-    Waypoint waypoint1 = new Waypoint(0,5);
+
+    /*Waypoint waypoint1;
     Waypoint waypoint2 = new Waypoint(3,5);
 
-    waypoints[0] = waypoint1;
+    waypoints[0] = waypoint1;*/
 }

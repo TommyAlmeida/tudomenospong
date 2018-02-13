@@ -1,11 +1,17 @@
 package org.academiadecodigo.acd.map;
 
+import sun.text.bidi.BidiBase;
+
 public class Movement {
 
-    Position[] positions;
+    Waypoint[] waypoints;
 
-    public void move(Position[] positions, Position){
-        this.positions = positions;
+
+
+    public void move() {
+        for (int i = 0; i <waypoints.length; i++) {
+            while (currentPosition != waipoints[i])
+        }
     }
 
 

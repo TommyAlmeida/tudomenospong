@@ -1,4 +1,5 @@
 package org.academiadecodigo.acd.map.FirstMap;
+import org.academiadecodigo.acd.map.Position;
 import org.academiadecodigo.acd.map.Waypoint;
 
 /**
@@ -8,12 +9,25 @@ import org.academiadecodigo.acd.map.Waypoint;
 public class Map {
 
     private Waypoint[] waypoints;
+    private Position currentPosition;
 
     public Map(Waypoint[] waypoints){
 
         this.waypoints = waypoints;
         waypoints[0] = new Waypoint(0,5);
         waypoints[1] = new Waypoint(7,5);
+        waypoints[2] = new Waypoint(7,2);
+    }
+
+
+    public void move() {
+        int moveSet;
+
+        for (int i = 0; i <waypoints.length; i++) {
+            while (currentPosition != waypoints[i]){
+                moveSet = currentPosition - waypoints;
+            }
+        }
     }
 
 

@@ -4,7 +4,7 @@ package org.academiadecodigo.acd.map;
  * Created on 13/02/2018.
  * Good Luck, Have Fun codecadet
  */
-public class Waypoint {
+public class Waypoint{
 
     private int col;
     private int row;

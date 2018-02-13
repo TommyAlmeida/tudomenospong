@@ -2,6 +2,7 @@ package org.academiadecodigo.acd.entities.enemy;
 
 import org.academiadecodigo.acd.entities.Entity;
 import org.academiadecodigo.acd.entities.Player;
+import org.academiadecodigo.acd.map.FirstMap.FirstMap;
 import org.academiadecodigo.acd.map.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
@@ -13,6 +14,7 @@ public abstract class Enemy implements Entity{
     private int speed;
     private int value; //how much is this enemy worth in €€€
     private boolean dead;
+    private FirstMap firstMap;
 
     private Position startPosition;
 
@@ -59,11 +61,15 @@ public abstract class Enemy implements Entity{
     /**
      * Make the enemy move and the health bar follows
      */
-    public void move(){
+   /* public void move(){
         healthHUD.translate(speed, 0);
         sprite.translate(speed, 0);
-    }
+    }*/
 
+
+    public void move() {
+        firstMap.move();
+    }
     /**
      * Draw the health bar
      */

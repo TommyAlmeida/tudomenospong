@@ -6,27 +6,28 @@ import org.academiadecodigo.acd.map.Waypoint;
  * Created on 13/02/2018.
  * Good Luck, Have Fun codecadet
  */
-public class Map {
+public class FirstMap {
 
     private Waypoint[] waypoints;
-    private Position currentPosition;
+    private Waypoint currentPosition;
 
-    public Map(Waypoint[] waypoints){
+    public FirstMap(Waypoint[] waypoints){
 
         this.waypoints = waypoints;
-        waypoints[0] = new Position(6,9);
-        waypoints[1] = new Waypoint(position, 7,5);
-        waypoints[2] = new Waypoint(position, 7,2);
+        waypoints[0] = new Waypoint(6,9);
+        waypoints[1] = new Waypoint(7,5);
+        waypoints[2] = new Waypoint(7,2);
     }
 
 
     public void move() {
-        int moveSet;
+        int moveX;
+        int moveY;
 
-        for (int i = 0; i <waypoints.length; i++) {
+        for (int i = 0; i < waypoints.length; i++) {
             while (currentPosition != waypoints[i]){
-                moveSet = currentPosition - waypoints;
-
+                moveX = currentPosition.getX() - waypoints[i].getX();
+                moveY = currentPosition.getY() - waypoints[i].getY();
             }
         }
     }

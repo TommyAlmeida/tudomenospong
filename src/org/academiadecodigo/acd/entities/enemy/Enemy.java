@@ -89,6 +89,14 @@ public abstract class Enemy implements Entity{
         }
     }
 
+    public Position getStartPosition() {
+        return startPosition;
+    }
+
+    public void setStartPosition(Position startPosition) {
+        this.startPosition = startPosition;
+    }
+
     @Override
     public void dispose(){
         sprite.delete();

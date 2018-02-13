@@ -1,6 +1,7 @@
-package org.academiadecodigo.acd.graphics;
+package org.academiadecodigo.acd.graphics.representations;
 
 import org.academiadecodigo.acd.game.GameConsts;
+import org.academiadecodigo.acd.graphics.Representable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
@@ -11,7 +12,8 @@ public class BrunoTowerRepresentation implements Representable {
     private Picture picture;
 
     public BrunoTowerRepresentation() {
-        this.picture = new Picture(0, 0, GameConsts.RESOURCES_PATH + "bruno.png");
+        this.picture = new Picture(0, 0,
+                GameConsts.RESOURCES_PATH + "bruno.png");
     }
 
     @Override
@@ -20,7 +22,14 @@ public class BrunoTowerRepresentation implements Representable {
     }
 
     @Override
-    public Picture getRepresentation() {
+    public void delete() {
+        picture.delete();
+    }
+
+    @Override
+    public Picture getSprite() {
         return picture;
     }
+
+
 }

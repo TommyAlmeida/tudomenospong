@@ -1,6 +1,6 @@
 package org.academiadecodigo.acd.entities.tower;
 
-import org.academiadecodigo.acd.graphics.BrunoTowerRepresentation;
+import org.academiadecodigo.acd.graphics.representations.BrunoTowerRepresentation;
 
 public class BrunoTower extends Tower {
 

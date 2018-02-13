@@ -11,7 +11,7 @@ public abstract class Enemy{
 
     private int currentHealth, maxHealth;
     private int speed;
-    private int worthIt; //how much is this enemy worth in €€€
+    private int money; //how much is this enemy worth in €€€
     private boolean dead;
 
     private Position startPosition;
@@ -27,7 +27,7 @@ public abstract class Enemy{
                  int maxHealth, int moneyValue, int speed){
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
-        this.worthIt = moneyValue;
+        this.money = moneyValue;
         this.speed = speed;
         this.enemyType = enemyType;
         this.representable = representable;
@@ -89,13 +89,17 @@ public abstract class Enemy{
         return dead;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     @Override
     public String toString() {
         return "Enemy{" +
                 " currentHealth=" + currentHealth +
                 ", maxHealth=" + maxHealth +
                 ", speed=" + speed +
-                ", worthIt=" + worthIt +
+                ", money=" + money +
                 '}';
     }
 }

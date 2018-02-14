@@ -1,10 +1,13 @@
 package org.academiadecodigo.acd.entities.tower;
 
-import org.academiadecodigo.acd.map.Position;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.acd.graphics.representations.BrunoTowerRepresentation;
 
 public class BrunoTower extends Tower {
-    public BrunoTower(Picture picture, int range, int fireRate, int damage) {
-        super(picture, range, fireRate, damage);
+
+    public BrunoTower() {
+        super(new BrunoTowerRepresentation(), 4, 1, 1);
+
     }
+
+
 }

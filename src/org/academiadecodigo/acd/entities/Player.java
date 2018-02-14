@@ -41,6 +41,6 @@ public class Player implements MouseHandler {
     }
 
     public void addMoney(Enemy enemy){
-        this.money += enemy.getValue();
+        this.money += enemy.getMoney();
     }
 }

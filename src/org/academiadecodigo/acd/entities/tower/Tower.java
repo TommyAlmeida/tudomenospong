@@ -1,18 +1,18 @@
 package org.academiadecodigo.acd.entities.tower;
 
+import org.academiadecodigo.acd.graphics.Representable;
 import org.academiadecodigo.acd.map.Position;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Tower {
 
     private Position currentPosition;
-    private Picture picture;
+    private Representable representable;
 
     private int range, fireRate, damage, level; //Level: if X level returns = not upgradable
 
-    public Tower(Picture picture, int range, int fireRate, int damage) {
-        this.picture = picture;
-        this.range = range;
+    public Tower(Representable representable, int range, int fireRate, int damage) {
+        this.representable = representable;
+        this.range = range; // range = raio
         this.fireRate = fireRate;
         this.damage = damage;
         this.level = 0;
@@ -26,12 +26,8 @@ public class Tower {
         this.currentPosition = currentPosition;
     }
 
-    public Picture getPicture() {
-        return picture;
-    }
-
-    public void setPicture(Picture picture) {
-        this.picture = picture;
+    public Representable getRepresentable() {
+        return representable;
     }
 
     public int getRange() {

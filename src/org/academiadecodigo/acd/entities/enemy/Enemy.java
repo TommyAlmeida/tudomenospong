@@ -61,15 +61,15 @@ public abstract class Enemy implements Entity{
     /**
      * Make the enemy move and the health bar follows
      */
-   /* public void move(){
+   public void move(){
         healthHUD.translate(speed, 0);
         sprite.translate(speed, 0);
-    }*/
-
-
-    public void move() {
-        firstMap.move();
     }
+
+
+    /*public void move() {
+        firstMap.move();
+    }*/
     /**
      * Draw the health bar
      */

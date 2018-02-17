@@ -1,7 +1,7 @@
 package org.academiadecodigo.group.ad.gfx.grid.position;
 
-import org.academiadecodigo.bootcamp.grid.GridColor;
-import org.academiadecodigo.bootcamp.grid.GridDirection;
+import org.academiadecodigo.group.ad.gfx.grid.GridColor;
+import org.academiadecodigo.group.ad.gfx.grid.GridDirection;
 
 /**
  * A position on the grid that is capable of moving around
@@ -13,14 +13,14 @@ public interface GridPosition {
      *
      * @return the position column
      */
-    public int getCol();
+    int getCol();
 
     /**
      * Gets the position row in the grid
      *
      * @return the position row
      */
-    public int getRow();
+    int getRow();
 
     /**
      * Updates the position column and row
@@ -28,31 +28,31 @@ public interface GridPosition {
      * @param col the new position column
      * @param row the new position row
      */
-    public void setPos(int col, int row);
+    void setPos(int col, int row);
 
     /**
      * Gets the position getColor
      *
      * @return the position getColor
      */
-    public GridColor getColor();
+    GridColor getColor();
 
     /**
      * Changes the getColor of this grid position
      *
      * @param color the new position getColor
      */
-    public void setColor(GridColor color);
+    void setColor(GridColor color);
 
     /**
      * Displays the position in the grid
      */
-    public void show();
+    void show();
 
     /**
      * Hides the position in the grid
      */
-    public void hide();
+    void hide();
 
     /**
      * Moves this grid position towards a specified direction
@@ -60,7 +60,7 @@ public interface GridPosition {
      * @param direction the direction to move to
      * @param distance  the number of positions to move
      */
-    public void moveInDirection(GridDirection direction, int distance);
+    void moveInDirection(GridDirection direction, int distance);
 
     /**
      * Tests equality with another position
@@ -68,6 +68,6 @@ public interface GridPosition {
      * @param position the position to test against
      * @return true if positions are equal
      */
-    public boolean equals(GridPosition position);
+    boolean equals(GridPosition position);
 
 }

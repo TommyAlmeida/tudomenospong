@@ -26,7 +26,9 @@ public class Enemy {
         position = new Position(0,0);
     }
 
-    abstract public void move();
+    public void move() {
+
+    }
 
     public void setGrid(Grid grid) {
         this.grid = grid;

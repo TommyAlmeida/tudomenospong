@@ -1,13 +1,14 @@
 package org.academiadecodigo.group.ad.gfx.simplegfx;
 
-import org.academiadecodigo.bootcamp.grid.Grid;
-import org.academiadecodigo.bootcamp.grid.position.GridPosition;
+import org.academiadecodigo.group.ad.gfx.grid.Grid;
+import org.academiadecodigo.group.ad.gfx.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class SimpleGfxGrid implements Grid {
 
     public static final int PADDING = 10;
+
     private int cols;
     private int rows;
     private Rectangle canvas;

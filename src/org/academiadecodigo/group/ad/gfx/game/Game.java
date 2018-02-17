@@ -4,7 +4,10 @@ import org.academiadecodigo.group.ad.gfx.enemies.Enemy;
 import org.academiadecodigo.group.ad.gfx.enemies.EnemyFactory;
 import org.academiadecodigo.group.ad.gfx.grid.Grid;
 import org.academiadecodigo.group.ad.gfx.grid.GridFactory;
-import org.academiadecodigo.group.ad.gfx.grid.GridType;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created on 15/02/2018.
@@ -12,34 +15,26 @@ import org.academiadecodigo.group.ad.gfx.grid.GridType;
  */
 public class Game {
 
-    private Enemy[] enemies;
-
     private Grid grid;
+    private List<Enemy> enemies;
 
-    Game(GridType gridType, int cols, int rows, int delay) {
-
-        grid = GridFactory.makeGrid(gridType, cols, rows);
-
+    public Game(int cols, int rows) {
+        this.enemies = new ArrayList<>();
+        grid = GridFactory.makeGrid(cols, rows);
     }
 
     public void init(){
         grid.init();
 
-        int enemiesCount = 10;
-        enemies = new Enemy[enemiesCount];
-        for (int i = 0; i < enemiesCount; i++) {
-            enemies[i] = EnemyFactory.makeEnemy();
-            enemies[i].setGrid(grid);
-        }
+        enemies.add(EnemyFactory.makeEnemy());
 
+        for(Enemy enemy : enemies){
+            enemy.setGrid(grid);
+        }
     }
 
     public void start(){
-
-        while(true){
-            moveAllEnemies();
-        }
-
+        //Move
     }
 
 

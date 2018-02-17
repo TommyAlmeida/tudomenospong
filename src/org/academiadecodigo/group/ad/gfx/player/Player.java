@@ -1,4 +1,4 @@
-package org.academiadecodigo.group.ad.gfx.Player;
+package org.academiadecodigo.group.ad.gfx.player;
 
 import org.academiadecodigo.group.ad.gfx.enemies.Enemy;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;

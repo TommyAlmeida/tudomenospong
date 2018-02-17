@@ -106,7 +106,7 @@ public abstract class AbstractGridPosition implements GridPosition {
      */
     @Override
     public boolean equals(GridPosition pos) {
-        return this.col == pos.getCol() && this.row == pos.getRow() ? true : false;
+        return this.col == pos.getCol() && this.row == pos.getRow();
     }
 
     /**

@@ -9,7 +9,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 /**
  * Simple graphics position
  */
-public abstract class SimpleGfxGridPosition extends AbstractGridPosition {
+public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private Rectangle rectangle;
     private SimpleGfxGrid simpleGfxGrid;
@@ -60,14 +60,11 @@ public abstract class SimpleGfxGridPosition extends AbstractGridPosition {
 
     @Override
     public void moveInDirection(GridDirection direction, int distance) {
-
         int lastCol = getCol();
         int lastRow = getRow();
 
         super.moveInDirection(direction, distance);
         rectangle.translate((getCol() - lastCol) * simpleGfxGrid.getCellSize(), (getRow() - lastRow) * simpleGfxGrid.getCellSize());
-
-
     }
 
     /**
@@ -75,9 +72,7 @@ public abstract class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void setColor(GridColor color) {
-
         super.setColor(color);
         rectangle.setColor(SimpleGfxColorMapper.getColor(color));
-
     }
 }

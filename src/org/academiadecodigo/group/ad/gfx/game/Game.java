@@ -34,7 +34,9 @@ public class Game {
 
         tower = new Tower(grid,1, 120);
 
-        enemies.add(EnemyFactory.makeEnemy());
+        enemies.add(EnemyFactory.makeEnemy(grid));
+
+        Enemy enemyyes = EnemyFactory.makeEnemy(grid);
 
         for(Enemy enemy : enemies){
             enemy.setGrid(grid);
@@ -46,7 +48,10 @@ public class Game {
 
         while(enemies.size() != -1){ //Move
             b.move();
-            Thread.sleep(200);
+            Thread.sleep(20);
+        }
+        while(true) {
+            moveAllEnemies();
         }
     }
 

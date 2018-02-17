@@ -1,5 +1,6 @@
 package org.academiadecodigo.group.ad.gfx.towers;
 
+import org.academiadecodigo.group.ad.gfx.grid.Grid;
 import org.academiadecodigo.group.ad.gfx.map.Position;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -12,10 +13,11 @@ public class Tower {
     private Rectangle range;
     private int fireRate;
     private Position position;
+    private Grid grid;
 
     public Tower(int fireRate) {
         this.fireRate = fireRate;
-        position = new Position(5,5);
+        position = new Position(5,5, grid);
 
     }
 

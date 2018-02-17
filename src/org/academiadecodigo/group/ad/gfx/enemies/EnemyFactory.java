@@ -1,5 +1,7 @@
 package org.academiadecodigo.group.ad.gfx.enemies;
 
+import org.academiadecodigo.group.ad.gfx.grid.Grid;
+
 /**
  * Created on 15/02/2018.
  * Good Luck, Have Fun codecadet
@@ -8,7 +10,9 @@ package org.academiadecodigo.group.ad.gfx.enemies;
 
 public class EnemyFactory {
 
-    public static Enemy makeEnemy(){
-        return new DiogoEnemy();
+    private static Grid grid;
+
+    public static Enemy makeEnemy(Grid grid){
+        return new DiogoEnemy(grid);
     }
 }

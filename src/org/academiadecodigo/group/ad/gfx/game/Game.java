@@ -17,29 +17,41 @@ public class Game {
 
     private Grid grid;
     private List<Enemy> enemies;
+    private int delay;
 
-    public Game(int cols, int rows) {
+    public Game(int cols, int rows, int delay) {
         this.enemies = new ArrayList<>();
         grid = GridFactory.makeGrid(cols, rows);
+        this.delay = delay;
     }
 
-    public void init(){
+    public void init() {
         grid.init();
 
-        enemies.add(EnemyFactory.makeEnemy());
 
-        for(Enemy enemy : enemies){
+        enemies.add(EnemyFactory.makeEnemy(grid));
+
+
+        for (Enemy enemy : enemies) {
+            enemy = EnemyFactory.makeEnemy(grid);
             enemy.setGrid(grid);
         }
     }
 
-    public void start(){
+    public void start() throws InterruptedException {
+
+        while (true) {
+            Thread.sleep(delay);
+
+            moveAllEnemies();
+
+        }
         //Move
     }
 
 
-    public void moveAllEnemies(){
-        for (Enemy e: enemies) {
+    public void moveAllEnemies() {
+        for (Enemy e : enemies) {
             e.move();
         }
     }

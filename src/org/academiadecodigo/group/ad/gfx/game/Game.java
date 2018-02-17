@@ -4,6 +4,10 @@ import org.academiadecodigo.group.ad.gfx.enemies.Enemy;
 import org.academiadecodigo.group.ad.gfx.enemies.EnemyFactory;
 import org.academiadecodigo.group.ad.gfx.grid.Grid;
 import org.academiadecodigo.group.ad.gfx.grid.GridFactory;
+import org.academiadecodigo.group.ad.gfx.towers.Bullet;
+import org.academiadecodigo.group.ad.gfx.towers.BulletFactory;
+import org.academiadecodigo.group.ad.gfx.towers.BulletType;
+import org.academiadecodigo.group.ad.gfx.towers.Tower;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,45 +20,40 @@ import java.util.List;
 public class Game {
 
     private Grid grid;
-    private List<Enemy> enemies;
-    private int delay;
 
-    public Game(int cols, int rows, int delay) {
+    private Tower tower;
+    private List<Enemy> enemies;
+
+    public Game(int cols, int rows) {
         this.enemies = new ArrayList<>();
         grid = GridFactory.makeGrid(cols, rows);
-        this.delay = delay;
     }
 
-    public void init() {
+    public void init(){
         grid.init();
 
+        tower = new Tower(grid,1, 120);
 
-        enemies.add(EnemyFactory.makeEnemy(grid));
+        enemies.add(EnemyFactory.makeEnemy());
 
-
-        for (Enemy enemy : enemies) {
-            enemy = EnemyFactory.makeEnemy(grid);
+        for(Enemy enemy : enemies){
             enemy.setGrid(grid);
         }
     }
 
     public void start() throws InterruptedException {
+        Bullet b = BulletFactory.make(BulletType.NORMAL);
 
-        while (true) {
-            Thread.sleep(delay);
-
-            moveAllEnemies();
-
+        while(enemies.size() != -1){ //Move
+            b.move();
+            Thread.sleep(200);
         }
-        //Move
     }
 
-
-    public void moveAllEnemies() {
-        for (Enemy e : enemies) {
+    public void moveAllEnemies(){
+        for (Enemy e: enemies) {
             e.move();
         }
     }
-
 
 }

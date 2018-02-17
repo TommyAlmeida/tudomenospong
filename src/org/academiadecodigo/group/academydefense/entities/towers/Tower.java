@@ -1,4 +1,4 @@
-package org.academiadecodigo.group.academydefense.towers;
+package org.academiadecodigo.group.academydefense.entities.towers;
 
 import org.academiadecodigo.group.academydefense.grid.Grid;
 import org.academiadecodigo.group.academydefense.grid.GridColor;
@@ -14,8 +14,9 @@ public class Tower {
 
 
     private int fireRate, range;
-    private GridPosition position;
+    private int col, row;
 
+    private GridPosition position;
     private Rectangle rangeRect;
 
     public Tower(Grid grid, int fireRate, int range) {
@@ -23,11 +24,10 @@ public class Tower {
         this.fireRate = fireRate;
         this.position = grid.makeGridPosition(0, 0);
         this.rangeRect = new Rectangle(position.getCol(), position.getRow(), range, range);
-
         draw();
     }
 
-    private void draw(){
+    public void draw(){
         position.setColor(GridColor.GREEN);
         rangeRect.setColor(Color.BLUE);
         rangeRect.draw();
@@ -39,4 +39,14 @@ public class Tower {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Tower{" +
+                "fireRate=" + fireRate +
+                ", range=" + range +
+                ", col=" + col +
+                ", row=" + row +
+                ", rangeRect=" + rangeRect +
+                '}';
+    }
 }

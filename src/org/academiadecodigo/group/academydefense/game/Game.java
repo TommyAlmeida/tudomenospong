@@ -1,11 +1,12 @@
 package org.academiadecodigo.group.academydefense.game;
 
-import org.academiadecodigo.group.academydefense.towers.Bullet;
-import org.academiadecodigo.group.academydefense.towers.BulletFactory;
-import org.academiadecodigo.group.academydefense.towers.BulletType;
-import org.academiadecodigo.group.academydefense.towers.Tower;
-import org.academiadecodigo.group.academydefense.enemies.Enemy;
-import org.academiadecodigo.group.academydefense.enemies.EnemyFactory;
+import org.academiadecodigo.group.academydefense.entities.player.Player;
+import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
+import org.academiadecodigo.group.academydefense.entities.towers.BulletFactory;
+import org.academiadecodigo.group.academydefense.entities.towers.BulletType;
+import org.academiadecodigo.group.academydefense.entities.towers.Tower;
+import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
+import org.academiadecodigo.group.academydefense.entities.enemies.EnemyFactory;
 import org.academiadecodigo.group.academydefense.grid.Grid;
 import org.academiadecodigo.group.academydefense.grid.GridFactory;
 
@@ -20,8 +21,7 @@ import java.util.List;
 public class Game {
 
     private Grid grid;
-
-    private Tower tower;
+    private Player player;
     private List<Enemy> enemies;
 
     public Game(int cols, int rows) {
@@ -31,14 +31,7 @@ public class Game {
 
     public void init(){
         grid.init();
-
-        tower = new Tower(grid,1, 120);
-
-        enemies.add(EnemyFactory.makeEnemy());
-
-        for(Enemy enemy : enemies){
-            enemy.setGrid(grid);
-        }
+        player = new Player(grid);
     }
 
     public void start() throws InterruptedException {
@@ -46,7 +39,7 @@ public class Game {
 
         while(enemies.size() != -1){ //Move
             b.move();
-            Thread.sleep(200);
+            Thread.sleep(20);
         }
     }
 

@@ -1,7 +1,7 @@
-package org.academiadecodigo.group.academydefense.enemies;
+package org.academiadecodigo.group.academydefense.entities.enemies;
 
-import org.academiadecodigo.group.ad.gfx.grid.Grid;
-import org.academiadecodigo.group.ad.gfx.grid.GridColor;
+
+import org.academiadecodigo.group.academydefense.grid.GridColor;
 
 /**
  * Created on 15/02/2018.

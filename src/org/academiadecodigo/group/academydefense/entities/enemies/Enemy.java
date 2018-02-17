@@ -1,27 +1,25 @@
-package org.academiadecodigo.group.academydefense.enemies;
+package org.academiadecodigo.group.academydefense.entities.enemies;
 
-<<<<<<< HEAD:src/org/academiadecodigo/group/academydefense/enemies/Enemy.java
+
+import org.academiadecodigo.group.academydefense.entities.GameObject;
 import org.academiadecodigo.group.academydefense.grid.Grid;
+import org.academiadecodigo.group.academydefense.grid.position.GridPosition;
 import org.academiadecodigo.group.academydefense.map.Position;
-=======
-import org.academiadecodigo.group.ad.gfx.grid.Grid;
-import org.academiadecodigo.group.ad.gfx.grid.position.GridPosition;
-import org.academiadecodigo.group.ad.gfx.map.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
->>>>>>> f4a4fffb2e02da2593c9127ce9f9dafff5bddac0:src/org/academiadecodigo/group/ad/gfx/enemies/Enemy.java
 
 /**
  * Created on 15/02/2018.
  * Good Luck, Have Fun codecadet
  */
 
-public class Enemy {
+public class Enemy implements GameObject {
 
     private int life;
     private int speed;
     private boolean dead;
     private int value;
+
     private EnemyType enemyType;
     private GridPosition gridPosition;
     private Position startPosition;
@@ -38,12 +36,8 @@ public class Enemy {
         this.gridPosition = grid.makeGridPosition(0,0);
         enemyDrawed = new Rectangle(10,10,20,20);
 
-
-
         draw();
     }
-
-
 
     private void draw(){
 
@@ -56,13 +50,6 @@ public class Enemy {
 
     }
 
-    public GridPosition getPos() {
-        return gridPosition;
-    }
-
-    public boolean isDead() {
-        return dead;
-    }
 
     public void setGrid(Grid grid) {
         this.grid = grid;
@@ -71,9 +58,6 @@ public class Enemy {
     public int getValue() {
         return value;
     }
-
-
-
 
     @Override
     public String toString() {

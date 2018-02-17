@@ -1,8 +1,8 @@
-package org.academiadecodigo.group.academydefense.towers;
+package org.academiadecodigo.group.academydefense.entities.towers;
 
 public enum BulletType {
 
-    NORMAL(1, 1);
+    NORMAL(1, 7);
 
     private int damage, speed;
 

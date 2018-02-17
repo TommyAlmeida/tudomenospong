@@ -1,6 +1,7 @@
-package org.academiadecodigo.group.academydefense.enemies;
+package org.academiadecodigo.group.academydefense.entities.enemies;
 
-import org.academiadecodigo.group.ad.gfx.grid.Grid;
+
+import org.academiadecodigo.group.academydefense.grid.Grid;
 
 /**
  * Created on 15/02/2018.
@@ -9,8 +10,6 @@ import org.academiadecodigo.group.ad.gfx.grid.Grid;
 
 
 public class EnemyFactory {
-
-    private static Grid grid;
 
     public static Enemy makeEnemy(Grid grid){
         return new DiogoEnemy(grid);

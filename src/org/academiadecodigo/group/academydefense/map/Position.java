@@ -1,7 +1,7 @@
 package org.academiadecodigo.group.academydefense.map;
 
-import org.academiadecodigo.group.ad.gfx.grid.Grid;
-import org.academiadecodigo.group.ad.gfx.grid.position.AbstractGridPosition;
+import org.academiadecodigo.group.academydefense.grid.Grid;
+import org.academiadecodigo.group.academydefense.grid.position.AbstractGridPosition;
 
 /**
  * Created on 15/02/2018.

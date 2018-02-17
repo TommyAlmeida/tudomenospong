@@ -1,4 +1,4 @@
-package org.academiadecodigo.group.academydefense.towers;
+package org.academiadecodigo.group.academydefense.entities.towers;
 
 public class BulletFactory {
 

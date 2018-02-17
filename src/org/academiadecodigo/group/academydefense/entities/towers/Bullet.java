@@ -1,6 +1,6 @@
-package org.academiadecodigo.group.academydefense.towers;
+package org.academiadecodigo.group.academydefense.entities.towers;
 
-import org.academiadecodigo.group.academydefense.enemies.Enemy;
+import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -23,8 +23,6 @@ public class Bullet {
 
     public void move(){
         representable.translate(0, speed);
-
-        System.out.println(this);
     }
 
     public void hit(Enemy target){

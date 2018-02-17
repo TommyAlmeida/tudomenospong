@@ -25,7 +25,7 @@ public class SimpleGfxGrid implements Grid {
     @Override
     public void init() {
         canvas = new Rectangle(PADDING,PADDING,cols * getCellSize(),rows * getCellSize());
-        canvas.draw();
+        canvas.fill();
         canvas.setColor(Color.BLACK);
     }
 

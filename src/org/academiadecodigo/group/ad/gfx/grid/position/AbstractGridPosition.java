@@ -28,7 +28,7 @@ public abstract class AbstractGridPosition implements GridPosition {
         this.col = col;
         this.row = row;
         this.grid = grid;
-        this.color = GridColor.BLUE;
+        this.color = GridColor.GREEN;
     }
 
     public Grid getGrid() {

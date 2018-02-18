@@ -1,6 +1,6 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
-import org.academiadecodigo.group.academydefense.gfx.Tile;
+import org.academiadecodigo.group.academydefense.grid.Tile;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;

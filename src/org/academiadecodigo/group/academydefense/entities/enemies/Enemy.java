@@ -1,7 +1,7 @@
 package org.academiadecodigo.group.academydefense.entities.enemies;
 
 
-import org.academiadecodigo.group.academydefense.gfx.Tile;
+import org.academiadecodigo.group.academydefense.grid.Tile;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 
 public class Enemy {

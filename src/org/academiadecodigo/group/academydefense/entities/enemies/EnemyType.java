@@ -18,7 +18,7 @@ public enum  EnemyType {
     }
 
     public String loadResource() {
-        return "/Users/codecadet/groupWork/tudomenospong/res/" + name;
+        return "/Users/codecadet/Desktop/Groups/G_RDT/tudomenospong/res" + name;
     }
 }
 

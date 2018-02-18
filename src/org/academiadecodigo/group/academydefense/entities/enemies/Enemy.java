@@ -1,10 +1,7 @@
 package org.academiadecodigo.group.academydefense.entities.enemies;
 
 
-import org.academiadecodigo.group.academydefense.grid.Direction;
-import org.academiadecodigo.group.academydefense.grid.Tile;
-import org.academiadecodigo.group.academydefense.grid.TileFactory;
-import org.academiadecodigo.group.academydefense.grid.TiledGrid;
+import org.academiadecodigo.group.academydefense.grid.*;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public class Enemy {
@@ -23,7 +20,7 @@ public class Enemy {
         this.speed = speed;
         this.dead = false;
         this.value = value;
-        this.representation = TileFactory.make(0, 0, enemyType.getColor());
+        this.representation = TileFactory.make(0, GridUtils.rowToY(10), enemyType.getColor());
     }
 
     public Enemy(EnemyType enemyType, TiledGrid grid, int x, int y, int life,
@@ -37,9 +34,10 @@ public class Enemy {
     }
 
     public void draw(){
-        System.out.println(getRepresentation());
-        representation.setColor(Color.RED);
-        representation.draw();
+        if(!dead){
+            representation.setColor(Color.RED);
+            representation.draw();
+        }
     }
 
     public void move() {
@@ -47,7 +45,7 @@ public class Enemy {
             return;
         }
 
-        representation.moveDown(2);
+        representation.moveRight(speed);
     }
 
     public Tile getRepresentation() {

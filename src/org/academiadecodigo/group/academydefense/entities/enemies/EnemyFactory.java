@@ -6,7 +6,7 @@ import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 
 public class EnemyFactory {
 
-    public static Enemy makeEnemy(TiledGrid grid){
-        return new DiogoEnemy(grid);
+    public static Enemy makeEnemy(){
+        return new DiogoEnemy();
     }
 }

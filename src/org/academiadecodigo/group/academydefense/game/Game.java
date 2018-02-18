@@ -20,7 +20,7 @@ public class Game {
         enemies = new ArrayList<>();
         player = new Player(grid);
 
-        enemies.add(new DiogoEnemy(grid));
+        enemies.add(new DiogoEnemy());
     }
 
     public void start() throws InterruptedException {

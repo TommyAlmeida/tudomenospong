@@ -12,8 +12,9 @@ public class Bullet {
     public Bullet(int damage, int speed){
         this.damage = damage;
         this.speed = speed;
-        this.representable = new Rectangle(12, 12, 16, 16);
-        representable.setColor(Color.WHITE);
+        this.representable = new Rectangle(0, 0, 32, 32);
+        representable.setColor(Color.RED);
+
         draw();
     }
 
@@ -21,8 +22,8 @@ public class Bullet {
         representable.fill();
     }
 
-    public void move(Enemy target){
-        representable.translate(target.getSprite().getPicture().getY() * speed, target.getSprite().getPicture().getX() * speed);
+    public void move(){
+        representable.translate(10, speed);
     }
 
     /*

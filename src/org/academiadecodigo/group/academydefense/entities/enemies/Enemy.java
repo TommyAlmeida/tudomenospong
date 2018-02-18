@@ -58,6 +58,10 @@ public class Enemy {
         return sprite.getPicture().getY() == 10/2;
     }
 
+    public boolean isDead() {
+        return dead;
+    }
+
     public TilePictured getSprite() {
         return sprite;
     }

@@ -33,6 +33,10 @@ public class TilePictured extends Tile{
         }
     }
 
+    public void hide(){
+        picture.delete();
+    }
+
     public void moveRight(int speed){
         move(Direction.RIGHT, speed);
     }

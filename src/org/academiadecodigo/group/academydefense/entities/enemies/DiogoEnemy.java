@@ -1,7 +1,7 @@
 package org.academiadecodigo.group.academydefense.entities.enemies;
 
 
-import org.academiadecodigo.group.academydefense.grid.Grid;
+import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 
 /**
  * Created on 15/02/2018.
@@ -9,13 +9,9 @@ import org.academiadecodigo.group.academydefense.grid.Grid;
  */
 public class DiogoEnemy extends Enemy {
 
-    private Grid grid;
 
-    public DiogoEnemy(Grid grid){
-        super(EnemyType.DIOGO,1,1,1, grid);
-        this.grid = grid;
+    public DiogoEnemy(TiledGrid grid){
+        super(EnemyType.DIOGO,grid, 1,1,1);
     }
-
-
 
 }

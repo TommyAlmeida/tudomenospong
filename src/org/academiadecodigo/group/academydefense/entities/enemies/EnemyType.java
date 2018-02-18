@@ -1,7 +1,7 @@
 package org.academiadecodigo.group.academydefense.entities.enemies;
 
 
-import org.academiadecodigo.group.academydefense.grid.GridColor;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 
 /**
  * Created on 15/02/2018.
@@ -9,19 +9,19 @@ import org.academiadecodigo.group.academydefense.grid.GridColor;
  */
 public enum  EnemyType {
 
-    DIOGO(GridColor.BLUE);
+    DIOGO(Color.BLUE);
 
     private String path;
-    private GridColor color;
+    private Color color;
 
 
 
-    EnemyType(GridColor color) {
+    EnemyType(Color color) {
         this.color = color;
     }
 
 
-    public GridColor getColor() {
+    public Color getColor() {
         return color;
     }
 

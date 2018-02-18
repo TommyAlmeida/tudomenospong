@@ -7,38 +7,31 @@ import org.academiadecodigo.group.academydefense.entities.towers.BulletType;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.enemies.EnemyFactory;
+import org.academiadecodigo.group.academydefense.gfx.SimpleGfxGrid;
 import org.academiadecodigo.group.academydefense.grid.Grid;
 import org.academiadecodigo.group.academydefense.grid.GridFactory;
+import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created on 15/02/2018.
- * Good Luck, Have Fun codecadet
- */
-@SuppressWarnings("ALL")
 public class Game {
 
-    private Grid grid;
     private Player player;
+    private TiledGrid grid;
+
     private List<Enemy> enemies;
 
-    public Game(int cols, int rows) {
-        this.enemies = new ArrayList<>();
-        grid = GridFactory.makeGrid(cols, rows);
-    }
-
-    public void init(){
-        grid.init();
+    public Game() {
+        grid = new TiledGrid();
+        enemies = new ArrayList<>();
         player = new Player(grid);
     }
 
     public void start() throws InterruptedException {
-        Bullet b = BulletFactory.make(BulletType.NORMAL);
+        grid.draw();
 
         while(enemies.size() != -1){ //Move
-            b.move();
             Thread.sleep(20);
         }
     }

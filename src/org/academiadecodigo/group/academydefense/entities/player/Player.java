@@ -2,11 +2,16 @@ package org.academiadecodigo.group.academydefense.entities.player;
 
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
+import org.academiadecodigo.group.academydefense.gfx.SimpleGfxGrid;
 import org.academiadecodigo.group.academydefense.grid.Grid;
+import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
 import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created on 15/02/2018.
@@ -18,13 +23,15 @@ public class Player implements MouseHandler {
     private int money;
     private int totalScore;
 
-    private Grid grid;
+    private List<Tower> towersCreated;
+    private TiledGrid grid;
 
-    public Player(Grid grid){
+    public Player(TiledGrid grid){
         this.lifes = 3;
         this.money = 100;
         this.totalScore = 0;
         this.grid = grid;
+        this.towersCreated = new ArrayList<>();
 
         mouseEvents();
     }
@@ -33,18 +40,17 @@ public class Player implements MouseHandler {
         Mouse m = new Mouse(this);
         MouseEventType createTower = MouseEventType.MOUSE_CLICKED;
 
-
         m.addEventListener(createTower);
     }
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        System.out.println(new Tower(grid, 1, 2));
+        new Tower(grid, (int) mouseEvent.getX() / grid.getCellSize(), (int) mouseEvent.getY() / grid.getCellSize()).draw();
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-
+        //Not using
     }
 
     public int getLifes() {

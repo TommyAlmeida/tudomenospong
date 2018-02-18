@@ -72,5 +72,15 @@ public class Enemy implements GameObject {
                 ", position=" + startPosition +
                 '}';
     }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
 }
 

@@ -2,6 +2,8 @@ package org.academiadecodigo.group.academydefense.entities.towers;
 
 import org.academiadecodigo.group.academydefense.grid.Grid;
 import org.academiadecodigo.group.academydefense.grid.GridColor;
+import org.academiadecodigo.group.academydefense.grid.TiledGrid;
+import org.academiadecodigo.group.academydefense.grid.TiledGridPosition;
 import org.academiadecodigo.group.academydefense.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -16,21 +18,25 @@ public class Tower {
     private int fireRate, range;
     private int col, row;
 
-    private GridPosition position;
+    private TiledGridPosition position;
     private Rectangle rangeRect;
 
-    public Tower(Grid grid, int fireRate, int range) {
+    public Tower(TiledGrid grid, int fireRate, int range) {
         this.range = range;
         this.fireRate = fireRate;
-        this.position = grid.makeGridPosition(0, 0);
-        this.rangeRect = new Rectangle(position.getCol(), position.getRow(), range, range);
+        this.position = new TiledGridPosition(0, 0, GridColor.BLUE, grid);
+        draw();
+    }
+
+    public Tower(TiledGrid grid, int col, int row, int fireRate, int range) {
+        this.range = range;
+        this.fireRate = fireRate;
+        this.position = new TiledGridPosition(col, row, GridColor.BLUE, grid);
         draw();
     }
 
     public void draw(){
         position.setColor(GridColor.GREEN);
-        rangeRect.setColor(Color.BLUE);
-        rangeRect.draw();
     }
 
     public void shoot(Bullet bullet){
@@ -38,6 +44,8 @@ public class Tower {
             bullet.move();
         }
     }
+
+
 
     @Override
     public String toString() {

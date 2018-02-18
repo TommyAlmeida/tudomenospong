@@ -2,6 +2,7 @@ package org.academiadecodigo.group.academydefense.entities.player;
 
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
+import org.academiadecodigo.group.academydefense.grid.Tile;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
@@ -42,13 +43,15 @@ public class Player implements MouseHandler {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        int x = (int) Math.round(mouseEvent.getX());
-        int y = (int ) Math.round(mouseEvent.getY());
+        int x = ((int) (mouseEvent.getX()-TiledGrid.PADDING)/ TiledGrid.CELL_SIZE) * TiledGrid.CELL_SIZE + TiledGrid.CELL_SIZE;
+        int y = ((int) mouseEvent.getY()/ TiledGrid.CELL_SIZE) * TiledGrid.CELL_SIZE + TiledGrid.PADDING - TiledGrid.CELL_SIZE;
+
+        System.out.println(mouseEvent.getX() + "----> " + x + " " + mouseEvent.getY() +"-----> " + y);
+
 
         Tower newTower = new Tower(grid, x, y, 0, 1, 1);
         newTower.draw(Color.BLUE);
         towersCreated.add(newTower);
-        System.out.println(towersCreated);
     }
 
     @Override

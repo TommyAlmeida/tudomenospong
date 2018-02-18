@@ -4,11 +4,11 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public class TiledGrid {
 
-    public static final int PADDING = 0;
+    public static final int PADDING = 10;
     public static final int CELL_SIZE = 32;
 
     private final int WIDTH = 50;
-    private final int HEIGHT = 50;
+    private final int HEIGHT = 28;
 
     private Tile tiles[][] = new Tile[WIDTH][HEIGHT];
 
@@ -25,22 +25,14 @@ public class TiledGrid {
     }
 
     public Tile getTile(int x, int y) {
-        int xS = conversionXY(x);
-        int yS = conversionXY(y);
+        int xS = conversion(x);
+        int yS = conversion(y);
 
         return tiles[xS][yS];
     }
 
-    public int conversionXY(int value) {
-        return (value / CELL_SIZE) + PADDING;
-    }
-
-    public int rowToY(int row) {
-        return CELL_SIZE * row + PADDING;
-    }
-
-    public int columnToX(int column) {
-        return CELL_SIZE * column + PADDING;
+    public int conversion(int value) {
+        return (value - PADDING) / CELL_SIZE;
     }
 
     public int getHeight() {

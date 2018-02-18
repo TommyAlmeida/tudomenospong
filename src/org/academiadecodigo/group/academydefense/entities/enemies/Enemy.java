@@ -44,13 +44,6 @@ public class Enemy {
             return;
         }
 
-        if(GridUtils.rowToY(getRepresentation().getY()) < 10000){
-            representation.hide();
-            return;
-        }
-
-        System.out.println(GridUtils.rowToY(getRepresentation().getY()));
-
         representation.moveUp(speed);
 
         switch (representation.getCurrentDirection()){

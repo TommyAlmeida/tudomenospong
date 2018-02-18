@@ -1,4 +1,4 @@
-package org.academiadecodigo.group.academydefense.gfx;
+package org.academiadecodigo.group.academydefense.grid;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;

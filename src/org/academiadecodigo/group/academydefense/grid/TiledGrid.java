@@ -1,7 +1,5 @@
 package org.academiadecodigo.group.academydefense.grid;
 
-import org.academiadecodigo.group.academydefense.entities.towers.Tower;
-import org.academiadecodigo.group.academydefense.gfx.Tile;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public class TiledGrid {

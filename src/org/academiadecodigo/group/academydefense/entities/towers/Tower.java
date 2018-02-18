@@ -1,11 +1,7 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
-import org.academiadecodigo.group.academydefense.gfx.Tile;
-import org.academiadecodigo.group.academydefense.grid.Grid;
-import org.academiadecodigo.group.academydefense.grid.GridColor;
+import org.academiadecodigo.group.academydefense.grid.Tile;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
-import org.academiadecodigo.group.academydefense.grid.TiledGridPosition;
-import org.academiadecodigo.group.academydefense.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 

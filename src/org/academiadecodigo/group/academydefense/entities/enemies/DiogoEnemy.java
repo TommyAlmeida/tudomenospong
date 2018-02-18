@@ -11,7 +11,7 @@ public class DiogoEnemy extends Enemy {
 
 
     public DiogoEnemy(TiledGrid grid){
-        super(EnemyType.DIOGO,grid, 1,1,1);
+        super(EnemyType.DIOGO, 1,1,1);
     }
 
 }

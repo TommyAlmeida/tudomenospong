@@ -11,10 +11,7 @@ public enum  EnemyType {
 
     DIOGO(Color.BLUE);
 
-    private String path;
     private Color color;
-
-
 
     EnemyType(Color color) {
         this.color = color;
@@ -25,8 +22,5 @@ public enum  EnemyType {
         return color;
     }
 
-    public String getPath() {
-        return path;
-    }
 }
 

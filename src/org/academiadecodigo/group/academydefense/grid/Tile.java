@@ -22,7 +22,7 @@ public class Tile {
 
     public void draw() {
         rectangle.setColor(color);
-        rectangle.draw();
+        rectangle.fill();
     }
 
     public int getCol() {
@@ -39,7 +39,52 @@ public class Tile {
 
     public void setColor(Color color) {
         this.color = color;
-        rectangle.setColor(this.color);
+        rectangle.setColor(color);
+    }
+
+    private void move(Direction direction, int speed){
+        switch (direction){
+            case RIGHT:
+                rectangle.translate(speed, 0);
+                break;
+            case LEFT:
+                rectangle.translate(-speed, 0);
+                break;
+            case UP:
+                rectangle.translate(0, -speed);
+                break;
+            case DOWN:
+                rectangle.translate(0, speed);
+                break;
+        }
+    }
+
+    public void moveRight(int speed){
+        move(Direction.RIGHT, speed);
+    }
+
+    public void moveLeft(int speed){
+        move(Direction.LEFT, speed);
+    }
+
+    public void moveUp(int speed){
+        move(Direction.UP, speed);
+    }
+
+    public void moveDown(int speed){
+        move(Direction.DOWN, speed);
+    }
+
+    public void setCol(int col) {
+        this.col += col;
+    }
+
+    public void show(){
+        rectangle.fill();
+    }
+
+    public void hide(){
+        rectangle.delete();
     }
 
     public int getCellSize() {

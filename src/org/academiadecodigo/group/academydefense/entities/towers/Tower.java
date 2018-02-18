@@ -2,6 +2,7 @@ package org.academiadecodigo.group.academydefense.entities.towers;
 
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.grid.Tile;
+import org.academiadecodigo.group.academydefense.grid.TileShape;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -16,7 +17,7 @@ public class Tower {
     private int fireRate, range, damage;
     private Rectangle rangeRect;
 
-    private Tile currentTile;
+    private TileShape currentTile;
     private TiledGrid grid;
     private Bullet bullet;
 
@@ -27,7 +28,7 @@ public class Tower {
         this.fireRate = fireRate;
         this.grid = grid;
         this.damage = damage;
-        this.currentTile = grid.getTile(x, y);
+        this.currentTile = (TileShape) grid.getTile(x, y);
     }
 
     public void draw(Color color){

@@ -9,18 +9,16 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
  */
 public enum  EnemyType {
 
-    DIOGO(Color.BLUE);
+    DIOGO(""), BRUNO("bruno-tower.png");
 
-    private Color color;
+    private String name;
 
-    EnemyType(Color color) {
-        this.color = color;
+    EnemyType(String name) {
+        this.name = name;
     }
 
-
-    public Color getColor() {
-        return color;
+    public String loadResource() {
+        return "/Users/codecadet/groupWork/tudomenospong/res/" + name;
     }
-
 }
 

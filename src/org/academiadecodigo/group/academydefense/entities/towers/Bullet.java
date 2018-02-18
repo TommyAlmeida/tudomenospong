@@ -22,7 +22,7 @@ public class Bullet {
     }
 
     public void move(Enemy target){
-        representable.translate(target.getRepresentation().getY() * speed, target.getRepresentation().getY() * speed);
+        representable.translate(target.getSprite().getPicture().getY() * speed, target.getSprite().getPicture().getX() * speed);
     }
 
     /*

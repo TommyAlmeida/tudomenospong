@@ -10,7 +10,7 @@ public class TiledGrid {
     private final int WIDTH = 50;
     private final int HEIGHT = 28;
 
-    private Tile tiles[][] = new Tile[WIDTH][HEIGHT];
+    private TileShape tiles[][] = new TileShape[WIDTH][HEIGHT];
 
     public void draw() {
         for (int row = 0; row < tiles.length; row++) {
@@ -18,7 +18,7 @@ public class TiledGrid {
                 int x = (row * CELL_SIZE) + PADDING;
                 int y = (column * CELL_SIZE) + PADDING;
 
-                tiles[row][column] = new Tile(x, y, CELL_SIZE, Color.GREEN);
+                tiles[row][column] = new TileShape(x, y, CELL_SIZE, Color.GREEN);
                 tiles[row][column].draw();
             }
         }

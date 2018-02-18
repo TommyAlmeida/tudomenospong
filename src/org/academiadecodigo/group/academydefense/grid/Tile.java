@@ -11,6 +11,7 @@ public class Tile {
 
     protected Color color;
     private Rectangle rectangle;
+    private Direction currentDirection;
 
     public Tile(int col, int row, int cellSize, Color color) {
         this.col = col;
@@ -22,7 +23,7 @@ public class Tile {
 
     public void draw() {
         rectangle.setColor(color);
-        rectangle.draw();
+        rectangle.fill();
     }
 
     public int getCol() {
@@ -46,15 +47,19 @@ public class Tile {
         switch (direction){
             case RIGHT:
                 rectangle.translate(speed, 0);
+                currentDirection = Direction.RIGHT;
                 break;
             case LEFT:
                 rectangle.translate(-speed, 0);
+                currentDirection = Direction.LEFT;
                 break;
             case UP:
                 rectangle.translate(0, -speed);
+                currentDirection = Direction.UP;
                 break;
             case DOWN:
                 rectangle.translate(0, speed);
+                currentDirection = Direction.DOWN;
                 break;
         }
     }
@@ -75,6 +80,10 @@ public class Tile {
         move(Direction.DOWN, speed);
     }
 
+    public Direction getCurrentDirection() {
+        return currentDirection;
+    }
+
     public void setCol(int col) {
         this.col += col;
     }
@@ -89,6 +98,14 @@ public class Tile {
 
     public int getCellSize() {
         return cellSize;
+    }
+
+    public int getX(){
+        return rectangle.getX();
+    }
+
+    public int getY(){
+        return rectangle.getY();
     }
 
     @Override

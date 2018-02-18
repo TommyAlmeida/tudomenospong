@@ -21,12 +21,19 @@ public class Bullet {
         representable.fill();
     }
 
-    public void move(){
-        representable.translate(0, speed);
+    public void move(Enemy target){
+        representable.translate(target.getRepresentation().getY() * speed, target.getRepresentation().getY() * speed);
     }
 
+    /*
+    * Activated if collided
+    */
     public void hit(Enemy target){
-        //do damage
+        target.recieveDamage(this);
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     @Override

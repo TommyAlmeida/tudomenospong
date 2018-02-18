@@ -43,7 +43,7 @@ public class Player implements MouseHandler {
         int x = (int) mouseEvent.getX();
         int y = (int) mouseEvent.getY();
 
-        Tower newTower = new Tower(grid, x, y, 0, 1);
+        Tower newTower = new Tower(grid, x, y, 0, 1, 1);
         newTower.draw(Color.BLUE);
     }
 

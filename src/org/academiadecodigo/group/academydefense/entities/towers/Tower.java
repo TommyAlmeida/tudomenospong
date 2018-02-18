@@ -12,18 +12,19 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class Tower {
 
 
-    private int fireRate, range;
+    private int fireRate, range, damage;
     private Rectangle rangeRect;
 
     private Tile currentTile;
     private TiledGrid grid;
 
+
     public Tower(TiledGrid grid, int x, int y,
-                 int fireRate, int range) {
+                 int fireRate, int range, int damage) {
         this.range = range;
         this.fireRate = fireRate;
         this.grid = grid;
-
+        this.damage = damage;
         this.currentTile = grid.getTile(x, y);
     }
 
@@ -37,6 +38,9 @@ public class Tower {
         }
     }
 
+    public int getDamage() {
+        return damage;
+    }
 
     public int getCol() {
         return currentTile.getCol();

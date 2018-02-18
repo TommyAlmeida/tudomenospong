@@ -25,6 +25,14 @@ public class Tile {
         rectangle.draw();
     }
 
+    public int getCol() {
+        return col;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
     public Color getColor() {
         return color;
     }

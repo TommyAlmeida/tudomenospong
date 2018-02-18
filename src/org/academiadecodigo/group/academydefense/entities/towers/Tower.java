@@ -18,13 +18,16 @@ public class Tower {
 
     private int fireRate, range;
     private Rectangle rangeRect;
-    private Tile currentTile;
 
+    private Tile currentTile;
+    private TiledGrid grid;
 
     public Tower(TiledGrid grid, int x, int y,
                  int fireRate, int range) {
         this.range = range;
         this.fireRate = fireRate;
+        this.grid = grid;
+
         this.currentTile = grid.getTile(x, y);
     }
 
@@ -38,6 +41,14 @@ public class Tower {
         }
     }
 
+
+    public int getCol() {
+        return currentTile.getCol();
+    }
+
+    public int getRow() {
+        return currentTile.getRow();
+    }
 
     @Override
     public String toString() {

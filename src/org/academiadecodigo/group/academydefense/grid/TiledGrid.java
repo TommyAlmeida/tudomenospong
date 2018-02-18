@@ -33,10 +33,6 @@ public class TiledGrid {
         return tiles[xS][yS];
     }
 
-    public boolean hasTower(int x, int y){
-        return tiles[x][y] != null;
-    }
-
     public int conversionXY(int value) {
         return (value / CELL_SIZE) + PADDING;
     }

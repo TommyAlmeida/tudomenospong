@@ -10,6 +10,8 @@ import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
 import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Player implements MouseHandler {
@@ -45,6 +47,8 @@ public class Player implements MouseHandler {
 
         Tower newTower = new Tower(grid, x, y, 0, 1, 1);
         newTower.draw(Color.BLUE);
+        towersCreated.add(newTower);
+        System.out.println(towersCreated);
     }
 
     @Override

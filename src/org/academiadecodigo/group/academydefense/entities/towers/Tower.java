@@ -1,5 +1,6 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
+import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.grid.Tile;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -17,6 +18,7 @@ public class Tower {
 
     private Tile currentTile;
     private TiledGrid grid;
+    private Bullet bullet;
 
 
     public Tower(TiledGrid grid, int x, int y,
@@ -32,9 +34,9 @@ public class Tower {
         this.currentTile.setColor(color);
     }
 
-    public void shoot(Bullet bullet){
+    public void shoot(Enemy enemy){
         if (bullet != null) {
-            bullet.move();
+            //bullet.move(th);
         }
     }
 

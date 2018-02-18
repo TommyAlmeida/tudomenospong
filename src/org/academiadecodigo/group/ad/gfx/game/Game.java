@@ -4,6 +4,7 @@ import org.academiadecodigo.group.ad.gfx.enemies.Enemy;
 import org.academiadecodigo.group.ad.gfx.enemies.EnemyFactory;
 import org.academiadecodigo.group.ad.gfx.grid.Grid;
 import org.academiadecodigo.group.ad.gfx.grid.GridFactory;
+import org.academiadecodigo.group.ad.gfx.map.levels.FirstMap;
 import org.academiadecodigo.group.ad.gfx.towers.Bullet;
 import org.academiadecodigo.group.ad.gfx.towers.BulletFactory;
 import org.academiadecodigo.group.ad.gfx.towers.BulletType;
@@ -23,6 +24,7 @@ public class Game {
 
     private Tower tower;
     private List<Enemy> enemies;
+    private FirstMap firstMap;
 
     public Game(int cols, int rows) {
         this.enemies = new ArrayList<>();
@@ -33,6 +35,8 @@ public class Game {
         grid.init();
 
         tower = new Tower(grid,1, 120);
+
+        firstMap = new FirstMap();
 
         enemies.add(EnemyFactory.makeEnemy(grid));
 
@@ -49,6 +53,7 @@ public class Game {
         while(enemies.size() != -1){ //Move
             b.move();
             Thread.sleep(20);
+            moveAllEnemies();
         }
         while(true) {
             moveAllEnemies();
@@ -57,6 +62,7 @@ public class Game {
 
     public void moveAllEnemies(){
         for (Enemy e: enemies) {
+            System.out.println("zzzz");
             e.move();
         }
     }

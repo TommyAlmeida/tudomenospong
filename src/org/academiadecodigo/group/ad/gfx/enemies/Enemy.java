@@ -2,8 +2,10 @@ package org.academiadecodigo.group.ad.gfx.enemies;
 
 import org.academiadecodigo.group.ad.gfx.grid.Grid;
 import org.academiadecodigo.group.ad.gfx.grid.position.GridPosition;
+import org.academiadecodigo.group.ad.gfx.map.Map;
 import org.academiadecodigo.group.ad.gfx.map.Position;
 import org.academiadecodigo.group.ad.gfx.map.Waypoint;
+import org.academiadecodigo.group.ad.gfx.map.levels.FirstMap;
 import org.academiadecodigo.group.ad.gfx.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -27,8 +29,8 @@ public class Enemy {
     private Grid grid;
     private Rectangle enemyDrawed;
     private Waypoint[] waypoints;
-    private Waypoint currentWaypoint;
     private SimpleGfxGrid simpleGfxGrid;
+    private FirstMap map = new FirstMap();
 
     public Enemy(EnemyType enemyType, int life, int speed, int value, Grid grid) {
         this.enemyType = enemyType;
@@ -37,7 +39,7 @@ public class Enemy {
         this.dead = false;
         this.value = value;
         this.gridPosition = grid.makeGridPosition(0, 0);
-        enemyDrawed = new Rectangle(10, 10, 20, 20);
+        enemyDrawed = new Rectangle(50, 50, 20, 20);
 
 
         draw();
@@ -53,25 +55,31 @@ public class Enemy {
 
 
     public void move() {
+        currentPosition = new Position(enemyDrawed.getX(),enemyDrawed.getY(),grid);
+        map = new FirstMap();
         int moveX, moveY;
-        int currentX = currentPosition.getX(), currentY = currentPosition.getY();
+        int currentX;
+        currentX = currentPosition.getX();
+        int currentY;
+        currentY = currentPosition.getY();
+        System.out.println(map.waypoints.length);
+        for (int i = 0; i < map.waypoints.length; i++) {
+            while (map.getCurrentWaypoint() != waypoints[i]) {
+                moveX = map.getCurrentWaypoint().getX() - waypoints[i].getX();
+                moveY = map.getCurrentWaypoint().getY() - waypoints[i].getY();
 
-        for (int i = 0; i < waypoints.length; i++) {
-            while (currentWaypoint != waypoints[i]) {
-                moveX = currentWaypoint.getX() - waypoints[i].getX();
-                moveY = currentWaypoint.getY() - waypoints[i].getY();
 
                 if (moveX > 0) {
-                    currentWaypoint.setX((currentX - speed) * simpleGfxGrid.getCellSize());
+                    map.getCurrentWaypoint().setX((currentX - speed) * simpleGfxGrid.getCellSize());
                     enemyDrawed.translate(speed,0);
                 } else if (moveX < 0) {
-                    currentWaypoint.setX((currentX + speed) * simpleGfxGrid.getCellSize());
+                    map.getCurrentWaypoint().setX((currentX + speed) * simpleGfxGrid.getCellSize());
                     enemyDrawed.translate(-speed,0);
                 } else if (moveY > 0) {
-                    currentWaypoint.setY((currentY - speed) * simpleGfxGrid.getCellSize());
+                    map.getCurrentWaypoint().setY((currentY - speed) * simpleGfxGrid.getCellSize());
                     enemyDrawed.translate(0,speed);
                 } else if (moveY < 0) {
-                    currentWaypoint.setY((currentY + speed) * simpleGfxGrid.getCellSize());
+                    map.getCurrentWaypoint().setY((currentY + speed) * simpleGfxGrid.getCellSize());
                     enemyDrawed.translate(0,-speed);
                 }
             }
@@ -95,7 +103,6 @@ public class Enemy {
         return value;
     }
 
-
     @Override
     public String toString() {
         return "Enemy{" +
@@ -109,8 +116,8 @@ public class Enemy {
                 ", grid=" + grid +
                 ", enemyDrawed=" + enemyDrawed +
                 ", waypoints=" + Arrays.toString(waypoints) +
-                ", currentWaypoint=" + currentWaypoint +
                 ", simpleGfxGrid=" + simpleGfxGrid +
+                ", map=" + map +
                 '}';
     }
 }

@@ -13,7 +13,7 @@ public class Waypoint {
     private int x;
     private int y;
 
-    public Waypoint(int x, int y){
+    public Waypoint(int x, int y) {
         this.position = new Position(x, y, grid);
 
     }

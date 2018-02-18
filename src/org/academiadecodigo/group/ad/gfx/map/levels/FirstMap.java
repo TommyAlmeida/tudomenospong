@@ -18,9 +18,10 @@ public class FirstMap extends Map {
 
     public FirstMap(){
         super("Level 01", new Waypoint[]{
-                new Waypoint(0,5),
-                new Waypoint(7,5),
-                new Waypoint(7,2)
-        }, new Waypoint(0,0));
+                new Waypoint(0,50),
+                new Waypoint(70,50),
+                new Waypoint(70,20),
+                new Waypoint(10,20)
+        }, new Waypoint(50,50));
     }
 }

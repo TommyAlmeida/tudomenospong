@@ -2,9 +2,8 @@ package org.academiadecodigo.group.academydefense.entities.player;
 
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
-import org.academiadecodigo.group.academydefense.gfx.SimpleGfxGrid;
-import org.academiadecodigo.group.academydefense.grid.Grid;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
@@ -13,10 +12,6 @@ import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created on 15/02/2018.
- * Good Luck, Have Fun codecadet
- */
 public class Player implements MouseHandler {
 
     private int lifes;
@@ -45,7 +40,16 @@ public class Player implements MouseHandler {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        new Tower(grid, (int) mouseEvent.getX() / grid.getCellSize(), (int) mouseEvent.getY() / grid.getCellSize()).draw();
+        int x = (int) Math.abs(mouseEvent.getX());
+        int y = (int) Math.abs(mouseEvent.getY());
+
+        if(!grid.hasTower(x, y)){
+            Tower newTower = new Tower(grid, x, y, 0, 1);
+            newTower.draw(Color.BLUE);
+            System.out.println("Could create tower: " + newTower);
+        }
+
+
     }
 
     @Override

@@ -7,8 +7,7 @@ public class Tile {
 
     private int col;
     private int row;
-    private int x;
-    private int y;
+    private int cellSize;
 
     protected Color color;
     private Rectangle rectangle;
@@ -17,6 +16,7 @@ public class Tile {
         this.col = col;
         this.row = row;
         this.color = color;
+        this.cellSize = cellSize;
         this.rectangle = new Rectangle(col, row, cellSize, cellSize);
     }
 
@@ -34,12 +34,8 @@ public class Tile {
         rectangle.setColor(this.color);
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
+    public int getCellSize() {
+        return cellSize;
     }
 
     @Override
@@ -47,8 +43,6 @@ public class Tile {
         return "Tile{" +
                 "col=" + col +
                 ", row=" + row +
-                ", x=" + x +
-                ", y=" + y +
                 ", color=" + color +
                 ", rectangle=" + rectangle +
                 '}';

@@ -1,5 +1,6 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
+import org.academiadecodigo.group.academydefense.gfx.Tile;
 import org.academiadecodigo.group.academydefense.grid.Grid;
 import org.academiadecodigo.group.academydefense.grid.GridColor;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
@@ -16,27 +17,19 @@ public class Tower {
 
 
     private int fireRate, range;
-    private int col, row;
-
-    private TiledGridPosition position;
     private Rectangle rangeRect;
+    private Tile currentTile;
 
-    public Tower(TiledGrid grid, int fireRate, int range) {
+
+    public Tower(TiledGrid grid, int x, int y,
+                 int fireRate, int range) {
         this.range = range;
         this.fireRate = fireRate;
-        this.position = new TiledGridPosition(0, 0, GridColor.BLUE, grid);
-        draw();
+        this.currentTile = grid.getTile(x, y);
     }
 
-    public Tower(TiledGrid grid, int col, int row, int fireRate, int range) {
-        this.range = range;
-        this.fireRate = fireRate;
-        this.position = new TiledGridPosition(col, row, GridColor.BLUE, grid);
-        draw();
-    }
-
-    public void draw(){
-        position.setColor(GridColor.GREEN);
+    public void draw(Color color){
+        this.currentTile.setColor(color);
     }
 
     public void shoot(Bullet bullet){
@@ -46,15 +39,13 @@ public class Tower {
     }
 
 
-
     @Override
     public String toString() {
         return "Tower{" +
                 "fireRate=" + fireRate +
                 ", range=" + range +
-                ", col=" + col +
-                ", row=" + row +
                 ", rangeRect=" + rangeRect +
+                ", currentTile=" + currentTile +
                 '}';
     }
 }

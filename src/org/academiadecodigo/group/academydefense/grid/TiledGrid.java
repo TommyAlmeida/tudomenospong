@@ -1,23 +1,27 @@
 package org.academiadecodigo.group.academydefense.grid;
 
+import org.academiadecodigo.group.academydefense.entities.towers.Tower;
 import org.academiadecodigo.group.academydefense.gfx.Tile;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public class TiledGrid {
 
     public static final int PADDING = 0;
-    public final int CELL_SIZE = 32;
+    private final int CELL_SIZE = 32;
 
     private final int WIDTH = 50;
     private final int HEIGHT = 50;
 
-    public void draw() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                int x = (j * CELL_SIZE) + PADDING;
-                int y = (i * CELL_SIZE) + PADDING;
+    private Tile tiles[][] = new Tile[WIDTH][HEIGHT];
 
-                new Tile(x, y, CELL_SIZE, Color.GREEN).draw();
+    public void draw() {
+        for (int row = 0; row < tiles.length; row++) {
+            for (int column = 0; column < tiles[row].length; column++) {
+                int x = (row * CELL_SIZE) + PADDING;
+                int y = (column * CELL_SIZE) + PADDING;
+
+                tiles[row][column] = new Tile(x, y, CELL_SIZE, Color.GREEN);
+                tiles[row][column].draw();
             }
         }
     }
@@ -26,11 +30,15 @@ public class TiledGrid {
         int xS = conversionXY(x);
         int yS = conversionXY(y);
 
-        return null;
+        return tiles[xS][yS];
+    }
+
+    public boolean hasTower(int x, int y){
+        return tiles[x][y] != null;
     }
 
     public int conversionXY(int value) {
-        return (value / CELL_SIZE);
+        return (value / CELL_SIZE) + PADDING;
     }
 
     public int rowToY(int row) {

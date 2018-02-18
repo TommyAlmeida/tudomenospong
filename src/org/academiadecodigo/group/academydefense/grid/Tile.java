@@ -23,7 +23,7 @@ public class Tile {
 
     public void draw() {
         rectangle.setColor(color);
-        rectangle.fill();
+        rectangle.draw();
     }
 
     public int getCol() {

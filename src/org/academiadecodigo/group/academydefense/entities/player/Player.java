@@ -42,8 +42,8 @@ public class Player implements MouseHandler {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        int x = (int) mouseEvent.getX();
-        int y = (int) mouseEvent.getY();
+        int x = (int) Math.round(mouseEvent.getX());
+        int y = (int ) Math.round(mouseEvent.getY());
 
         Tower newTower = new Tower(grid, x, y, 0, 1, 1);
         newTower.draw(Color.BLUE);

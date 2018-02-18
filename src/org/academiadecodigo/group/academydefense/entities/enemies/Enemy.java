@@ -44,6 +44,13 @@ public class Enemy {
             return;
         }
 
+        if(GridUtils.rowToY(getRepresentation().getY()) < 10000){
+            representation.hide();
+            return;
+        }
+
+        System.out.println(GridUtils.rowToY(getRepresentation().getY()));
+
         representation.moveUp(speed);
 
         switch (representation.getCurrentDirection()){
@@ -60,6 +67,7 @@ public class Enemy {
                 healthHud.translate(-speed, 0);
                 break;
         }
+
     }
 
     public void recieveDamage(Bullet bullet){
@@ -72,6 +80,10 @@ public class Enemy {
         }
 
         currentHealth -= bullet.getDamage();
+    }
+
+    public boolean hasReachedTheEnd(){
+        return this.getRepresentation().getY() == 10/2;
     }
 
     public Tile getRepresentation() {

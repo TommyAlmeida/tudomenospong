@@ -29,6 +29,11 @@ public class Enemy {
         this.healthHud = new Text(sprite.getPicture().getX(),sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
     }
 
+
+    public void setHealthHud(Text healthHud) {
+        this.healthHud = healthHud;
+    }
+
     public void draw(){
         sprite.draw();
 
@@ -37,8 +42,19 @@ public class Enemy {
     }
 
     public void move(){
-        healthHud.translate(speed, 0);
-        getSprite().moveRight(speed);
+
+
+        if(isDead()){
+            sprite.hide();
+            healthHud.delete();
+        }else {
+            healthHud.delete();
+            healthHud = new Text(sprite.getPicture().getX(), sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
+            healthHud.setColor(Color.BLUE);
+            healthHud.draw();
+            healthHud.translate(speed, 0);
+            getSprite().moveRight(speed);
+        }
     }
 
     public void recieveDamage(Bullet bullet){
@@ -57,8 +73,20 @@ public class Enemy {
         return sprite.getPicture().getY() == 10/2;
     }
 
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
     public boolean isDead() {
         return dead;
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
     }
 
     public TilePictured getSprite() {

@@ -52,6 +52,9 @@ public class Game {
             setPositions(e);
             System.out.println(e);
             e.move();
+            System.out.println(e);
+            tower = new Tower(grid, 800, 448, 1, 1);
+            tower.shoot(e, tower);
         }
     }
 

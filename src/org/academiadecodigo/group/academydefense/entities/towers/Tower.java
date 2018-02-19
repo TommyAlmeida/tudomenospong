@@ -19,6 +19,7 @@ public class Tower {
 
     private TileShape currentTile;
     private TiledGrid grid;
+    private BulletFactory bulletFactory;
     private Bullet bullet;
 
 
@@ -43,10 +44,20 @@ public class Tower {
         this.currentTile.setColor(color);
     }
 
-    public void shoot(Enemy enemy){
-        if (bullet != null && getTowerToEnemyDistance() < 1000 ) {
-            System.out.println("Bang Bang!!");
-            bullet.move();
+    public void shoot(Enemy enemy, Tower tower){
+        System.out.println(damage);
+        if (getTowerToEnemyDistance() < 1000 ) {
+            if(enemy.getCurrentHealth() <= 0){
+                enemy.setDead(true);
+            }
+            if(!enemy.isDead()) {
+                bullet = new Bullet(1, 1);
+                System.out.println("Bang Bang!!");
+                bullet.draw();
+                bullet.move();
+                enemy.recieveDamage(bullet);
+            }
+
         }
     }
 

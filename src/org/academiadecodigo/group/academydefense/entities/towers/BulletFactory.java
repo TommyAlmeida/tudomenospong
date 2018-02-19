@@ -2,7 +2,8 @@ package org.academiadecodigo.group.academydefense.entities.towers;
 
 public class BulletFactory {
 
-    public static Bullet make(BulletType type){
+
+    public Bullet make(BulletType type){
         switch (type){
             case NORMAL:
                 return new Bullet(type.getDamage(), type.getSpeed());

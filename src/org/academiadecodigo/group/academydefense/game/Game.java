@@ -24,7 +24,6 @@ public class Game {
         grid = new TiledGrid();
         enemies = new ArrayList<>();
         player = new Player(grid);
-        tower = new Tower(grid, 800, 448, 1, 1, 200);
         enemies.add(new DiogoEnemy());
     }
 
@@ -37,7 +36,7 @@ public class Game {
     public void start() throws InterruptedException {
         grid.draw();
         drawEnemies();
-        tower = new Tower(grid, 8000, 448, 1, 1, 200);
+        tower = new Tower(grid, 800, 448, 1, 1, 200);
         tower.draw(Color.BLUE);
 
         while (enemies.size() != -1) { //Move
@@ -53,10 +52,9 @@ public class Game {
             System.out.println(e);
             e.move();
             System.out.println(e);
-            tower = new Tower(grid, 800, 448, 1, 1, 200);
-            //if (tower.getTowerToEnemyDistance() < tower.getRange()) {
+            if (tower.getTowerToEnemyDistance() < tower.getRange()) {
                 tower.shoot(e, tower);
-            //}
+            }
         }
     }
 

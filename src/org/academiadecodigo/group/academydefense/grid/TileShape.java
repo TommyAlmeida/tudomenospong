@@ -19,7 +19,7 @@ public class TileShape extends Tile {
     @Override
     public void draw() {
         rectangle.setColor(color);
-        rectangle.draw();
+        rectangle.fill();
     }
 
     public Color getColor() {

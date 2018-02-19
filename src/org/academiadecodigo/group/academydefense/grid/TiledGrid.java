@@ -5,10 +5,10 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 public class TiledGrid {
 
     public static final int PADDING = 10;
-    public static final int CELL_SIZE = 32;
+    public static final int CELL_SIZE = 64;
 
-    private final int WIDTH = 50;
-    private final int HEIGHT = 28;
+    private final int WIDTH = 25;
+    private final int HEIGHT = 11;
 
     private TileShape tiles[][] = new TileShape[WIDTH][HEIGHT];
 

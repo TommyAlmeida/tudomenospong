@@ -9,7 +9,7 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
  */
 public enum  EnemyType {
 
-    DIOGO(""), BRUNO("bruno-tower.png");
+    DIOGO("");
 
     private String name;
 

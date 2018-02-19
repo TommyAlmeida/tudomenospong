@@ -7,7 +7,7 @@ import org.academiadecodigo.group.academydefense.grid.Direction;
  * Created by codecadet on 19/02/2018.
  */
 public class Movement {
-
+/*
     private Path path = new Path();
 private Enemy enemy = new Enemy();
     private int currentMove;
@@ -26,6 +26,6 @@ private Enemy enemy = new Enemy();
 
     public int getEnemyMove(){
         return currentMove;
-    }
+    }*/
 
 }

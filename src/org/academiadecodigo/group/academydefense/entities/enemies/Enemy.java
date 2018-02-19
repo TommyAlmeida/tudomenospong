@@ -45,56 +45,23 @@ public class Enemy{
         healthHud.draw();
     }
 
-
-
     public void move() {
         healthHud.translate(speed, 0);
-        switch (generateDirection()) {
-            case UP:
-                pos.moveUp();
-                break;
-            case DOWN:
-                pos.moveDown();
-                break;
-            case LEFT:
-                pos.moveLeft();
-                break;
-            case RIGHT:
-                pos.moveRight();
-        }
-
-        private Direction generateDirection() {
-            Direction nextDirection;
-
-                lastDirection = nextDirection;
-            } else {
-                nextDirection = lastDirection;
-            }
-
-
-
-            return nextDirection;
-        }
-
         //getSprite().moveUp(speed);
         //path.changeDir();
-       /* while (dead == false) {
-            movement.setEnemyMove();
-            if (movement.getEnemyMove() == 0) {
-                getSprite().moveUp(speed);
-                System.out.println("moveup");
-            } else if (movement.getEnemyMove() == 1) {
-                getSprite().moveRight(speed);
-                System.out.println("moveright");
-            } else if (movement.getEnemyMove() == 2) {
-                getSprite().moveDown(speed);
-                System.out.println("movedown");
-            } else {
-                getSprite().moveLeft(speed);
-                System.out.println("moveleft");
-            }
+        if (movement.getEnemyMove() == 0) {
+            getSprite().moveUp(speed);
+            System.out.println("moveup");
+        } else if (movement.getEnemyMove() == 1){
+            getSprite().moveRight(speed);
+            System.out.println("moveright");
+        } else if (movement.getEnemyMove() == 2){
+            getSprite().moveDown(speed);
+            System.out.println("move");
+        } else {
+            getSprite().moveLeft(speed);
+        }
 
-        }*/
     }
 
 

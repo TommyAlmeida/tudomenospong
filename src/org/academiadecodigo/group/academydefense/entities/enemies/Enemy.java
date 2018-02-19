@@ -69,5 +69,19 @@ public class Enemy {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return "Enemy{" +
+                "currentHealth=" + currentHealth +
+                ", maxHealth=" + maxHealth +
+                ", speed=" + speed +
+                ", dead=" + dead +
+                ", value=" + value +
+                ", enemyType=" + enemyType +
+                ", healthHud=" + healthHud +
+                ", sprite=" + sprite.getX() +
+                ", sprite=" + sprite.getY() +
+                '}';
+    }
 }
 

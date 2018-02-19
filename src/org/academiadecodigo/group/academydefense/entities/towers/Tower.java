@@ -22,22 +22,31 @@ public class Tower {
     private Bullet bullet;
 
 
+
+
+
+
     public Tower(TiledGrid grid, int x, int y,
-                 int fireRate, int range, int damage) {
-        this.range = range;
+                 int fireRate, int damage) {
+        //this.range = range;
         this.fireRate = fireRate;
         this.grid = grid;
         this.damage = damage;
         this.currentTile = (TileShape) grid.getTile(x, y);
+
+
     }
+
+
 
     public void draw(Color color){
         this.currentTile.setColor(color);
     }
 
     public void shoot(Enemy enemy){
-        if (bullet != null) {
-            //bullet.move(th);
+        if (bullet != null && getTowerToEnemyDistance() < 1000 ) {
+            System.out.println("Bang Bang!!");
+            bullet.move();
         }
     }
 
@@ -62,4 +71,50 @@ public class Tower {
                 ", currentTile=" + currentTile +
                 '}';
     }
+
+    private int towerToEnemyRow;
+    private int towerToEnemyCol;
+    private int towerToEnemy;
+    private int enemyPosX;
+    private int enemyPosY;
+    private int towerPosX;
+    private int towerPosY;
+
+
+
+    public int setTowerToEnemyRow(Enemy enemy) {
+
+        enemyPosY = enemy.getSprite().getY(); //menos towerToEnemyRow
+        System.out.println(enemyPosY);
+        towerPosY = getRow();
+        System.out.println(towerPosY);
+        return towerToEnemyRow = Math.abs(enemyPosY - towerPosY);
+    }
+
+    public int setTowerRoEnemyCol(Enemy enemy){
+
+        enemyPosX= enemy.getSprite().getX(); //menos towerToEnemyRow
+        System.out.println(enemyPosX);
+        towerPosX = getCol();
+        System.out.println(towerPosX);
+        return towerToEnemyCol = Math.abs(enemyPosX - towerPosX);
+    }
+
+    public int getTowerToEnemyDistance(){
+        return towerToEnemy;
+    }
+
+    public int getTowerToEnemyRow(){
+        return towerToEnemyRow;
+    }
+
+    public int getTowerToEnemyCol(){
+        return towerToEnemyCol;
+    }
+
+    public int setTowerToEnemy(int towerToEnemyRow, int towerToEnemyCol) {
+
+        return (int) (Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow)));                                                                                                            // com catetos desses fico com ela hipotesuda
+    }
+
 }

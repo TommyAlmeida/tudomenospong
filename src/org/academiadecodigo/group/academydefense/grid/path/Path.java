@@ -20,16 +20,18 @@ public class Path {
     private Direction currentDirection;
     private TilePictured tilePictured;
     private Tower tower = new Tower();
-    private Enemy enemy = new Enemy();
+    //private Enemy enemy = new Enemy();
 
 
 
-    private int startingX = GridUtils.columnToX(10);
-    private int startingY = GridUtils.rowToY(10);
-    private int firstTurnX = GridUtils.columnToX(14);
-    private int firstTurnY = GridUtils.rowToY(10);
+    private int startingX = GridUtils.columnToX(10)*64 + 10;
+    private int startingY = GridUtils.rowToY(10)*64 + 10;
+    private int firstTurnX = GridUtils.columnToX(14)*64 + 10;
+    private int firstTurnY = GridUtils.rowToY(10)*64 + 10;
     private int secondTurnX = GridUtils.columnToX(14);
     private int secondTurnY = GridUtils.rowToY(6);
+    public int definedMove;
+
 
     public int getStartingX(){
         return startingX;
@@ -55,21 +57,20 @@ public class Path {
     public void changeDir() {
        // enemy.getSprite().moveRight(enemy.getSpeed());
         //System.out.println("caralho!");
-        if (enemy.getSprite().getX() == startingX && enemy.getSprite().getY() == startingY){
-            enemy.getSprite().moveRight(enemy.getSpeed());
+        if (tower.getEnemyPosX() == startingX && tower.getEnemyPosY() == startingY){
+            definedMove = 1;
             System.out.println("starting point, moving right");
-        } else if (enemy.getSprite().getX() == firstTurnX && enemy.getSprite().getY() == firstTurnY) {
-            enemy.getSprite().moveUp(enemy.getSpeed());
+        } else if (tower.getEnemyPosX() == firstTurnX && tower.getEnemyPosY() == firstTurnY) {
+            definedMove = 0;
             System.out.println("first turn, moving up");
-        } else if (enemy.getSprite().getX() == secondTurnX && enemy.getSprite().getY() == secondTurnY) {
-            enemy.getSprite().moveRight(enemy.getSpeed());
+        } else if (tower.getEnemyPosX() == secondTurnX && tower.getEnemyPosY() == secondTurnY) {
+            definedMove = 1;
             System.out.println("second turn, moving right");
         } else {
             System.out.println("deu merda!");
             return;
         }
     }
-
 
 
 }

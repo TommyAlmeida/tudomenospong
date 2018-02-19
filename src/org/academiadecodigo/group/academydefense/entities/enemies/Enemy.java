@@ -3,12 +3,13 @@ package org.academiadecodigo.group.academydefense.entities.enemies;
 
 import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.grid.*;
+import org.academiadecodigo.group.academydefense.grid.path.Movement;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.group.academydefense.grid.path.Path;
 
-public class Enemy {
+public class Enemy{
 
     private int currentHealth, maxHealth;
     private int speed;
@@ -18,10 +19,11 @@ public class Enemy {
     private EnemyType enemyType;
     private Text healthHud;
     private TilePictured sprite;
-    //private Path path = new Path();
+    private Movement movement = new Movement();
+
 
     //Constructor to check if it passes up the location of the enemy
-    public Enemy(){
+    public Enemy() {
 
     }
 
@@ -33,43 +35,75 @@ public class Enemy {
         this.dead = false;
         this.value = value;
         this.sprite = new TilePictured(0, GridUtils.rowToY(10), "res/bruno-tower.png");
-        this.healthHud = new Text(sprite.getPicture().getX(),sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
+        this.healthHud = new Text(sprite.getPicture().getX(), sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
     }
 
-    public void draw(){
+    public void draw() {
         sprite.draw();
 
         healthHud.setColor(Color.BLUE);
         healthHud.draw();
     }
 
+
+
     public void move() {
         healthHud.translate(speed, 0);
+        switch (generateDirection()) {
+            case UP:
+                pos.moveUp();
+                break;
+            case DOWN:
+                pos.moveDown();
+                break;
+            case LEFT:
+                pos.moveLeft();
+                break;
+            case RIGHT:
+                pos.moveRight();
+        }
+
+        private Direction generateDirection() {
+            Direction nextDirection;
+
+                lastDirection = nextDirection;
+            } else {
+                nextDirection = lastDirection;
+            }
+
+
+
+            return nextDirection;
+        }
+
         //getSprite().moveUp(speed);
         //path.changeDir();
-        while (sprite.getY() != -1 && sprite.getX() != -1) {
-            if (sprite.getX() == GridUtils.columnToX(5)) {
+       /* while (dead == false) {
+            movement.setEnemyMove();
+            if (movement.getEnemyMove() == 0) {
                 getSprite().moveUp(speed);
-                if (sprite.getY() == GridUtils.rowToY(5)) {
-                    getSprite().moveRight(speed);
-                    if (sprite.getX() == GridUtils.columnToX(10)) {
-                        getSprite().moveDown(speed);
-                    }
-                } else if (sprite.getY() == GridUtils.rowToY(12)) {
-                    getSprite().moveLeft(speed);
-                } else {
-                    getSprite().moveRight(speed);
-                }
+                System.out.println("moveup");
+            } else if (movement.getEnemyMove() == 1) {
+                getSprite().moveRight(speed);
+                System.out.println("moveright");
+            } else if (movement.getEnemyMove() == 2) {
+                getSprite().moveDown(speed);
+                System.out.println("movedown");
+            } else {
+                getSprite().moveLeft(speed);
+                System.out.println("moveleft");
             }
-        }
+
+        }*/
     }
 
-    public void recieveDamage(Bullet bullet){
-        if(bullet.getDamage() >= currentHealth){
+
+    public void recieveDamage(Bullet bullet) {
+        if (bullet.getDamage() >= currentHealth) {
             currentHealth = 0;
         }
 
-        if(currentHealth <= 0){
+        if (currentHealth <= 0) {
             dead = true;
         }
 
@@ -80,8 +114,8 @@ public class Enemy {
         return speed;
     }
 
-    public boolean hasReachedTheEnd(){
-        return sprite.getPicture().getY() == 10/2;
+    public boolean hasReachedTheEnd() {
+        return sprite.getPicture().getY() == 10 / 2;
     }
 
     public boolean isDead() {

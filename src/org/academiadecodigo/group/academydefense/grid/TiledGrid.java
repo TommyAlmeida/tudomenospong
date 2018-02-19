@@ -8,7 +8,7 @@ public class TiledGrid {
     public static final int CELL_SIZE = 64;
 
     private final int WIDTH = 25;
-    private final int HEIGHT = 14;
+    private final int HEIGHT = 11;
 
     private TileShape tiles[][] = new TileShape[WIDTH][HEIGHT];
 

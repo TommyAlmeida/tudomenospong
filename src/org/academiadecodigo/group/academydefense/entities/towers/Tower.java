@@ -1,7 +1,6 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
-import org.academiadecodigo.group.academydefense.grid.Tile;
 import org.academiadecodigo.group.academydefense.grid.TileShape;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -107,7 +106,7 @@ public class Tower {
                 System.out.println("Bang Bang!!");
                 bullet.draw();
                 bullet.move();
-                enemy.recieveDamage(bullet);
+                enemy.receiveDamage(bullet);
             }
 
         }

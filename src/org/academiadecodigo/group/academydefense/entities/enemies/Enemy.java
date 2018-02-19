@@ -6,6 +6,7 @@ import org.academiadecodigo.group.academydefense.grid.*;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.group.academydefense.grid.path.Path;
 
 public class Enemy {
 
@@ -17,6 +18,7 @@ public class Enemy {
     private EnemyType enemyType;
     private Text healthHud;
     private TilePictured sprite;
+    private Path path;
 
     public Enemy(EnemyType enemyType, int maxHealth, int speed, int value) {
         this.enemyType = enemyType;
@@ -38,7 +40,9 @@ public class Enemy {
 
     public void move(){
         healthHud.translate(speed, 0);
-        getSprite().moveRight(speed);
+        getSprite().moveUp(speed);
+        //path.changeDir();
+
     }
 
     public void recieveDamage(Bullet bullet){
@@ -51,6 +55,10 @@ public class Enemy {
         }
 
         currentHealth -= bullet.getDamage();
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
     public boolean hasReachedTheEnd(){

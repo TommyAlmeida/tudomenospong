@@ -33,6 +33,7 @@ public class TilePictured extends Tile{
         }
     }
 
+
     public void hide(){
         picture.delete();
     }

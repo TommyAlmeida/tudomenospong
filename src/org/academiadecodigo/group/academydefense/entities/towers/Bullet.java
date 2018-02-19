@@ -8,28 +8,33 @@ public class Bullet {
 
     private int damage, speed;
     private Rectangle representable;
+    private Tower tower;
 
     public Bullet(int damage, int speed){
         this.damage = damage;
         this.speed = speed;
-        this.representable = new Rectangle(0, 0, 32, 32);
+        this.representable = new Rectangle(800, 448, 32, 32);
         representable.setColor(Color.RED);
 
         draw();
     }
 
-    public void draw() {
+    public void draw(){
         representable.fill();
     }
 
-    public void move() {
+    public void move(){
         representable.translate(10, speed);
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
     /*
-    * Activated if collided
-    */
-    public void hit(Enemy target) {
+        * Activated if collided
+        */
+    public void hit(Enemy target){
         target.recieveDamage(this);
     }
 

@@ -31,9 +31,9 @@ public class Game {
     }
 
     public void setPositions(Enemy enemy){
-        tower.setTowerRoEnemyCol(enemy);
+        tower.setTowerToEnemyCol(enemy);
         tower.setTowerToEnemyRow(enemy);
-        tower.setTowerToEnemy(tower.getTowerToEnemyRow(), tower.getTowerToEnemyCol());
+        tower.towerToEnemy = (int) (Math.sqrt((tower.getTowerToEnemyCol() * tower.getTowerToEnemyCol()) + (tower.getTowerToEnemyRow() * tower.getTowerToEnemyRow())));
     }
 
     public void start() throws InterruptedException {
@@ -55,6 +55,9 @@ public class Game {
             setPositions(e);
             System.out.println(e);
             e.move();
+            System.out.println(e);
+            tower = new Tower(grid, 800, 448, 1, 1);
+            tower.shoot(e);
         }
     }
 

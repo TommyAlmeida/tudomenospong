@@ -75,7 +75,7 @@ public class Tower {
     }*/
 
     public void draw() {
-        System.out.println("drawing");
+        //System.out.println("drawing");
         currentTile.draw();
     }
 
@@ -87,14 +87,14 @@ public class Tower {
         towerToEnemy = (int) (Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow)));
 
         //setTowerToEnemy(getTowerToEnemyRow(), getTowerToEnemyCol());
-        System.out.println("damage: " + damage);
+       /* System.out.println("damage: " + damage);
         System.out.println("tower to enemy dist: " + getTowerToEnemyDistance() + "---" + (int) (Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow))));
         System.out.println("tower x: " + towerPosX);
         System.out.println("enemy x: " + enemyPosX);
         System.out.println("tower to enemy X: " + getTowerToEnemyCol());
         System.out.println("tower y: " + towerPosY);
         System.out.println("enemy y: " + enemyPosY);
-        System.out.println("tower to enemy y: " + getTowerToEnemyRow());
+        System.out.println("tower to enemy y: " + getTowerToEnemyRow());*/
 
         if (getTowerToEnemyDistance() < range) {
             if (enemy.getCurrentHealth() <= 0) {
@@ -102,7 +102,7 @@ public class Tower {
             }
             if (!enemy.isDead()) {
                 bullet = new Bullet(1, 1, tower);
-                System.out.println("Bang Bang!!");
+                //System.out.println("Bang Bang!!");
                 enemy.receiveDamage(bullet);
             }
 
@@ -125,13 +125,6 @@ public class Tower {
         return currentTile.getRow();
     }
 
-    @Override
-    public String toString() {
-        return "Tower{" +
-                "fireRate=" + fireRate +
-                ", range=" + range +
-                ", currentTile=" + currentTile +
-                '}';
-    }
+
 
 }

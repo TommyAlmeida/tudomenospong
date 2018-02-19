@@ -61,7 +61,7 @@ public class Player implements MouseHandler, KeyboardHandler {
         int x = ((int) (mouseEvent.getX()-TiledGrid.PADDING)/ TiledGrid.CELL_SIZE) * TiledGrid.CELL_SIZE + TiledGrid.CELL_SIZE;
         int y = ((int) mouseEvent.getY()/ TiledGrid.CELL_SIZE) * TiledGrid.CELL_SIZE + TiledGrid.PADDING - TiledGrid.CELL_SIZE;
 
-        System.out.println(mouseEvent.getX() + "----> " + x + " " + mouseEvent.getY() +"-----> " + y);
+        //System.out.println(mouseEvent.getX() + "----> " + x + " " + mouseEvent.getY() +"-----> " + y);
 
 
         tower = new Tower(grid, x, y, 1, 1, 100);
@@ -107,7 +107,7 @@ public class Player implements MouseHandler, KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
-            System.out.println("created enemy");
+            //System.out.println("created enemy");
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {

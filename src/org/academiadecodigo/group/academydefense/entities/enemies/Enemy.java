@@ -60,13 +60,14 @@ public class Enemy {
         if(isDead()){
             sprite.hide();
             healthHud.delete();
+        }else{
+            healthHud.delete();
+            healthHud = new Text(sprite.getPicture().getX(), sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
+            healthHud.setColor(Color.BLUE);
+            healthHud.draw();
+            healthHud.translate(speed, 0);
+            getSprite().moveRight(speed);
         }
-        healthHud.delete();
-        healthHud = new Text(sprite.getPicture().getX(), sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
-        healthHud.setColor(Color.BLUE);
-        healthHud.draw();
-        healthHud.translate(speed, 0);
-        getSprite().moveRight(speed);
     }
 
     public void receiveDamage(Bullet bullet){
@@ -109,19 +110,6 @@ public class Enemy {
         return value;
     }
 
-    @Override
-    public String toString() {
-        return "Enemy{" +
-                "currentHealth=" + currentHealth +
-                ", maxHealth=" + maxHealth +
-                ", speed=" + speed +
-                ", dead=" + dead +
-                ", value=" + value +
-                ", enemyType=" + enemyType +
-                ", healthHud=" + healthHud +
-                ", sprite=" + sprite.getX() +
-                ", sprite=" + sprite.getY() +
-                '}';
-    }
+
 }
 

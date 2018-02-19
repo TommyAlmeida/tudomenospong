@@ -41,13 +41,5 @@ public class Bullet {
         return damage;
     }
 
-    @Override
-    public String toString() {
-        return "Bullet{" +
-                "damage=" + damage +
-                ", speed=" + speed +
-                ", x=" + representable.getX() +
-                ", Y=" + representable.getY() +
-                '}';
-    }
+
 }

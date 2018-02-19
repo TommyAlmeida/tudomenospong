@@ -57,8 +57,8 @@ public class Game {
         }*/
 
         drawEnemies();
-        pidgeon.draw();
         tower = new Tower(grid, 1600, 800, 1, 1, 200);
+        pidgeon.draw();
 
         while (enemies.size() != -1) { //Move
             moveAllEnemies();
@@ -69,11 +69,11 @@ public class Game {
     public void moveAllEnemies() {
         for (Enemy e : enemies) {
 
-            System.out.println(e);
+            //System.out.println(e);
             setPositions(e);
-            System.out.println(e);
+            //System.out.println(e);
             e.move();
-            System.out.println(e);
+            //System.out.println(e);
             //while (!e.isDead() || tower.getTowerToEnemyDistance() < tower.getRange()){
 
             for(Tower t : Player.getTowersCreated()){

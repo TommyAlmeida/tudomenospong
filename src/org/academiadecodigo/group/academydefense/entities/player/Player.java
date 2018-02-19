@@ -1,5 +1,6 @@
 package org.academiadecodigo.group.academydefense.entities.player;
 
+import org.academiadecodigo.group.academydefense.entities.enemies.DiogoEnemy;
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
@@ -7,17 +8,18 @@ import org.academiadecodigo.group.academydefense.game.Game;
 import org.academiadecodigo.group.academydefense.grid.Tile;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
 import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class Player implements MouseHandler {
+public class Player implements MouseHandler, KeyboardHandler {
 
     private int lifes;
     private int money;
@@ -42,7 +44,14 @@ public class Player implements MouseHandler {
 
     private void mouseEvents(){
         Mouse m = new Mouse(this);
+        Keyboard kb = new Keyboard(this);
+
         MouseEventType createTower = MouseEventType.MOUSE_CLICKED;
+        KeyboardEvent ke = new KeyboardEvent();
+        ke.setKey(KeyboardEvent.KEY_SPACE);
+        ke.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
+        kb.addEventListener(ke);
 
         m.addEventListener(createTower);
     }
@@ -93,5 +102,23 @@ public class Player implements MouseHandler {
 
     public void loseMoney(Enemy enemy) {
         this.money -= enemy.getValue();
+    }
+
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
+            System.out.println("created enemy");
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    game.getEnemies().add(new DiogoEnemy());
+                }
+            }, 500);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+
     }
 }

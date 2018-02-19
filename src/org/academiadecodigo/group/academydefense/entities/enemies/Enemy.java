@@ -1,11 +1,15 @@
 package org.academiadecodigo.group.academydefense.entities.enemies;
 
 
+import org.academiadecodigo.group.academydefense.Sound;
 import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.grid.*;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Enemy {
 
@@ -31,6 +35,8 @@ public class Enemy {
         this.value = value;
         this.sprite = new TilePictured(0, GridUtils.rowToY(10), "res/monicawtf.png");
         this.healthHud = new Text(sprite.getPicture().getX(),sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
+
+        draw();
     }
 
 
@@ -54,15 +60,13 @@ public class Enemy {
         if(isDead()){
             sprite.hide();
             healthHud.delete();
-        }else {
-            healthHud.delete();
-            healthHud = new Text(sprite.getPicture().getX(), sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
-            healthHud.setColor(Color.BLUE);
-            healthHud.draw();
-            healthHud.translate(speed, 0);
-            getSprite().moveRight(speed);
         }
-
+        healthHud.delete();
+        healthHud = new Text(sprite.getPicture().getX(), sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
+        healthHud.setColor(Color.BLUE);
+        healthHud.draw();
+        healthHud.translate(speed, 0);
+        getSprite().moveRight(speed);
     }
 
     public void receiveDamage(Bullet bullet){

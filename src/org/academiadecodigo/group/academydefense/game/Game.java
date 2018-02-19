@@ -32,7 +32,6 @@ public class Game {
         sprite = new TilePictured(10, GridUtils.rowToY(0), "res/background.png");
         enemies = new ArrayList<>();
         player = new Player(this, grid);
-        enemies.add(new DiogoEnemy());
     }
 
     public void setPositions(Enemy enemy) {
@@ -43,17 +42,14 @@ public class Game {
 
     public void start() throws InterruptedException {
 
-        Text text = new Text(550,150, "ACADEMY DEFENSE");
-        text.setColor(Color.BLACK);
-        text.grow(150,50);
+
+
 
         Picture background = new Picture(10,10, "res/background.png");
-        background.translate(0,20);
-
+        Picture pidgeon = new Picture(10,10, "res/foreground-pigeon.png");
 
         grid.draw();
         background.draw();
-        text.draw();
 
 
         /*for(int i = 0; i < grid.getWidth()- 4; i++) {
@@ -61,11 +57,12 @@ public class Game {
         }*/
 
         drawEnemies();
+        pidgeon.draw();
         tower = new Tower(grid, 1600, 800, 1, 1, 200);
 
         while (enemies.size() != -1) { //Move
             moveAllEnemies();
-            Thread.sleep(20);
+            Thread.sleep(15);
         }
     }
 

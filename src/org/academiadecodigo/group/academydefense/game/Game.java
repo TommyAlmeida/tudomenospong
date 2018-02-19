@@ -40,7 +40,7 @@ public class Game {
         grid.draw();
         sprite.draw();
         drawEnemies();
-        tower = new Tower(grid, 800, 448, 1, 1, 200);
+        tower = new Tower(grid, 1600, 896, 1, 1, 200);
         tower.draw(Color.BLUE);
 
         while (enemies.size() != -1) { //Move

@@ -47,6 +47,9 @@ public class Enemy {
 
     public void move(){
 
+        if(hasReachedTheEnd()){
+            setDead(true);
+        }
 
         if(isDead()){
             sprite.hide();
@@ -59,9 +62,10 @@ public class Enemy {
             healthHud.translate(speed, 0);
             getSprite().moveRight(speed);
         }
+
     }
 
-    public void recieveDamage(Bullet bullet){
+    public void receiveDamage(Bullet bullet){
         if(bullet.getDamage() >= currentHealth){
             currentHealth = 0;
         }
@@ -74,7 +78,7 @@ public class Enemy {
     }
 
     public boolean hasReachedTheEnd(){
-        return sprite.getPicture().getY() == 10/2;
+        return sprite.getPicture().getX() == 1500;
     }
 
     public void setDead(boolean dead) {

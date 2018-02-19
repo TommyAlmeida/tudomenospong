@@ -35,7 +35,7 @@ public class Bullet {
         * Activated if collided
         */
     public void hit(Enemy target){
-        target.recieveDamage(this);
+        target.receiveDamage(this);
     }
 
     public int getDamage() {

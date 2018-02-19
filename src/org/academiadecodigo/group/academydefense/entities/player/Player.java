@@ -1,6 +1,7 @@
 package org.academiadecodigo.group.academydefense.entities.player;
 
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
+import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
 import org.academiadecodigo.group.academydefense.grid.Tile;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
@@ -20,6 +21,8 @@ public class Player implements MouseHandler {
     private int lifes;
     private int money;
     private int totalScore;
+    private Tower newTower;
+    private Bullet newBullet;
 
     private List<Tower> towersCreated;
     private TiledGrid grid;
@@ -49,14 +52,25 @@ public class Player implements MouseHandler {
         System.out.println(mouseEvent.getX() + "----> " + x + " " + mouseEvent.getY() +"-----> " + y);
 
 
-        Tower newTower = new Tower(grid, x, y, 1, 1);
+        Tower newTower = new Tower(grid, x, y, 1, 1, 200);
+        Bullet newBullet = new Bullet(1,1,newTower);
         newTower.draw(Color.BLUE);
+
+
         towersCreated.add(newTower);
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         //Not using
+    }
+
+    public Tower getNewTower() {
+        return newTower;
+    }
+
+    public Bullet getNewBullet() {
+        return newBullet;
     }
 
     public int getLifes() {

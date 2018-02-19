@@ -23,9 +23,8 @@ public class Tower {
     private Bullet bullet;
 
 
-    public Tower(TiledGrid grid, int x, int y,
-                 int fireRate, int damage) {
-        //this.range = range;
+    public Tower(TiledGrid grid, int x, int y, int fireRate, int damage, int range) {
+        this.range = range;
         this.fireRate = fireRate;
         this.grid = grid;
         this.damage = damage;
@@ -84,7 +83,7 @@ public class Tower {
         this.currentTile.setColor(color);
     }
 
-    public void shoot(Enemy enemy) {
+    public void shoot(Enemy enemy, Tower tower) {
 
         setTowerToEnemyCol(enemy);
         setTowerToEnemyRow(enemy);
@@ -99,12 +98,12 @@ public class Tower {
         System.out.println("enemy y: " + enemyPosY);
         System.out.println("tower to enemy y: " + getTowerToEnemyRow());
 
-        if (getTowerToEnemyDistance() < 200) {
+        if (getTowerToEnemyDistance() < range) {
             if (enemy.getCurrentHealth() <= 0) {
                 enemy.setDead(true);
             }
             if (!enemy.isDead()) {
-                bullet = new Bullet(1, 1);
+                bullet = new Bullet(1, 1, tower);
                 System.out.println("Bang Bang!!");
                 bullet.draw();
                 bullet.move();
@@ -120,6 +119,10 @@ public class Tower {
 
     public int getCol() {
         return currentTile.getCol();
+    }
+
+    public int getRange() {
+        return range;
     }
 
     public int getRow() {

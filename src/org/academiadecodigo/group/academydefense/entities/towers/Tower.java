@@ -22,7 +22,10 @@ public class Tower {
     private Bullet bullet;
 
 
+//Constructor to test if it gives out the enemy position
+    public Tower(){
 
+    }
 
 
 
@@ -79,6 +82,14 @@ public class Tower {
     private int enemyPosY;
     private int towerPosX;
     private int towerPosY;
+
+    public int getEnemyPosX(){
+        return enemyPosX;
+    }
+
+    public int getEnemyPosY(){
+        return enemyPosY;
+    }
 
 
 

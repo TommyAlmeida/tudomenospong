@@ -18,7 +18,12 @@ public class Enemy {
     private EnemyType enemyType;
     private Text healthHud;
     private TilePictured sprite;
-    private Path path;
+    //private Path path = new Path();
+
+    //Constructor to check if it passes up the location of the enemy
+    public Enemy(){
+
+    }
 
     public Enemy(EnemyType enemyType, int maxHealth, int speed, int value) {
         this.enemyType = enemyType;
@@ -38,11 +43,25 @@ public class Enemy {
         healthHud.draw();
     }
 
-    public void move(){
+    public void move() {
         healthHud.translate(speed, 0);
-        getSprite().moveUp(speed);
+        //getSprite().moveUp(speed);
         //path.changeDir();
-
+        while (sprite.getY() != -1 && sprite.getX() != -1) {
+            if (sprite.getX() == GridUtils.columnToX(5)) {
+                getSprite().moveUp(speed);
+                if (sprite.getY() == GridUtils.rowToY(5)) {
+                    getSprite().moveRight(speed);
+                    if (sprite.getX() == GridUtils.columnToX(10)) {
+                        getSprite().moveDown(speed);
+                    }
+                } else if (sprite.getY() == GridUtils.rowToY(12)) {
+                    getSprite().moveLeft(speed);
+                } else {
+                    getSprite().moveRight(speed);
+                }
+            }
+        }
     }
 
     public void recieveDamage(Bullet bullet){

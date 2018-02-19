@@ -2,6 +2,8 @@
 package org.academiadecodigo.group.academydefense.grid.path;
 
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
+import org.academiadecodigo.group.academydefense.entities.enemies.EnemyType;
+import org.academiadecodigo.group.academydefense.entities.towers.Tower;
 import org.academiadecodigo.group.academydefense.grid.Direction;
 import org.academiadecodigo.group.academydefense.grid.GridUtils;
 import org.academiadecodigo.group.academydefense.grid.TilePictured;
@@ -17,7 +19,8 @@ public class Path {
     private Picture picture;
     private Direction currentDirection;
     private TilePictured tilePictured;
-    private Enemy enemy;
+    private Tower tower = new Tower();
+    private Enemy enemy = new Enemy();
 
 
 
@@ -50,6 +53,8 @@ public class Path {
     }
 
     public void changeDir() {
+       // enemy.getSprite().moveRight(enemy.getSpeed());
+        //System.out.println("caralho!");
         if (enemy.getSprite().getX() == startingX && enemy.getSprite().getY() == startingY){
             enemy.getSprite().moveRight(enemy.getSpeed());
             System.out.println("starting point, moving right");

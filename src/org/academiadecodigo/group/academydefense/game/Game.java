@@ -42,7 +42,7 @@ public class Game {
 
         while(enemies.size() != -1){ //Move
             moveAllEnemies();
-            Thread.sleep(20);
+            Thread.sleep(200);
         }
     }
 

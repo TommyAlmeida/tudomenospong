@@ -8,7 +8,7 @@ public class TilePictured extends Tile{
     private Direction currentDirection;
 
     public TilePictured(int col, int row, String path) {
-        super(col, row, 32);
+        super(col, row, 64);
         this.picture = new Picture(col, row, path);
     }
 

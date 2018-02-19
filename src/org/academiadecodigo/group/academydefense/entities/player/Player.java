@@ -54,8 +54,8 @@ public class Player implements MouseHandler {
 
         Tower newTower = new Tower(grid, x, y, 1, 1, 200);
         Bullet newBullet = new Bullet(1,1,newTower);
-        newTower.draw(Color.BLUE);
 
+        newTower.draw();
 
         towersCreated.add(newTower);
     }

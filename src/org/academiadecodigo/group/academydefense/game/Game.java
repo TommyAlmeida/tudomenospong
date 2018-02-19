@@ -5,8 +5,10 @@ import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.player.Player;
 import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
+import org.academiadecodigo.group.academydefense.grid.TileShape;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Line;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +36,16 @@ public class Game {
     }
 
     public void start() throws InterruptedException {
+
+
         grid.draw();
+
+        for(int i = 0; i < grid.getWidth() - 10; i++) {
+            new TileShape(i * grid.getCellSize(),  350, grid.getCellSize() * 2, Color.BLACK).draw();
+        }
+
         drawEnemies();
-        tower = new Tower(grid, 800, 450, 1, 1, 200);
-        tower.draw(Color.BLUE);
+        tower = new Tower(grid, 1600, 800, 1, 1, 200);
 
         while (enemies.size() != -1) { //Move
             moveAllEnemies();
@@ -47,22 +55,24 @@ public class Game {
 
     public void moveAllEnemies() {
         for (Enemy e : enemies) {
+
             System.out.println(e);
             setPositions(e);
             System.out.println(e);
-            //e.move();
+            e.move();
             System.out.println(e);
-            while (!e.isDead() || tower.getTowerToEnemyDistance() < tower.getRange()){
+            //while (!e.isDead() || tower.getTowerToEnemyDistance() < tower.getRange()){
 
-                setPositions(e);
-                e.move();
-                tower.shoot(e, tower);
-            }
+
+            tower.shoot(e, tower);
+        }
           /*  if (tower.getTowerToEnemyDistance() < tower.getRange()) {
                 tower.shoot(e, tower);
             }*/
-        }
     }
+
+
+
 
     public void drawEnemies() throws InterruptedException {
         for (Enemy e : enemies) {
@@ -71,3 +81,4 @@ public class Game {
     }
 
 }
+

@@ -1,10 +1,12 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
+import org.academiadecodigo.group.academydefense.grid.TilePictured;
 import org.academiadecodigo.group.academydefense.grid.TileShape;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * Created on 15/02/2018.
@@ -14,24 +16,10 @@ public class Tower {
 
 
     private int fireRate, range, damage;
-    private Rectangle rangeRect;
 
-    private TileShape currentTile;
     private TiledGrid grid;
-    private BulletFactory bulletFactory;
     private Bullet bullet;
-
-
-    public Tower(TiledGrid grid, int x, int y, int fireRate, int damage, int range) {
-        this.range = range;
-        this.fireRate = fireRate;
-        this.grid = grid;
-        this.damage = damage;
-        this.currentTile = (TileShape) grid.getTile(x, y);
-
-
-    }
-
+    private TilePictured currentTile;
 
     private int towerToEnemyRow;
     private int towerToEnemyCol;
@@ -42,24 +30,28 @@ public class Tower {
     private int towerPosY;
 
 
+    public Tower(TiledGrid grid, int x, int y, int fireRate, int damage, int range) {
+        this.range = range;
+        this.fireRate = fireRate;
+        this.grid = grid;
+        this.damage = damage;
+        this.currentTile = TowerFactory.make(x, y);
+    }
 
     public int setTowerToEnemyRow(Enemy enemy) {
 
         enemyPosY = enemy.getSprite().getY(); //menos towerToEnemyRow
-        System.out.println(enemyPosY + "olololol");
         towerPosY = getRow();
-        System.out.println(towerPosY);
         return towerToEnemyRow = Math.abs(enemyPosY - towerPosY);
     }
 
-    public int setTowerToEnemyCol(Enemy enemy) {
 
+    public int setTowerToEnemyCol(Enemy enemy) {
         enemyPosX = enemy.getSprite().getX(); //menos towerToEnemyRow
-        System.out.println(enemyPosX);
         towerPosX = getCol();
-        System.out.println(towerPosX);
         return towerToEnemyCol = Math.abs(enemyPosX - towerPosX);
     }
+
 
     public int getTowerToEnemyDistance() {
         return towerToEnemy;
@@ -78,15 +70,22 @@ public class Tower {
         return (int) (Math.sqrt((this.towerToEnemyCol * this.towerToEnemyCol) + (this.towerToEnemyRow * this.towerToEnemyRow)));                                                                                                            // com catetos desses fico com ela hipotesuda
     }*/
 
-    public void draw(Color color) {
+  /*  public void draw(Color color) {
         this.currentTile.setColor(color);
+    }*/
+
+    public void draw() {
+        System.out.println("drawing");
+        currentTile.draw();
     }
 
     public void shoot(Enemy enemy, Tower tower) {
 
         setTowerToEnemyCol(enemy);
         setTowerToEnemyRow(enemy);
+
         towerToEnemy = (int) (Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow)));
+
         //setTowerToEnemy(getTowerToEnemyRow(), getTowerToEnemyCol());
         System.out.println("damage: " + damage);
         System.out.println("tower to enemy dist: " + getTowerToEnemyDistance() + "---" + (int) (Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow))));
@@ -104,8 +103,6 @@ public class Tower {
             if (!enemy.isDead()) {
                 bullet = new Bullet(1, 1, tower);
                 System.out.println("Bang Bang!!");
-                bullet.draw();
-                bullet.move();
                 enemy.receiveDamage(bullet);
             }
 
@@ -133,7 +130,6 @@ public class Tower {
         return "Tower{" +
                 "fireRate=" + fireRate +
                 ", range=" + range +
-                ", rangeRect=" + rangeRect +
                 ", currentTile=" + currentTile +
                 '}';
     }

@@ -13,10 +13,9 @@ public class Bullet {
     public Bullet(int damage, int speed, Tower tower){
         this.damage = damage;
         this.speed = speed;
-        this.representable = new Rectangle(tower.getCol()+4, tower.getRow()+4, 24, 24);
+        this.representable = new Rectangle(tower.getCol()+4, tower.getRow()+4, 14, 14);
         representable.setColor(Color.RED);
 
-        draw();
     }
 
     public void draw(){

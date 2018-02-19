@@ -18,6 +18,10 @@ public class Enemy {
     private Text healthHud;
     private TilePictured sprite;
 
+    public Enemy(){
+
+    }
+
     public Enemy(EnemyType enemyType, int maxHealth, int speed, int value) {
         this.enemyType = enemyType;
         this.maxHealth = maxHealth;

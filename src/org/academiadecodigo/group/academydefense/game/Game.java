@@ -5,10 +5,14 @@ import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.player.Player;
 import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
+import org.academiadecodigo.group.academydefense.grid.GridUtils;
+import org.academiadecodigo.group.academydefense.grid.TilePictured;
 import org.academiadecodigo.group.academydefense.grid.TileShape;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Line;
+import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +22,16 @@ public class Game {
     private Player player;
     private TiledGrid grid;
     private Tower tower;
+    private TilePictured sprite;
 
 
     private List<Enemy> enemies;
 
     public Game() {
         grid = new TiledGrid();
+        sprite = new TilePictured(10, GridUtils.rowToY(0), "res/background.png");
         enemies = new ArrayList<>();
-        player = new Player(grid);
+        player = new Player(this, grid);
         enemies.add(new DiogoEnemy());
     }
 
@@ -37,12 +43,22 @@ public class Game {
 
     public void start() throws InterruptedException {
 
+        Text text = new Text(550,150, "ACADEMY DEFENSE");
+        text.setColor(Color.BLACK);
+        text.grow(150,50);
+
+        Picture background = new Picture(10,10, "res/background.png");
+        background.translate(0,20);
+
 
         grid.draw();
+        background.draw();
+        text.draw();
 
-        for(int i = 0; i < grid.getWidth() - 10; i++) {
-            new TileShape(i * grid.getCellSize(),  350, grid.getCellSize() * 2, Color.BLACK).draw();
-        }
+
+        /*for(int i = 0; i < grid.getWidth()- 4; i++) {
+            new TileShape(i * grid.getCellSize() +10,  330, grid.getCellSize() * 2, Color.BLACK).draw();
+        }*/
 
         drawEnemies();
         tower = new Tower(grid, 1600, 800, 1, 1, 200);
@@ -63,16 +79,21 @@ public class Game {
             System.out.println(e);
             //while (!e.isDead() || tower.getTowerToEnemyDistance() < tower.getRange()){
 
+            for(Tower t : Player.getTowersCreated()){
+                t.shoot(e, t);
+            }
 
-            tower.shoot(e, tower);
         }
+
+
           /*  if (tower.getTowerToEnemyDistance() < tower.getRange()) {
                 tower.shoot(e, tower);
             }*/
     }
 
-
-
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
 
     public void drawEnemies() throws InterruptedException {
         for (Enemy e : enemies) {

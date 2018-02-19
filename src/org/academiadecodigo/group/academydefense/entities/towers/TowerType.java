@@ -6,7 +6,7 @@ package org.academiadecodigo.group.academydefense.entities.towers;
  */
 public enum TowerType {
 
-    BRICENAS("brighenti-tower.png"), BRUNO("bruno-tower.png"), FERRAO("ferrao-tower.png");
+    BRICENAS("brighenti-tower.png"), BRUNO("bruno-tower.png"), FERRAO("ferrao-tower.png"), RODOLFO("rodolfo-tower.png");
 
     private String name;
 

@@ -17,6 +17,9 @@ public class TowerFactory {
 
             case FERRAO:
                 return new TilePictured(x, y, type.loadResource());
+
+            case RODOLFO:
+                return new TilePictured(x, y, type.loadResource());
         }
 
         return null;

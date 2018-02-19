@@ -10,10 +10,10 @@ public class Bullet {
     private Rectangle representable;
     private Tower tower;
 
-    public Bullet(int damage, int speed){
+    public Bullet(int damage, int speed, Tower tower){
         this.damage = damage;
         this.speed = speed;
-        this.representable = new Rectangle(800, 448, 32, 32);
+        this.representable = new Rectangle(tower.getCol()+4, tower.getRow()+4, 24, 24);
         representable.setColor(Color.RED);
 
         draw();

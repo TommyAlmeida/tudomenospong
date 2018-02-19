@@ -3,7 +3,6 @@ package org.academiadecodigo.group.academydefense.game;
 import org.academiadecodigo.group.academydefense.entities.enemies.DiogoEnemy;
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.player.Player;
-import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;

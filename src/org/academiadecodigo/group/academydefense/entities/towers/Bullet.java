@@ -18,18 +18,18 @@ public class Bullet {
         draw();
     }
 
-    public void draw(){
+    public void draw() {
         representable.fill();
     }
 
-    public void move(){
+    public void move() {
         representable.translate(10, speed);
     }
 
     /*
     * Activated if collided
     */
-    public void hit(Enemy target){
+    public void hit(Enemy target) {
         target.recieveDamage(this);
     }
 

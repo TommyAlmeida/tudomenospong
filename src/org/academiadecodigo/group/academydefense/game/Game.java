@@ -40,7 +40,7 @@ public class Game {
         grid.draw();
         sprite.draw();
         drawEnemies();
-        tower = new Tower(grid, 800, 448, 1, 1, 200);
+        tower = new Tower(grid, 800, 450, 1, 1, 200);
         tower.draw(Color.BLUE);
 
         while (enemies.size() != -1) { //Move
@@ -54,11 +54,17 @@ public class Game {
             System.out.println(e);
             setPositions(e);
             System.out.println(e);
-            e.move();
+            //e.move();
             System.out.println(e);
-            if (tower.getTowerToEnemyDistance() < tower.getRange()) {
+            while (!e.isDead() || tower.getTowerToEnemyDistance() < tower.getRange()){
+
+                setPositions(e);
+                e.move();
                 tower.shoot(e, tower);
             }
+          /*  if (tower.getTowerToEnemyDistance() < tower.getRange()) {
+                tower.shoot(e, tower);
+            }*/
         }
     }
 

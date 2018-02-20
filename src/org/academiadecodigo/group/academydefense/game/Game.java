@@ -6,8 +6,14 @@ import org.academiadecodigo.group.academydefense.entities.player.Player;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
 import org.academiadecodigo.group.academydefense.grid.GridUtils;
 import org.academiadecodigo.group.academydefense.grid.TilePictured;
+
+import org.academiadecodigo.group.academydefense.grid.TileShape;
+
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Line;
+import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +30,11 @@ public class Game {
 
     public Game() {
         grid = new TiledGrid();
-        sprite = new TilePictured(10, GridUtils.rowToY(0), "res/Screen Shot 2018-02-19 at 06.35.56.png");
+
+        sprite = new TilePictured(10, GridUtils.rowToY(0), "res/background.png");
+
         enemies = new ArrayList<>();
-        player = new Player(grid);
-        enemies.add(new DiogoEnemy());
+        player = new Player(this, grid);
     }
 
     public void setPositions(Enemy enemy) {
@@ -37,35 +44,57 @@ public class Game {
     }
 
     public void start() throws InterruptedException {
+
+
+
+
+        Picture background = new Picture(10,10, "res/background.png");
+        Picture pidgeon = new Picture(10,10, "res/foreground-pigeon.png");
+
         grid.draw();
-        sprite.draw();
+
+        background.draw();
+
+
+        /*for(int i = 0; i < grid.getWidth()- 4; i++) {
+            new TileShape(i * grid.getCellSize() +10,  330, grid.getCellSize() * 2, Color.BLACK).draw();
+        }*/
+
+
         drawEnemies();
-        tower = new Tower(grid, 800, 450, 1, 1, 200);
-        tower.draw(Color.BLUE);
+        tower = new Tower(grid, 1600, 800, 1, 1, 200);
+        pidgeon.draw();
 
         while (enemies.size() != -1) { //Move
             moveAllEnemies();
-            Thread.sleep(20);
+            Thread.sleep(15);
         }
     }
 
     public void moveAllEnemies() {
         for (Enemy e : enemies) {
-            System.out.println(e);
-            setPositions(e);
-            System.out.println(e);
-            //e.move();
-            System.out.println(e);
-            while (!e.isDead() || tower.getTowerToEnemyDistance() < tower.getRange()){
 
-                setPositions(e);
-                e.move();
-                tower.shoot(e, tower);
+            //System.out.println(e);
+            setPositions(e);
+            //System.out.println(e);
+            e.move();
+            //System.out.println(e);
+            //while (!e.isDead() || tower.getTowerToEnemyDistance() < tower.getRange()){
+
+            for(Tower t : Player.getTowersCreated()){
+                t.shoot(e, t);
             }
+
+        }
+
+
           /*  if (tower.getTowerToEnemyDistance() < tower.getRange()) {
                 tower.shoot(e, tower);
             }*/
-        }
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
     }
 
     public void drawEnemies() throws InterruptedException {
@@ -75,3 +104,4 @@ public class Game {
     }
 
 }
+

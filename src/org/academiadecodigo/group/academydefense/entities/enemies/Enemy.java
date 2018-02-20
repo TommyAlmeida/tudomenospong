@@ -1,11 +1,14 @@
 package org.academiadecodigo.group.academydefense.entities.enemies;
 
 
+import org.academiadecodigo.group.academydefense.Sound;
 import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.grid.*;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+
 
 public class Enemy {
 
@@ -13,7 +16,6 @@ public class Enemy {
     private int speed;
     private boolean dead;
     private int value;
-
     private EnemyType enemyType;
     private Text healthHud;
     private TilePictured sprite;
@@ -29,8 +31,13 @@ public class Enemy {
         this.speed = speed;
         this.dead = false;
         this.value = value;
-        this.sprite = new TilePictured(50, GridUtils.rowToY(10), "res/bruno-tower.png");
+
+        this.sprite = new TilePictured(0, GridUtils.rowToY(10), "res/monicawtf.png");
+
+
         this.healthHud = new Text(sprite.getPicture().getX(),sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
+
+        draw();
     }
 
 
@@ -38,7 +45,7 @@ public class Enemy {
         this.healthHud = healthHud;
     }
 
-    public void draw(){
+    public void draw() {
         sprite.draw();
 
         healthHud.setColor(Color.BLUE);
@@ -49,12 +56,13 @@ public class Enemy {
 
         if(hasReachedTheEnd()){
             setDead(true);
+
         }
 
         if(isDead()){
             sprite.hide();
             healthHud.delete();
-        }else {
+        }else{
             healthHud.delete();
             healthHud = new Text(sprite.getPicture().getX(), sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
             healthHud.setColor(Color.BLUE);
@@ -62,7 +70,6 @@ public class Enemy {
             healthHud.translate(speed, 0);
             getSprite().moveRight(speed);
         }
-
     }
 
     public void receiveDamage(Bullet bullet){
@@ -105,19 +112,6 @@ public class Enemy {
         return value;
     }
 
-    @Override
-    public String toString() {
-        return "Enemy{" +
-                "currentHealth=" + currentHealth +
-                ", maxHealth=" + maxHealth +
-                ", speed=" + speed +
-                ", dead=" + dead +
-                ", value=" + value +
-                ", enemyType=" + enemyType +
-                ", healthHud=" + healthHud +
-                ", sprite=" + sprite.getX() +
-                ", sprite=" + sprite.getY() +
-                '}';
-    }
+
 }
 

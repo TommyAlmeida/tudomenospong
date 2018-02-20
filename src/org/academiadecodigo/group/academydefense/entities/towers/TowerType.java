@@ -1,23 +1,22 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
 
-
 /**
- * Created by codecadet on 19/02/2018.
+ * Created on 19/02/2018.
+ * Good Luck, Have Fun codecadet
  */
 public enum TowerType {
 
-    BRUNO(""),
-    BRIGHENTI(""),
-    RODOLFO("");
+    BRICENAS("brighenti-tower.png"), BRUNO("bruno-tower.png"), FERRAO("ferrao-tower.png"), RODOLFO("rodolfo-tower.png");
 
-    private String path;
+    private String name;
 
-    TowerType(String path) {
-        this.path = path;
+    TowerType(String name) {
+        this.name = name;
     }
 
-    public String getName() {
-        return "res/bruno-tower.png";
+    public String loadResource() {
+        return "res/" + name;
+
     }
 }

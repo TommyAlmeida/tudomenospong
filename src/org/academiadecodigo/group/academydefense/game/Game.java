@@ -3,11 +3,12 @@ package org.academiadecodigo.group.academydefense.game;
 import org.academiadecodigo.group.academydefense.entities.enemies.DiogoEnemy;
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.player.Player;
-import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
 import org.academiadecodigo.group.academydefense.grid.GridUtils;
 import org.academiadecodigo.group.academydefense.grid.TilePictured;
+
 import org.academiadecodigo.group.academydefense.grid.TileShape;
+
 import org.academiadecodigo.group.academydefense.grid.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Line;
@@ -29,7 +30,9 @@ public class Game {
 
     public Game() {
         grid = new TiledGrid();
+
         sprite = new TilePictured(10, GridUtils.rowToY(0), "res/background.png");
+
         enemies = new ArrayList<>();
         player = new Player(this, grid);
     }
@@ -49,12 +52,14 @@ public class Game {
         Picture pidgeon = new Picture(10,10, "res/foreground-pigeon.png");
 
         grid.draw();
+
         background.draw();
 
 
         /*for(int i = 0; i < grid.getWidth()- 4; i++) {
             new TileShape(i * grid.getCellSize() +10,  330, grid.getCellSize() * 2, Color.BLACK).draw();
         }*/
+
 
         drawEnemies();
         tower = new Tower(grid, 1600, 800, 1, 1, 200);

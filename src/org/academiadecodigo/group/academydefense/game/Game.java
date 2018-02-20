@@ -1,107 +1,78 @@
 package org.academiadecodigo.group.academydefense.game;
 
-import org.academiadecodigo.group.academydefense.entities.enemies.DiogoEnemy;
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
 import org.academiadecodigo.group.academydefense.entities.player.Player;
 import org.academiadecodigo.group.academydefense.entities.towers.Tower;
-import org.academiadecodigo.group.academydefense.grid.GridUtils;
-import org.academiadecodigo.group.academydefense.grid.TilePictured;
-
-import org.academiadecodigo.group.academydefense.grid.TileShape;
-
-import org.academiadecodigo.group.academydefense.grid.TiledGrid;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Line;
-import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is where the game is created
+ */
 public class Game {
 
     private Player player;
     private TiledGrid grid;
-    private Tower tower;
-    private TilePictured sprite;
-
 
     private List<Enemy> enemies;
 
     public Game() {
         grid = new TiledGrid();
-
-        sprite = new TilePictured(10, GridUtils.rowToY(0), "res/background.png");
-
         enemies = new ArrayList<>();
         player = new Player(this, grid);
     }
 
-    public void setPositions(Enemy enemy) {
-        tower.setTowerToEnemyCol(enemy);
-        tower.setTowerToEnemyRow(enemy);
-        tower.towerToEnemy = (int) (Math.sqrt((tower.getTowerToEnemyCol() * tower.getTowerToEnemyCol()) + (tower.getTowerToEnemyRow() * tower.getTowerToEnemyRow())));
-    }
-
-    public void start() throws InterruptedException {
-
-
-
-
+    /**
+     * Draw everything into to the screen
+     * and runs a game loop
+     * Every frame is refreshed in 15ms
+     */
+    public void start(){
         Picture background = new Picture(10,10, "res/background.png");
         Picture pidgeon = new Picture(10,10, "res/foreground-pigeon.png");
 
         grid.draw();
-
         background.draw();
 
-
-        /*for(int i = 0; i < grid.getWidth()- 4; i++) {
-            new TileShape(i * grid.getCellSize() +10,  330, grid.getCellSize() * 2, Color.BLACK).draw();
-        }*/
-
-
-        drawEnemies();
-        tower = new Tower(grid, 1600, 800, 1, 1, 200);
-        pidgeon.draw();
-
-        while (enemies.size() != -1) { //Move
-            moveAllEnemies();
-            Thread.sleep(15);
-        }
-    }
-
-    public void moveAllEnemies() {
-        for (Enemy e : enemies) {
-
-            //System.out.println(e);
-            setPositions(e);
-            //System.out.println(e);
-            e.move();
-            //System.out.println(e);
-            //while (!e.isDead() || tower.getTowerToEnemyDistance() < tower.getRange()){
-
-            for(Tower t : Player.getTowersCreated()){
-                t.shoot(e, t);
+        try {
+            drawEnemies();
+            pidgeon.draw();
+            while (enemies.size() != -1) { //Move
+                moveAllEnemies();
+                Thread.sleep(15);
             }
-
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-
-
-          /*  if (tower.getTowerToEnemyDistance() < tower.getRange()) {
-                tower.shoot(e, tower);
-            }*/
     }
 
-    public List<Enemy> getEnemies() {
-        return enemies;
-    }
-
-    public void drawEnemies() throws InterruptedException {
+    /**
+     * Draw the enemies to the screen
+     */
+    private void drawEnemies(){
         for (Enemy e : enemies) {
             e.draw();
         }
     }
 
+    /**
+     * Move all the enemies
+     * and make all the towers created to shoot at the enemies
+     */
+    private void moveAllEnemies() {
+        for (Enemy e : enemies) {
+            e.move();
+            for(Tower t : Player.getTowersCreated()){
+                t.shoot(e, t);
+            }
+        }
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
 }
 

@@ -1,5 +1,7 @@
 package org.academiadecodigo.group.academydefense.grid;
 
+import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
+
 public class GridUtils {
 
     public static int rowToY(int row) {

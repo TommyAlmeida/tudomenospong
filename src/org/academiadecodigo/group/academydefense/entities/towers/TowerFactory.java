@@ -1,6 +1,6 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
-import org.academiadecodigo.group.academydefense.grid.TilePictured;
+import org.academiadecodigo.group.academydefense.grid.tiles.TilePictured;
 
 public class TowerFactory {
 

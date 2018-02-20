@@ -1,12 +1,8 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
 import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
-import org.academiadecodigo.group.academydefense.grid.TilePictured;
-import org.academiadecodigo.group.academydefense.grid.TileShape;
-import org.academiadecodigo.group.academydefense.grid.TiledGrid;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.group.academydefense.grid.tiles.TilePictured;
+import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
 
 /**
  * Created on 15/02/2018.
@@ -65,40 +61,19 @@ public class Tower {
         return towerToEnemyCol;
     }
 
-   /* public int setTowerToEnemy(int towerToEnemyRow, int towerToEnemyCol) {
-
-        return (int) (Math.sqrt((this.towerToEnemyCol * this.towerToEnemyCol) + (this.towerToEnemyRow * this.towerToEnemyRow)));                                                                                                            // com catetos desses fico com ela hipotesuda
-    }*/
-
-  /*  public void draw(Color color) {
-        this.currentTile.setColor(color);
-    }*/
-
     public void draw() {
-        //System.out.println("drawing");
         currentTile.draw();
     }
 
     public void shoot(Enemy enemy, Tower tower) {
-
         setTowerToEnemyCol(enemy);
         setTowerToEnemyRow(enemy);
 
         towerToEnemy = (int) (Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow)));
 
-        //setTowerToEnemy(getTowerToEnemyRow(), getTowerToEnemyCol());
-       /* System.out.println("damage: " + damage);
-        System.out.println("tower to enemy dist: " + getTowerToEnemyDistance() + "---" + (int) (Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow))));
-        System.out.println("tower x: " + towerPosX);
-        System.out.println("enemy x: " + enemyPosX);
-        System.out.println("tower to enemy X: " + getTowerToEnemyCol());
-        System.out.println("tower y: " + towerPosY);
-        System.out.println("enemy y: " + enemyPosY);
-        System.out.println("tower to enemy y: " + getTowerToEnemyRow());*/
-
         if (getTowerToEnemyDistance() < range) {
             if (enemy.getCurrentHealth() <= 0) {
-                enemy.setDead(true);
+                enemy.dead();
             }
             if (!enemy.isDead()) {
                 bullet = new Bullet(1, 1, tower);

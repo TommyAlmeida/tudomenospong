@@ -1,7 +1,10 @@
-package org.academiadecodigo.group.academydefense.grid;
+package org.academiadecodigo.group.academydefense.grid.tiles;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
+/**
+ * Has the responsability of drawing our game board
+ */
 public class TiledGrid {
 
     public static final int PADDING = 10;
@@ -12,6 +15,9 @@ public class TiledGrid {
 
     private TileShape tiles[][] = new TileShape[WIDTH][HEIGHT];
 
+    /**
+     * Draw our tiles into a grid shape
+     */
     public void draw() {
         for (int row = 0; row < tiles.length; row++) {
             for (int column = 0; column < tiles[row].length; column++) {
@@ -22,29 +28,5 @@ public class TiledGrid {
                 tiles[row][column].draw();
             }
         }
-    }
-
-    public Tile getTile(int x, int y) {
-        int xS = conversion(x);
-        int yS = conversion(y);
-
-        return tiles[xS][yS];
-    }
-
-
-    public int conversion(int value) {
-        return (value - PADDING) / CELL_SIZE;
-    }
-
-    public int getHeight() {
-        return HEIGHT;
-    }
-
-    public int getWidth() {
-        return WIDTH;
-    }
-
-    public int getCellSize() {
-        return CELL_SIZE;
     }
 }

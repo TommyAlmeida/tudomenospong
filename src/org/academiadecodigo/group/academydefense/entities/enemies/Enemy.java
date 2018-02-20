@@ -1,28 +1,24 @@
 package org.academiadecodigo.group.academydefense.entities.enemies;
 
 
-import org.academiadecodigo.group.academydefense.Sound;
 import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
 import org.academiadecodigo.group.academydefense.grid.*;
+import org.academiadecodigo.group.academydefense.grid.tiles.TilePictured;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
-
 
 
 public class Enemy {
 
-    private int currentHealth, maxHealth;
+    private int currentHealth;
+    private int maxHealth;
     private int speed;
     private boolean dead;
     private int value;
+
     private EnemyType enemyType;
     private Text healthHud;
     private TilePictured sprite;
-
-    public Enemy(){
-
-    }
 
     public Enemy(EnemyType enemyType, int maxHealth, int speed, int value) {
         this.enemyType = enemyType;
@@ -33,18 +29,14 @@ public class Enemy {
         this.value = value;
 
         this.sprite = new TilePictured(0, GridUtils.rowToY(10), "res/monicawtf.png");
-
-
         this.healthHud = new Text(sprite.getPicture().getX(),sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
 
         draw();
     }
 
-
-    public void setHealthHud(Text healthHud) {
-        this.healthHud = healthHud;
-    }
-
+    /**
+     * Draw our enemy to the screen
+     */
     public void draw() {
         sprite.draw();
 
@@ -52,11 +44,15 @@ public class Enemy {
         healthHud.draw();
     }
 
+    /**
+     * Make our enemy move if not dead
+     * and if it is or if it has reached the end
+     * the enemy will be deleted from the screen
+     */
     public void move(){
 
         if(hasReachedTheEnd()){
-            setDead(true);
-
+            dead();
         }
 
         if(isDead()){
@@ -72,6 +68,10 @@ public class Enemy {
         }
     }
 
+    /**
+     * Receive damage if hitted by a bullet
+     * @param bullet bullet
+     */
     public void receiveDamage(Bullet bullet){
         if(bullet.getDamage() >= currentHealth){
             currentHealth = 0;
@@ -84,12 +84,16 @@ public class Enemy {
         currentHealth -= bullet.getDamage();
     }
 
+    /**
+     * Vertical bound
+     * @return
+     */
     public boolean hasReachedTheEnd(){
         return sprite.getPicture().getX() == 1500;
     }
 
-    public void setDead(boolean dead) {
-        this.dead = dead;
+    public void dead() {
+        this.dead = true;
     }
 
     public boolean isDead() {
@@ -100,10 +104,6 @@ public class Enemy {
         return currentHealth;
     }
 
-    public void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
-    }
-
     public TilePictured getSprite() {
         return sprite;
     }
@@ -111,7 +111,5 @@ public class Enemy {
     public int getValue() {
         return value;
     }
-
-
 }
 

@@ -8,8 +8,7 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 public class Enemy {
 
@@ -17,7 +16,6 @@ public class Enemy {
     private int speed;
     private boolean dead;
     private int value;
-
     private EnemyType enemyType;
     private Text healthHud;
     private TilePictured sprite;
@@ -44,7 +42,7 @@ public class Enemy {
         this.healthHud = healthHud;
     }
 
-    public void draw(){
+    public void draw() {
         sprite.draw();
 
         healthHud.setColor(Color.BLUE);
@@ -55,6 +53,7 @@ public class Enemy {
 
         if(hasReachedTheEnd()){
             setDead(true);
+
         }
 
         if(isDead()){

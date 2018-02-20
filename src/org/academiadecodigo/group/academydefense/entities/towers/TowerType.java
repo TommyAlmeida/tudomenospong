@@ -1,5 +1,6 @@
 package org.academiadecodigo.group.academydefense.entities.towers;
 
+
 /**
  * Created on 19/02/2018.
  * Good Luck, Have Fun codecadet
@@ -16,5 +17,6 @@ public enum TowerType {
 
     public String loadResource() {
         return "res/" + name;
+
     }
 }

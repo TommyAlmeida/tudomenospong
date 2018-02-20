@@ -31,7 +31,10 @@ public class Enemy {
         this.speed = speed;
         this.dead = false;
         this.value = value;
+
         this.sprite = new TilePictured(0, GridUtils.rowToY(10), "res/monicawtf.png");
+
+
         this.healthHud = new Text(sprite.getPicture().getX(),sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
 
         draw();

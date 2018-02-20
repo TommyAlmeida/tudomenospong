@@ -1,8 +1,7 @@
 package org.academiadecodigo.group.academydefense.game;
 
-import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
-import org.academiadecodigo.group.academydefense.entities.player.Player;
-import org.academiadecodigo.group.academydefense.entities.towers.Tower;
+import org.academiadecodigo.group.academydefense.entities.enemy.Enemy;
+import org.academiadecodigo.group.academydefense.entities.tower.Tower;
 import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -41,7 +40,7 @@ public class Game {
             drawEnemies();
             pidgeon.draw();
             while (enemies.size() != -1) { //Move
-                moveAllEnemies();
+                updateEnemies();
                 Thread.sleep(15);
             }
         } catch (InterruptedException e) {
@@ -50,7 +49,7 @@ public class Game {
     }
 
     /**
-     * Draw the enemies to the screen
+     * Draw the enemy to the screen
      */
     private void drawEnemies(){
         for (Enemy e : enemies) {
@@ -59,10 +58,10 @@ public class Game {
     }
 
     /**
-     * Move all the enemies
-     * and make all the towers created to shoot at the enemies
+     * Move all the enemy
+     * and make all the tower created to shoot at the enemy
      */
-    private void moveAllEnemies() {
+    private void updateEnemies() {
         for (Enemy e : enemies) {
             e.move();
             for(Tower t : Player.getTowersCreated()){

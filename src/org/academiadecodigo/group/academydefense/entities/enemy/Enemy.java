@@ -1,7 +1,7 @@
-package org.academiadecodigo.group.academydefense.entities.enemies;
+package org.academiadecodigo.group.academydefense.entities.enemy;
 
 
-import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
+import org.academiadecodigo.group.academydefense.entities.Bullet;
 import org.academiadecodigo.group.academydefense.grid.*;
 import org.academiadecodigo.group.academydefense.grid.tiles.TilePictured;
 import org.academiadecodigo.simplegraphics.graphics.Color;

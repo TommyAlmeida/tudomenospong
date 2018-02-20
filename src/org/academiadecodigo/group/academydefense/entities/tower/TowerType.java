@@ -1,4 +1,4 @@
-package org.academiadecodigo.group.academydefense.entities.towers;
+package org.academiadecodigo.group.academydefense.entities.tower;
 
 
 /**

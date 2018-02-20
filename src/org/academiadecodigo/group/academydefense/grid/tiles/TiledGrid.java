@@ -8,7 +8,7 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 public class TiledGrid {
 
     public static final int PADDING = 10;
-    public static final int CELL_SIZE = 64;
+    public static final int CELL_SIZE = 32;
 
     private final int WIDTH = 25;
     private final int HEIGHT = 11;

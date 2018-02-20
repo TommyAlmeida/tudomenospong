@@ -1,7 +1,5 @@
-package org.academiadecodigo.group.academydefense.entities.enemies;
+package org.academiadecodigo.group.academydefense.entities.enemy;
 
-
-import org.academiadecodigo.simplegraphics.graphics.Color;
 
 /**
  * Created on 15/02/2018.

@@ -1,9 +1,13 @@
-package org.academiadecodigo.group.academydefense.entities.towers;
+package org.academiadecodigo.group.academydefense.entities;
 
-import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
+import org.academiadecodigo.group.academydefense.entities.enemy.Enemy;
+import org.academiadecodigo.group.academydefense.entities.tower.Tower;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
+/**
+ * Bullet Class
+ */
 public class Bullet {
 
     private int damage, speed;
@@ -18,23 +22,29 @@ public class Bullet {
 
     }
 
+    /*
+     * Hit a target and then the target receives damage
+     */
+    public void hit(Enemy target) {
+        target.receiveDamage(this);
+    }
+
+    /**
+     * Draw the bullet to the screen
+     */
     public void draw() {
         representable.fill();
     }
 
+    /**
+     * Make the bullet movable
+     */
     public void move() {
         representable.translate(10, speed);
     }
 
     public int getSpeed() {
         return speed;
-    }
-
-    /*
-     * Activated if collided
-     */
-    public void hit(Enemy target) {
-        target.receiveDamage(this);
     }
 
     public int getDamage() {

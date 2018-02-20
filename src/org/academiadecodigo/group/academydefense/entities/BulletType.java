@@ -1,5 +1,8 @@
-package org.academiadecodigo.group.academydefense.entities.towers;
+package org.academiadecodigo.group.academydefense.entities;
 
+/**
+ * Different types of bullet
+ */
 public enum BulletType {
 
     NORMAL(1, 7);

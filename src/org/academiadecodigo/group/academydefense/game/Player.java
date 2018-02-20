@@ -1,10 +1,9 @@
-package org.academiadecodigo.group.academydefense.entities.player;
+package org.academiadecodigo.group.academydefense.game;
 
-import org.academiadecodigo.group.academydefense.entities.enemies.DiogoEnemy;
-import org.academiadecodigo.group.academydefense.entities.enemies.Enemy;
-import org.academiadecodigo.group.academydefense.entities.towers.Bullet;
-import org.academiadecodigo.group.academydefense.entities.towers.Tower;
-import org.academiadecodigo.group.academydefense.game.Game;
+import org.academiadecodigo.group.academydefense.entities.enemy.MonicaEnemy;
+import org.academiadecodigo.group.academydefense.entities.enemy.Enemy;
+import org.academiadecodigo.group.academydefense.entities.Bullet;
+import org.academiadecodigo.group.academydefense.entities.tower.Tower;
 import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -25,7 +24,6 @@ public class Player implements MouseHandler, KeyboardHandler {
     private Tower tower;
     private Game game;
 
-
     private static List<Tower> towersCreated;
     private TiledGrid grid;
 
@@ -35,12 +33,16 @@ public class Player implements MouseHandler, KeyboardHandler {
         this.totalScore = 0;
         this.grid = grid;
         this.game = game;
+
         towersCreated = new ArrayList<>();
 
-        mouseEvents();
+        inputEvents();
     }
 
-    private void mouseEvents(){
+    /**
+     * Register keyboard and move events
+     */
+    private void inputEvents(){
         Mouse m = new Mouse(this);
         Keyboard kb = new Keyboard(this);
 
@@ -50,40 +52,48 @@ public class Player implements MouseHandler, KeyboardHandler {
         ke.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         kb.addEventListener(ke);
-
         m.addEventListener(createTower);
     }
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        int x = ((int) (mouseEvent.getX()-TiledGrid.PADDING)/ TiledGrid.CELL_SIZE) * TiledGrid.CELL_SIZE + TiledGrid.CELL_SIZE;
-        int y = ((int) mouseEvent.getY()/ TiledGrid.CELL_SIZE) * TiledGrid.CELL_SIZE + TiledGrid.PADDING - TiledGrid.CELL_SIZE;
-
-        //System.out.println(mouseEvent.getX() + "----> " + x + " " + mouseEvent.getY() +"-----> " + y);
-
+        int x = ((int) (mouseEvent.getX() - TiledGrid.PADDING) / TiledGrid.CELL_SIZE) * TiledGrid.CELL_SIZE + TiledGrid.CELL_SIZE;
+        int y = ((int) mouseEvent.getY() / TiledGrid.CELL_SIZE) * TiledGrid.CELL_SIZE + TiledGrid.PADDING - TiledGrid.CELL_SIZE;
 
         tower = new Tower(grid, x, y, 1, 1, 100);
         Bullet newBullet = new Bullet(1,1,tower);
 
         tower.draw();
-
         towersCreated.add(tower);
 
         for(Enemy e : game.getEnemies()){
-            setPositions(tower, e);
+            updateRange(tower, e);
         }
     }
 
-    public void setPositions(Tower tower, Enemy enemy) {
-        tower.setTowerToEnemyCol(enemy);
-        tower.setTowerToEnemyRow(enemy);
-        tower.towerToEnemy = (int) (Math.sqrt((tower.getTowerToEnemyCol() * tower.getTowerToEnemyCol()) + (tower.getTowerToEnemyRow() * tower.getTowerToEnemyRow())));
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        //On space pressed
+        if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
+            //Every half a second creates a enemy
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    game.getEnemies().add(new MonicaEnemy());
+                }
+            }, 500);
+        }
     }
 
-
-    @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-        //Not using
+    /**
+     * Update range towers
+     * @param tower tower placed
+     * @param enemy target
+     */
+    public void updateRange(Tower tower, Enemy enemy) {
+        tower.updateTowerToEnemyCol(enemy);
+        tower.updateTowerToEnemyRow(enemy);
+        tower.enemyDistance = (int) (Math.sqrt((tower.getTowerToEnemyCol() * tower.getTowerToEnemyCol()) + (tower.getTowerToEnemyRow() * tower.getTowerToEnemyRow())));
     }
 
     public static List<Tower> getTowersCreated() {
@@ -103,20 +113,14 @@ public class Player implements MouseHandler, KeyboardHandler {
     }
 
     @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-        if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
-            //System.out.println("created enemy");
-            new Timer().schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    game.getEnemies().add(new DiogoEnemy());
-                }
-            }, 500);
-        }
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+        //Not using
     }
 
     @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-
+    public void mouseMoved(MouseEvent mouseEvent) {
+        //Not using
     }
+
+
 }

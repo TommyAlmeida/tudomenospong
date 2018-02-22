@@ -4,6 +4,7 @@ import org.academiadecodigo.group.academydefense.entities.enemy.MonicaEnemy;
 import org.academiadecodigo.group.academydefense.entities.enemy.Enemy;
 import org.academiadecodigo.group.academydefense.entities.Bullet;
 import org.academiadecodigo.group.academydefense.entities.tower.Tower;
+import org.academiadecodigo.group.academydefense.game.states.InGame;
 import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -18,24 +19,22 @@ import java.util.*;
 
 public class Player implements MouseHandler, KeyboardHandler {
 
+    private static List<Tower> towersCreated;
+
     private int lifes;
     private int money;
-    private int totalScore;
-    private Tower tower;
-    private Game game;
 
-    private static List<Tower> towersCreated;
     private TiledGrid grid;
+    private InGame game;
+    private Tower tower;
 
-    public Player(Game game, TiledGrid grid){
+    public Player(TiledGrid grid, InGame game){
         this.lifes = 3;
         this.money = 100;
-        this.totalScore = 0;
         this.grid = grid;
         this.game = game;
 
         towersCreated = new ArrayList<>();
-
         inputEvents();
     }
 
@@ -61,13 +60,9 @@ public class Player implements MouseHandler, KeyboardHandler {
         int y = ((int) mouseEvent.getY() / TiledGrid.CELL_SIZE) * TiledGrid.CELL_SIZE + TiledGrid.PADDING - TiledGrid.CELL_SIZE;
 
         tower = new Tower(grid, x, y, 1, 1, 100);
-        Bullet newBullet = new Bullet(1,1,tower);
 
-        tower.draw();
-        towersCreated.add(tower);
-
-        for(Enemy e : game.getEnemies()){
-            updateRange(tower, e);
+        if(towersCreated.add(tower)){
+            tower.draw();
         }
     }
 
@@ -83,17 +78,6 @@ public class Player implements MouseHandler, KeyboardHandler {
                 }
             }, 500);
         }
-    }
-
-    /**
-     * Update range towers
-     * @param tower tower placed
-     * @param enemy target
-     */
-    public void updateRange(Tower tower, Enemy enemy) {
-        tower.updateTowerToEnemyCol(enemy);
-        tower.updateTowerToEnemyRow(enemy);
-        tower.enemyDistance = (int) (Math.sqrt((tower.getTowerToEnemyCol() * tower.getTowerToEnemyCol()) + (tower.getTowerToEnemyRow() * tower.getTowerToEnemyRow())));
     }
 
     public static List<Tower> getTowersCreated() {
@@ -121,6 +105,4 @@ public class Player implements MouseHandler, KeyboardHandler {
     public void mouseMoved(MouseEvent mouseEvent) {
         //Not using
     }
-
-
 }

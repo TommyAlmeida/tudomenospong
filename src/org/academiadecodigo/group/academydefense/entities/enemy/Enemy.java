@@ -4,6 +4,7 @@ package org.academiadecodigo.group.academydefense.entities.enemy;
 import org.academiadecodigo.group.academydefense.entities.Bullet;
 import org.academiadecodigo.group.academydefense.grid.*;
 import org.academiadecodigo.group.academydefense.grid.tiles.TilePictured;
+import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
@@ -13,8 +14,9 @@ public class Enemy {
     private int currentHealth;
     private int maxHealth;
     private int speed;
-    private boolean dead;
     private int value;
+
+    private boolean dead;
 
     private EnemyType enemyType;
     private Text healthHud;
@@ -28,8 +30,8 @@ public class Enemy {
         this.dead = false;
         this.value = value;
 
-        this.sprite = new TilePictured(0, GridUtils.rowToY(10), "res/monicawtf.png");
-        this.healthHud = new Text(sprite.getPicture().getX(),sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
+        this.sprite = new TilePictured(0, 10 * TiledGrid.CELL_SIZE + TiledGrid.PADDING, "res/monicawtf.png");
+        this.healthHud = new Text(sprite.getX(),sprite.getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
 
         draw();
     }
@@ -60,8 +62,8 @@ public class Enemy {
             healthHud.delete();
         }else{
             healthHud.delete();
-            healthHud = new Text(sprite.getPicture().getX(), sprite.getPicture().getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
-            healthHud.setColor(Color.BLUE);
+            healthHud = new Text(sprite.getX(), sprite.getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
+            healthHud.setColor(Color.RED);
             healthHud.draw();
             healthHud.translate(speed, 0);
             getSprite().moveRight(speed);
@@ -86,10 +88,11 @@ public class Enemy {
 
     /**
      * Vertical bound
-     * @return
+     * TODO: remove hardcoded value
+     * @return limit of X-axis
      */
     public boolean hasReachedTheEnd(){
-        return sprite.getPicture().getX() == 1500;
+        return sprite.getX() == 1500;
     }
 
     public void dead() {

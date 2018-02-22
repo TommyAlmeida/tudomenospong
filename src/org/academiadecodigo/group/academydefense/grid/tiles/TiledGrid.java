@@ -13,7 +13,7 @@ public class TiledGrid {
     private final int WIDTH = 25;
     private final int HEIGHT = 11;
 
-    private TileShape tiles[][] = new TileShape[WIDTH][HEIGHT];
+    private TileShaped tiles[][] = new TileShaped[WIDTH][HEIGHT];
 
     /**
      * Draw our tiles into a grid shape
@@ -24,7 +24,7 @@ public class TiledGrid {
                 int x = (row * CELL_SIZE) + PADDING;
                 int y = (column * CELL_SIZE) + PADDING;
 
-                tiles[row][column] = new TileShape(x, y, CELL_SIZE, Color.GREEN);
+                tiles[row][column] = new TileShaped(x, y, CELL_SIZE, Color.GREEN);
                 tiles[row][column].draw();
             }
         }

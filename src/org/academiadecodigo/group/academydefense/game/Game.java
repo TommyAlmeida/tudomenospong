@@ -13,15 +13,12 @@ import java.util.List;
  */
 public class Game {
 
-    private Player player;
-    private TiledGrid grid;
-
+    private GameState gameState;
     private List<Enemy> enemies;
 
     public Game() {
-        grid = new TiledGrid();
+        gameState = GameState.IN_GAME;
         enemies = new ArrayList<>();
-        player = new Player(this, grid);
     }
 
     /**
@@ -30,6 +27,21 @@ public class Game {
      * Every frame is refreshed in 15ms
      */
     public void start(){
+        switch (gameState){
+            case MENU:
+                break;
+            case IN_GAME:
+                inGame();
+                break;
+            case GAME_OVER:
+                break;
+        }
+    }
+
+    private void inGame(){
+        TiledGrid grid = new TiledGrid();
+        Player player = new Player(this, grid);
+
         Picture background = new Picture(10,10, "res/background.png");
         Picture pidgeon = new Picture(10,10, "res/foreground-pigeon.png");
 
@@ -39,8 +51,9 @@ public class Game {
         try {
             drawEnemies();
             pidgeon.draw();
-            while (enemies.size() != -1) { //Move
-                updateEnemies();
+
+            while (gameState != GameState.GAME_OVER) { //Move
+                moveAllEnemies();
                 Thread.sleep(15);
             }
         } catch (InterruptedException e) {
@@ -61,12 +74,16 @@ public class Game {
      * Move all the enemy
      * and make all the tower created to shoot at the enemy
      */
-    private void updateEnemies() {
+    private void moveAllEnemies() {
         for (Enemy e : enemies) {
             e.move();
-            for(Tower t : Player.getTowersCreated()){
-                t.shoot(e, t);
-            }
+            makeTowersShoot(e);
+        }
+    }
+
+    private void makeTowersShoot(Enemy enemy){
+        for(Tower t : Player.getTowersCreated()){
+            t.shoot(enemy, t);
         }
     }
 

@@ -6,12 +6,12 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 /**
  * A tile with a form of a shape
  */
-public class TileShape extends Tile {
+public class TileShaped extends Tile {
 
     private Color color;
     private Rectangle rectangle;
 
-    public TileShape(int col, int row, int cellSize, Color color) {
+    public TileShaped(int col, int row, int cellSize, Color color) {
         super(col, row, cellSize);
         this.color = color;
         this.rectangle = new Rectangle(col, row, cellSize, cellSize);

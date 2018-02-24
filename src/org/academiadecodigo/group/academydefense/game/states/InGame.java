@@ -2,12 +2,14 @@ package org.academiadecodigo.group.academydefense.game.states;
 
 import org.academiadecodigo.group.academydefense.entities.enemy.Enemy;
 import org.academiadecodigo.group.academydefense.entities.tower.Tower;
+import org.academiadecodigo.group.academydefense.entities.tower.TowerFactory;
 import org.academiadecodigo.group.academydefense.game.Game;
-import org.academiadecodigo.group.academydefense.game.Player;
-import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
+import org.academiadecodigo.group.academydefense.game.InputHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,33 +17,30 @@ import java.util.List;
  */
 public class InGame {
 
-    private Player player;
+    private InputHandler inputHandler;
+
     private List<Enemy> enemies;
+    private List<Tower> towers;
 
     public InGame(){
-        this.enemies = new ArrayList<>();
+        this.enemies = new LinkedList<>();
+        this.towers = new ArrayList<>();
     }
 
-
     public void create(Game game){
-        TiledGrid grid = new TiledGrid();
-        player = new Player(grid, this);
+        inputHandler = new InputHandler(this);
 
         Picture background = new Picture(10,10, "res/background.png");
         Picture pidgeon = new Picture(10,10, "res/foreground-pigeon.png");
 
-        grid.draw();
         background.draw();
+        pidgeon.draw();
 
         try {
-            drawEnemies();
-            pidgeon.draw();
-
             while (game.getGameState() != GameState.GAME_OVER) {
-                moveAllEnemies();
+                drawEnemies();
                 Thread.sleep(15);
             }
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -51,37 +50,29 @@ public class InGame {
      * Draw the enemy to the screen
      */
     private void drawEnemies(){
-        for (Enemy e : enemies) {
-            e.draw();
-        }
-    }
+        Iterator<Enemy> iterator = enemies.iterator();
 
-    /**
-     * Move all the enemy
-     * and make all the tower created to shoot at the enemy
-     */
-    private void moveAllEnemies() {
-        for (Enemy e : enemies) {
-            e.move();
-            makeTowersShoot(e);
+        while(iterator.hasNext()){
+            Enemy currentEnemy = iterator.next();
+
+            if(currentEnemy.isDead()){
+                iterator.remove();
+            }
+
+            currentEnemy.draw();
+            currentEnemy.move();
+            makeTowersShoot(currentEnemy);
         }
     }
 
     private void makeTowersShoot(Enemy enemy){
-        for(Tower t : Player.getTowersCreated()){
-            t.shoot(enemy, t);
+        for(Tower t : towers){
+            t.shoot(enemy);
         }
     }
 
-    /**
-     * Update range towers
-     * @param tower tower placed
-     * @param enemy target
-     */
-    public void updateRange(Tower tower, Enemy enemy) {
-        tower.updateTowerToEnemyCol(enemy);
-        tower.updateTowerToEnemyRow(enemy);
-        tower.enemyDistance = (int) (Math.sqrt((tower.getTowerToEnemyCol() * tower.getTowerToEnemyCol()) + (tower.getTowerToEnemyRow() * tower.getTowerToEnemyRow())));
+    public void addTower(int x, int y) {
+        towers.add(TowerFactory.make(x, y));
     }
 
     public List<Enemy> getEnemies() {

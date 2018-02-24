@@ -1,21 +1,16 @@
 package org.academiadecodigo.group.academydefense.entities.tower;
 
-import org.academiadecodigo.group.academydefense.entities.Bullet;
 import org.academiadecodigo.group.academydefense.entities.enemy.Enemy;
 import org.academiadecodigo.group.academydefense.grid.tiles.TilePictured;
-import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
 
 /**
  * Tower
  */
 public class Tower {
 
-
     private int fireRate, range, damage;
 
-    private TiledGrid grid;
     private TilePictured currentTile;
-    private Bullet bullet;
 
     //Tower
     private int towerToEnemyRow;
@@ -29,12 +24,13 @@ public class Tower {
     public int enemyDistance;
 
 
-    public Tower(TiledGrid grid, int x, int y, int fireRate, int damage, int range) {
+    public Tower(int x, int y, int fireRate, int damage, int range) {
         this.range = range;
         this.fireRate = fireRate;
-        this.grid = grid;
         this.damage = damage;
-        this.currentTile = TowerFactory.make(grid, x, y);
+        this.currentTile = TowerFactory.makeTilePictured(x, y);
+
+        draw();
     }
 
     /**
@@ -69,24 +65,22 @@ public class Tower {
      * Get the enemy position and shoot
      *
      * @param enemy target
-     * @param tower tower placed
      */
-    public void shoot(Enemy enemy, Tower tower) {
+    public void shoot(Enemy enemy) {
         updateTowerToEnemyCol(enemy);
         updateTowerToEnemyRow(enemy);
 
         enemyDistance = (int) (Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow)));
 
-        if (getTowerToEnemyDistance() < range) {
-            if (enemy.getCurrentHealth() <= 0) {
-                enemy.dead();
-            }
-            if (!enemy.isDead()) {
-                bullet = new Bullet(1, 1, tower);
-                //System.out.println("Bang Bang!!");
-                enemy.receiveDamage(bullet);
-            }
+        if(getTowerToEnemyDistance() > range){
+            return;
+        }
 
+        if (enemy.getCurrentHealth() <= 0) {
+            enemy.die();
+        }
+        if (!enemy.isDead()) {
+            enemy.receiveDamage(damage);
         }
     }
 

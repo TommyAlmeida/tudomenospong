@@ -1,10 +1,8 @@
 package org.academiadecodigo.group.academydefense.entities.enemy;
 
 
-import org.academiadecodigo.group.academydefense.entities.Bullet;
-import org.academiadecodigo.group.academydefense.grid.*;
+import org.academiadecodigo.group.academydefense.game.GameConsts;
 import org.academiadecodigo.group.academydefense.grid.tiles.TilePictured;
-import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
@@ -14,9 +12,6 @@ public class Enemy {
     private int currentHealth;
     private int maxHealth;
     private int speed;
-    private int value;
-
-    private boolean dead;
 
     private EnemyType enemyType;
     private Text healthHud;
@@ -27,13 +22,9 @@ public class Enemy {
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.speed = speed;
-        this.dead = false;
-        this.value = value;
 
-        this.sprite = new TilePictured(0, 10 * TiledGrid.CELL_SIZE + TiledGrid.PADDING, "res/monicawtf.png");
+        this.sprite = new TilePictured(0, 10 * GameConsts.CELL_SIZE + GameConsts.PADDING, "res/monicawtf.png");
         this.healthHud = new Text(sprite.getX(),sprite.getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
-
-        draw();
     }
 
     /**
@@ -52,55 +43,51 @@ public class Enemy {
      * the enemy will be deleted from the screen
      */
     public void move(){
+        if(isDead()){
+            return;
+        }
 
         if(hasReachedTheEnd()){
-            dead();
+            die();
+            return;
         }
 
-        if(isDead()){
-            sprite.hide();
-            healthHud.delete();
-        }else{
-            healthHud.delete();
-            healthHud = new Text(sprite.getX(), sprite.getY() - 15, String.valueOf(currentHealth) + "/" + maxHealth);
-            healthHud.setColor(Color.RED);
-            healthHud.draw();
-            healthHud.translate(speed, 0);
-            getSprite().moveRight(speed);
-        }
+        updateHealthBar();
+        getSprite().moveRight(speed);
     }
 
     /**
-     * Receive damage if hitted by a bullet
-     * @param bullet bullet
+     * Receive damage if hitted by a tower
      */
-    public void receiveDamage(Bullet bullet){
-        if(bullet.getDamage() >= currentHealth){
-            currentHealth = 0;
+    public void receiveDamage(int damage){
+        if(damage >= currentHealth){
+            die();
+            return;
         }
 
-        if(currentHealth <= 0){
-            dead = true;
-        }
-
-        currentHealth -= bullet.getDamage();
+        currentHealth -= damage;
     }
 
-    /**
-     * Vertical bound
-     * TODO: remove hardcoded value
-     * @return limit of X-axis
-     */
+    public void die() {
+        currentHealth = 0;
+
+        sprite.hide();
+        healthHud.delete();
+    }
+
+    private void updateHealthBar() {
+        healthHud.setText(String.valueOf(currentHealth) + "/" + maxHealth);
+        healthHud.setColor(Color.RED);
+        healthHud.draw();
+        healthHud.translate(speed, 0);
+    }
+
     public boolean hasReachedTheEnd(){
         return sprite.getX() == 1500;
     }
 
-    public void dead() {
-        this.dead = true;
-    }
-
     public boolean isDead() {
-        return dead;
+        return currentHealth <= 0;
     }
 
     public int getCurrentHealth() {
@@ -109,10 +96,6 @@ public class Enemy {
 
     public TilePictured getSprite() {
         return sprite;
-    }
-
-    public int getValue() {
-        return value;
     }
 }
 

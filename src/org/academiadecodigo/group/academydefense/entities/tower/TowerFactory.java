@@ -1,12 +1,10 @@
 package org.academiadecodigo.group.academydefense.entities.tower;
 
 import org.academiadecodigo.group.academydefense.grid.tiles.TilePictured;
-import org.academiadecodigo.group.academydefense.grid.tiles.TiledGrid;
-
 
 public class TowerFactory {
 
-    public static TilePictured make(TiledGrid grid, int x, int y){
+    public static TilePictured makeTilePictured(int x, int y){
         int size = TowerType.values().length;
         TowerType type = TowerType.values()[(int) (Math.random() * size)];
 
@@ -25,6 +23,9 @@ public class TowerFactory {
         }
 
         return null;
+    }
 
+    public static Tower make(int x, int y){
+        return new Tower(x, y, 1, 1, 100);
     }
 }

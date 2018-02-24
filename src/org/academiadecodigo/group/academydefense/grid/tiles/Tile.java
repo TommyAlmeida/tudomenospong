@@ -16,15 +16,14 @@ public abstract class Tile {
     private Movable movable;
     private Direction currentDirection;
 
-    public Tile( int col, int row, int cellSize) {
-        this.movable = movable;
+    public Tile(int col, int row, int cellSize) {
         this.col = col;
         this.row = row;
         this.cellSize = cellSize;
     }
 
     /**
-     * A utility to make the move code easier to read / write
+     * A utility to makeTilePictured the move code easier to read / write
      * @param direction
      * @param speed
      */
@@ -32,19 +31,15 @@ public abstract class Tile {
         switch (direction){
             case RIGHT:
                 movable.translate(speed, 0);
-                currentDirection = Direction.RIGHT;
                 break;
             case LEFT:
                 movable.translate(-speed, 0);
-                currentDirection = Direction.LEFT;
                 break;
             case UP:
                 movable.translate(0, -speed);
-                currentDirection = Direction.UP;
                 break;
             case DOWN:
                 movable.translate(0, speed);
-                currentDirection = Direction.DOWN;
                 break;
         }
     }

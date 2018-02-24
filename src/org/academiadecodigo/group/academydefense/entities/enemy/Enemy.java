@@ -59,7 +59,7 @@ public class Enemy {
     /**
      * Receive damage if hitted by a tower
      */
-    public void receiveDamage(int damage){
+    public void hit(int damage){
         if(damage >= currentHealth){
             die();
             return;

@@ -38,7 +38,7 @@ public class InGame {
 
         try {
             while (game.getGameState() != GameState.GAME_OVER) {
-                drawEnemies();
+                updateEnemy();
                 Thread.sleep(15);
             }
         } catch (InterruptedException e) {
@@ -49,7 +49,7 @@ public class InGame {
     /**
      * Draw the enemy to the screen
      */
-    private void drawEnemies(){
+    private void updateEnemy(){
         Iterator<Enemy> iterator = enemies.iterator();
 
         while(iterator.hasNext()){
@@ -71,6 +71,11 @@ public class InGame {
         }
     }
 
+    /**
+     * Create a new tower
+     * @param x tower x
+     * @param y tower y
+     */
     public void addTower(int x, int y) {
         towers.add(TowerFactory.make(x, y));
     }

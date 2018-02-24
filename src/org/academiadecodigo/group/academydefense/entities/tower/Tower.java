@@ -9,7 +9,6 @@ import org.academiadecodigo.group.academydefense.grid.tiles.TilePictured;
 public class Tower {
 
     private int fireRate, range, damage;
-
     private TilePictured currentTile;
 
     public Tower(int x, int y, int fireRate, int damage, int range) {
@@ -34,7 +33,6 @@ public class Tower {
      * @param enemy target
      */
     public void shoot(Enemy enemy) {
-
         if(!isWithinRange(enemy)){
             return;
         }
@@ -44,9 +42,15 @@ public class Tower {
             return;
         }
 
-        enemy.receiveDamage(damage);
+        enemy.hit(damage);
     }
 
+    /**
+     * Check if enemy is within range
+     *
+     * @param enemy target
+     * @return distance is greater than range
+     */
     private boolean isWithinRange(Enemy enemy){
         int towerToEnemyRow = Math.abs(enemy.getSprite().getY() - getRow());
         int towerToEnemyCol = Math.abs(enemy.getSprite().getX() - getCol());
@@ -59,10 +63,6 @@ public class Tower {
         return damage;
     }
 
-    public int getCol() {
-        return currentTile.getCol();
-    }
-
     public int getRange() {
         return range;
     }
@@ -70,4 +70,9 @@ public class Tower {
     public int getRow() {
         return currentTile.getRow();
     }
+
+    public int getCol() {
+        return currentTile.getCol();
+    }
+
 }

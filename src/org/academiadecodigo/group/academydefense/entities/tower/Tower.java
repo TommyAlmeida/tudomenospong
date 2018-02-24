@@ -12,18 +12,6 @@ public class Tower {
 
     private TilePictured currentTile;
 
-    //Tower
-    private int towerToEnemyRow;
-    private int towerToEnemyCol;
-    private int towerPosX;
-    private int towerPosY;
-
-    //Enemy
-    private int enemyPosX;
-    private int enemyPosY;
-    public int enemyDistance;
-
-
     public Tower(int x, int y, int fireRate, int damage, int range) {
         this.range = range;
         this.fireRate = fireRate;
@@ -31,27 +19,6 @@ public class Tower {
         this.currentTile = TowerFactory.makeTilePictured(x, y);
 
         draw();
-    }
-
-    /**
-     * Updates the tower to enemy row
-     * @param enemy target
-     */
-    public void updateTowerToEnemyRow(Enemy enemy) {
-
-        enemyPosY = enemy.getSprite().getY(); //menos towerToEnemyRow
-        towerPosY = getRow();
-        towerToEnemyRow = Math.abs(enemyPosY - towerPosY);
-    }
-
-    /**
-     * Updates the tower to enemy col
-     * @param enemy target
-     */
-    public void updateTowerToEnemyCol(Enemy enemy) {
-        enemyPosX = enemy.getSprite().getX(); //menos towerToEnemyRow
-        towerPosX = getCol();
-        towerToEnemyCol = Math.abs(enemyPosX - towerPosX);
     }
 
     /**
@@ -67,37 +34,25 @@ public class Tower {
      * @param enemy target
      */
     public void shoot(Enemy enemy) {
-        updateTowerToEnemyCol(enemy);
-        updateTowerToEnemyRow(enemy);
 
-        enemyDistance = (int) (Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow)));
-
-        if(getTowerToEnemyDistance() > range){
+        if(!isWithinRange(enemy)){
             return;
         }
 
         if (enemy.getCurrentHealth() <= 0) {
             enemy.die();
+            return;
         }
-        if (!enemy.isDead()) {
-            enemy.receiveDamage(damage);
-        }
+
+        enemy.receiveDamage(damage);
     }
 
-    /**
-     * Get the enemy distance from the tower
-     * @return enemy distance
-     */
-    public int getTowerToEnemyDistance() {
-        return enemyDistance;
-    }
+    private boolean isWithinRange(Enemy enemy){
+        int towerToEnemyRow = Math.abs(enemy.getSprite().getY() - getRow());
+        int towerToEnemyCol = Math.abs(enemy.getSprite().getX() - getCol());
 
-    public int getTowerToEnemyRow() {
-        return towerToEnemyRow;
-    }
-
-    public int getTowerToEnemyCol() {
-        return towerToEnemyCol;
+        double distance = Math.sqrt((towerToEnemyCol * towerToEnemyCol) + (towerToEnemyRow * towerToEnemyRow));
+        return distance > range;
     }
 
     public int getDamage() {

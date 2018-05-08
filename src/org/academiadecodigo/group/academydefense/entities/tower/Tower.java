@@ -23,7 +23,7 @@ public class Tower {
     /**
      * Draw current tower
      */
-    public void draw() {
+    private void draw() {
         currentTile.draw();
     }
 
@@ -59,19 +59,11 @@ public class Tower {
         return distance > range;
     }
 
-    public int getDamage() {
-        return damage;
-    }
-
-    public int getRange() {
-        return range;
-    }
-
-    public int getRow() {
+    private int getRow() {
         return currentTile.getRow();
     }
 
-    public int getCol() {
+    private int getCol() {
         return currentTile.getCol();
     }
 

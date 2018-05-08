@@ -1,7 +1,6 @@
 package org.academiadecodigo.group.academydefense.game;
 
 import org.academiadecodigo.group.academydefense.entities.enemy.MonicaEnemy;
-import org.academiadecodigo.group.academydefense.entities.tower.Tower;
 import org.academiadecodigo.group.academydefense.game.states.InGame;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -12,7 +11,8 @@ import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
 import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
 
-import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class InputHandler implements MouseHandler, KeyboardHandler {
 

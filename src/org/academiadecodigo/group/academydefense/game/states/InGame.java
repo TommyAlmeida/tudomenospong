@@ -17,8 +17,6 @@ import java.util.List;
  */
 public class InGame {
 
-    private InputHandler inputHandler;
-
     private List<Enemy> enemies;
     private List<Tower> towers;
 
@@ -28,7 +26,7 @@ public class InGame {
     }
 
     public void create(Game game){
-        inputHandler = new InputHandler(this);
+        new InputHandler(this);
 
         Picture background = new Picture(10,10, "res/background.png");
         Picture pidgeon = new Picture(10,10, "res/foreground-pigeon.png");
